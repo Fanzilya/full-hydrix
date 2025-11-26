@@ -31,3 +31,14 @@ export type InfoCompType = {
     item: InformationsComponentsType,
     onClick: (id: number) => void
 }
+
+export type CountersType = {
+    id: number,
+    name: string,
+    value: number,
+    unit: string,
+    top: string,
+    left: string,
+    min: number,
+    max: number
+}

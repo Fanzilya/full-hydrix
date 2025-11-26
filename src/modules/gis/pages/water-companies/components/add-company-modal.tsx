@@ -6,7 +6,7 @@ import { Modal } from "@/shared/ui/modal/modal"
 import { Input } from "@/shared/ui/Inputs/input-text"
 import { Button } from "@/shared/ui/button"
 import { InputContainer } from "@/shared/ui/Inputs/input-container"
-import { Selector } from "@/shared/ui/selector"
+import { Selector } from "@/shared/ui/Selector/selector"
 
 type Props = {
     show: boolean,

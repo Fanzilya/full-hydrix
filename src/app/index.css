@@ -37,6 +37,53 @@
 }
 
 
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Для всех браузеров */
+input[type="number"] {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+textarea {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+
+  background: none;
+  box-shadow: none;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+
+  overflow: auto;
+  resize: none;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+}
+
 .mmrgl-control-container {
   display: none;
 }

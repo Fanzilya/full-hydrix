@@ -11,7 +11,7 @@ export const EquipmentControll = () => {
     return (
         <div>
 
-            <div className="bg-white rounded-tr-[20px] rounded-bl-[20px] rounded-br-[20px] p-[45px_30px_50px_40px] mb-5 relative">
+            <div className="bg-white rounded-[20px] p-[45px_30px_50px_40px] mb-5 relative">
                 <Link to={"/dispatcher/orders/create"} className="flex items-center gap-2 py-2 px-3 bg-[var(--clr-accent)] text-white w-fit rounded-lg hover:opacity-50 duration-300 absolute top-5 right-5">
                     <Icon systemName="file-plus" />
                     <span>Создать заявку</span>
@@ -24,9 +24,9 @@ export const EquipmentControll = () => {
 
                 <div className="text-[24px] mb-4 font-semibold">Насос Н4.1 рецикла</div>
             </div>
-            <div className="flex items-top gap-[4%]">
-                <div className="w-[48%] bg-white rounded-[20px] p-[45px_30px_50px_40px]">
-                    <div className="flex justify-between mb-[40px]">
+            <div className="flex items-top gap-5">
+                <div className="w-full bg-white rounded-[20px] p-[45px_30px_50px_40px]">
+                    <div className="flex justify-between mb-5 border-b pb-5">
                         <span className="font-bold">Вкл/Выкл</span>
 
                         <SwitchButton
@@ -39,7 +39,7 @@ export const EquipmentControll = () => {
                         />
 
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between mb-5 border-b pb-5">
                         <span className="font-bold">Параметр</span>
 
 
@@ -50,7 +50,7 @@ export const EquipmentControll = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-[48%] bg-white rounded-[20px] p-[45px_30px_50px_40px]">
+                <div className="w-full bg-white rounded-[20px] p-[45px_30px_50px_40px]">
                     <div className="info-comp__section">
                         <div className="info-comp__subtitle font-bold">Журнал событий</div>
 

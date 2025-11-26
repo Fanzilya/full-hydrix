@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
-import { Header } from "@/shared/components/header";
+import { Header } from "@/shared/components/header/header";
 import { Icon } from '@/shared/ui/icon';
 
 export const Layout = () => {

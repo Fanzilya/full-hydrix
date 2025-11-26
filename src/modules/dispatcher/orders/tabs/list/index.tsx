@@ -139,7 +139,7 @@ export const RequestRegistryList = () => {
 
 
     return (
-        <div className="requestregistry-dispatch__container">
+        <div className="requestregistry-dispatch__container bg-white rounded-[20px] p-[45px_30px_50px_40px] mb-5 relative">
             <div className="requestregistry-dispatch__title font-semibold">
                 Реестр заявок
             </div>

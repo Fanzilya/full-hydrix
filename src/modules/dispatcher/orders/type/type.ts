@@ -16,3 +16,16 @@ export type TtemsRequestRegistryType = {
     time: string,
     progress: string,
 }
+
+
+export type CreateRequestModelType = {
+    type: number | null,
+    description: string,
+    company: string,
+    forCreate: string,
+    fio: string,
+    dateCreate: string,
+    operator: string,
+    phone: string,
+    email: string,
+}

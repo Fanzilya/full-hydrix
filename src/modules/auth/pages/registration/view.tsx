@@ -3,7 +3,7 @@ import registrationModel from './model/registration-model';
 
 import { Input } from '@/shared/ui/Inputs/input-text';
 import { Modal } from '@/shared/ui/modal/modal';
-import { Selector } from '@/shared/ui/selector';
+import { Selector } from '@/shared/ui/Selector/selector';
 import { Button } from '@/shared/ui/button';
 import { InputContainer } from '@/shared/ui/Inputs/input-container';
 

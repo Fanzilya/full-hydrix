@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import image from './assets/big.jpg'
 import "./ViewScheme.scss";
-import { SchemeViewerType } from "./types/type";
+import { CountersType, SchemeViewerType } from "./types/type";
 import { points } from "./data/data";
 
 export default function SchemeViewer({ setInfo }: SchemeViewerType) {
@@ -9,7 +9,7 @@ export default function SchemeViewer({ setInfo }: SchemeViewerType) {
 
     // Счётчики
 
-    const [counters, setCounters] = useState([
+    const [counters, setCounters] = useState<CountersType[]>([
         { id: 1, name: "Расход QF1", value: 0, unit: "м³/ч", top: "8.4%", left: "41.7%", min: 4, max: 9 },
         { id: 2, name: "Концентрация О2", value: 0, unit: "г/л", top: "8.4%", left: "51%", min: 5, max: 10 },
         { id: 3, name: "Расход QF2", value: 0, unit: "м³/ч", top: "8.4%", left: "54.7%", min: 5, max: 10 },
@@ -33,8 +33,8 @@ export default function SchemeViewer({ setInfo }: SchemeViewerType) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCounters((prev) =>
-                prev.map((c) => ({
+            setCounters((prev: any) =>
+                prev.map((c: CountersType) => ({
                     ...c,
                     value: (Math.random() * (c.max - c.min) + c.min).toFixed(1),
                 }))
@@ -58,7 +58,7 @@ export default function SchemeViewer({ setInfo }: SchemeViewerType) {
     const [start, setStart] = useState({ x: 0, y: 0 });
     const [bounds, setBounds] = useState({ minX: 0, minY: 0, maxX: 0, maxY: 0 });
 
-    const toggleBodyScroll = (disable) => {
+    const toggleBodyScroll = (disable: boolean) => {
         document.body.style.overflow = disable ? "hidden" : "";
     };
 
@@ -76,12 +76,13 @@ export default function SchemeViewer({ setInfo }: SchemeViewerType) {
 
 
     const updateBounds = () => {
+        if (!containerRef.current || !imgRef.current) return;
         const container = containerRef.current;
         const img = imgRef.current;
         if (!container || !img) return;
 
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
+        const containerWidth = container?.clientWidth;
+        const containerHeight = container?.clientHeight;
         const imageWidth = img.naturalWidth * scale;
         const imageHeight = img.naturalHeight * scale;
 
@@ -121,7 +122,7 @@ export default function SchemeViewer({ setInfo }: SchemeViewerType) {
         // handleWheel.timeout = setTimeout(() => toggleBodyScroll(false), 200);
     };
 
-    const handleMouseDown = (e) => {
+    const handleMouseDown = (e: React.MouseEvent) => {
         setDragging(true);
 
         setStart({
@@ -130,7 +131,7 @@ export default function SchemeViewer({ setInfo }: SchemeViewerType) {
         });
     };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: React.MouseEvent) => {
         if (!dragging) return;
         const newX = e.clientX - start.x;
         const newY = e.clientY - start.y;

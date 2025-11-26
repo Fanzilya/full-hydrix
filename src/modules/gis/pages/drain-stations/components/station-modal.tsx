@@ -8,7 +8,7 @@ import { editPlantModel } from "../model/plant-modal-model";
 import { toast } from "react-toastify";
 import { InputContainer } from "@/shared/ui/Inputs/input-container";
 import { Icon } from "@/shared/ui/icon";
-import { Selector } from "@/shared/ui/selector";
+import { Selector } from "@/shared/ui/Selector/selector";
 
 export const StationModal = observer(() => {
     const { showModalInfo, setShowModalInfo, typeModal, setTypeModal, focusedPlant, push, updatePlant } = plantsListModel;

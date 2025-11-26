@@ -6,8 +6,8 @@ export const InputContainer = (props: InputContainerType) => {
         <div className={`flex flex-col ${props.classNames?.wrapper ?? ""} relative`}>
             {props.headerText && (
                 <span className={`font-semibold text-[16px] mb-1 ${props.classNames?.header ?? ""}`}>
-                    {props.headerText}{" "}
                     {props.isRequired && <span className="text-[#C30707]">*</span>}
+                    {" "}{props.headerText}
                 </span>
             )}
 
