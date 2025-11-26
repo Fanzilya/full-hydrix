@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { ControlBlockAllType, createOrderByPoint } from "../service/table-scheme-service";
+import { ControlBlockAllType, createOrderByPoint, getAllClientCompanies } from "../service/table-scheme-service";
 
 class TableSchemeModel {
 
@@ -15,29 +15,24 @@ class TableSchemeModel {
 
 
     async getInfoSensor() {
-        // return new Promise((resolve) => {
-        // setTimeout(async () => {
         await createOrderByPoint()
             .then((data) => {
-                console.log(data.data)
-                // resolve(parseFloat());
+                this.model = data.data
             })
-
-        // }, 3000);
-        // });
     }
 
-    // SensorValueCell = () => {
 
-    //     let infoCount;
 
-    //     this.getInfoSensor()
-    //         .then((result: any) => {
-    //             infoCount = result;
-    //         });
+    async init() {
+        await createOrderByPoint()
+            .then((data) => {
+                this.model = data.data
+            })
+    }
 
-    //     return infoCount
-    // };
-
+    infoChange = async (id: number): Promise<string> => {
+        const data = await getAllClientCompanies({ id: id });
+        return String(data.data.indicates);
+    }
 }
 export const tableSchemeModel = new TableSchemeModel()
