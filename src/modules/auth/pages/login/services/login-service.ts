@@ -1,14 +1,16 @@
-// import instance from "@/api/instances";
+import instance from "@/app/api/instances";
+import { UserRoutes } from "@/app/cores/core-gis/network/api-routes";
 
-// export const authAdmin = (params: AuthEntity) => {
-//     return instance.get(UserRoutes.Authorization, { params })
-// }
+export const authAdmin = (params: AuthEntity) => {
+    return instance.get(UserRoutes.Authorization, { params })
+}
 
-export type LoginType = {
-    email: string;
+export type AuthEntity = {
+    username: string;
     password: string;
 }
 
-// export type AuthResponse = {
-//     id: number;
-// }
+
+export type AuthResponse = {
+    id: number;
+}

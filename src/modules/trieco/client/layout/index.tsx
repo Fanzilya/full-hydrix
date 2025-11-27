@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import { Sidebar } from "./sidebar"
-import { Navbar } from "./navbar"
+// import { Navbar } from "./navbar"
 // import { useLayoutEffect } from "react";
 // import clientModel from "../kernel/model/client-model";
 // import { Meta } from "@/core/network/meta";
@@ -29,8 +29,7 @@ export const ClientLayout = observer(() => {
                 <div className="w-scree h-screen flex flex-row">
                     <Sidebar />
                     <div className="w-full pt-10 pr-12 pl-7 f-full overflow-auto pb-5">
-
-                        <Navbar />
+                        {/* <Navbar /> */}
                         <Outlet />
                     </div>
                 </div>

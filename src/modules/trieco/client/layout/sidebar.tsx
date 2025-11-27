@@ -1,9 +1,9 @@
-import { Button } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
 import { observer } from "mobx-react-lite"
 import clientModel from "../kernel/model/client-model"
 import { useLocation, useNavigate } from "react-router-dom"
-import createOrderModel from "../viewports/create-order/entities/create-order-model"
+import { createOrderModel } from "../viewports/create-order/entities/create-order-model"
+import { Icon } from "@/shared/ui/icon"
+import { Button } from "@/shared/ui/button"
 
 export const Sidebar = observer(() => {
     const { logout } = clientModel;

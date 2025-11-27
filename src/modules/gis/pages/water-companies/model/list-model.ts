@@ -1,3 +1,5 @@
+import { getAllMunicipalities } from "@/app/cores/core-gis/network/water-company/type";
+import { getAllClientCompanies } from "@/entities/company/api";
 import { Municipality } from "@/entities/municipality/type";
 import { WaterCompany } from "@/entities/water-company/types";
 import { makeAutoObservable, runInAction } from "mobx";
@@ -64,64 +66,64 @@ export class ListModel {
 
   public async init() {
 
-    for (let i = 0; i < 20; i++) {
-      this.model[i] = {
-        id: i,
-        name: "string" + i,
-        waterCompanyName: "string" + i,
-        address: "string" + i,
-        municipality: {
-          id: 0 + i,
-          name: "string" + i
-        },
-        municipalityName: "string",
-        ogrn: "string",
-        inn: "string",
-        kpp: "string",
-        operator: {
-          userId: 0,
-          firstName: "string",
-          lastName: "string",
-          patronymic: "string",
-          phone: "string",
-          email: "string",
-          login: "string",
-          roleName: "string",
-          isRevoked: true,
-          waterCompanyId: 0,
-          plantId: 0,
-          workplace: "string",
-        },
-        isTransporter: true,
-        isDeleted: true,
-        email: "string",
-        phoneNumber: "string",
-      }
-    }
-
-
-    //   try {
-    //     const response = await getAllCompanies();
-
-    //     const getMunicipalities = await getAllMunicipalities();
-
-    //     runInAction(() => {
-    //       this._model = response.data.filter((x: any) => x.isDeleted == false);
-    //       this._model.sort((a, b) => a.id - b.id);
-
-    //       this.municipalities = getMunicipalities.data.map((municipality: Municipality) => ({
-    //         id: municipality.id,
-    //         name: municipality.name,
-    //       }));
-
-    //       this.isInit = true;
-    //     });
-    //   } catch (error) {
-    //     console.error(
-    //       "Ошибка при инициализации получения списка компаний ",
-    //       error
-    //     );
+    // for (let i = 0; i < 20; i++) {
+    //   this.model[i] = {
+    //     id: i,
+    //     name: "string" + i,
+    //     waterCompanyName: "string" + i,
+    //     address: "string" + i,
+    //     municipality: {
+    //       id: 0 + i,
+    //       name: "string" + i
+    //     },
+    //     municipalityName: "string",
+    //     ogrn: "string",
+    //     inn: "string",
+    //     kpp: "string",
+    //     operator: {
+    //       userId: 0,
+    //       firstName: "string",
+    //       lastName: "string",
+    //       patronymic: "string",
+    //       phone: "string",
+    //       email: "string",
+    //       login: "string",
+    //       roleName: "string",
+    //       isRevoked: true,
+    //       waterCompanyId: 0,
+    //       plantId: 0,
+    //       workplace: "string",
+    //     },
+    //     isTransporter: true,
+    //     isDeleted: true,
+    //     email: "string",
+    //     phoneNumber: "string",
     //   }
+    // }
+
+
+    try {
+      const response = await getAllClientCompanies();
+
+      const getMunicipalities = await getAllMunicipalities();
+
+      runInAction(() => {
+        this.model = response.data.filter((x: any) => x.isDeleted == false);
+        this.model.sort((a, b) => a.id - b.id);
+
+        this.municipalities = getMunicipalities.data.map((municipality: Municipality) => ({
+          id: municipality.id,
+          name: municipality.name,
+        }));
+
+        this.isInit = true;
+      });
+    } catch (error) {
+      console.error(
+        "Ошибка при инициализации получения списка компаний ",
+        error
+      );
+    }
   }
 }
 

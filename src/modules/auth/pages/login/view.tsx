@@ -9,22 +9,25 @@ import { Button } from "@/shared/ui/button";
 
 import loginModel from "./model/login-model";
 import { Registration } from "../registration";
+import { useAuth } from "@/entities/user/context";
 
 export const LoginView = observer(() => {
+    const { initUser } = useAuth();
+
     const [isregister, setIsRegister] = useState<boolean>(false)
     const { model, validError, isLoading, canSubmit, isErrorStart, login, } = loginModel;
 
     const handleSubmit = useCallback(
         (event: FormEvent<HTMLFormElement>) => {
             event.preventDefault();
-            login();
+            login(initUser);
         },
         [login],
     );
 
     useEffect(() => {
-        console.log(validError.email.length)
-    }, [validError.email])
+        console.log(validError.username.length)
+    }, [validError.username])
 
     return (
         <>
@@ -33,23 +36,23 @@ export const LoginView = observer(() => {
                 <span className="text-black text-center text-[23px] leading-[46px] font-bold">Авторизация</span>
 
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                    <InputContainer classNames={{ wrapper: "w-full", }}
+                    <InputContainer classNames={{ wrapper: "w-full", header: " flex flex-row-reverse justify-end" }}
                         headerText="Логин"
                         isRequired
-                        validText={validError.email}
+                        validText={validError.username}
                     >
                         <Input
                             placeholder="Логин"
                             className="border-[1.5px] px-3 py-3 rounded-lg"
-                            value={model.email}
+                            value={model.username}
                             onChange={loginModel.setEmail}
                             disabled={isLoading}
                             type="text"
-                            isError={isErrorStart && validError.email.length > 0}
+                            isError={isErrorStart && validError.username.length > 0}
                         />
                     </InputContainer>
 
-                    <InputContainer classNames={{ wrapper: "w-full", }}
+                    <InputContainer classNames={{ wrapper: "w-full", header: " flex flex-row-reverse justify-end" }}
                         headerText="Пароль"
                         isRequired
                         validText={validError.password}

@@ -1,5 +1,5 @@
-import instance from "@/core/network/api";
-import { CompanyRoutes, UserRoutes } from "@/core/network/api-routes";
+import instance from "../api"
+import { CompanyRoutes, UserRoutes } from "../api-routes"
 
 export const GetUserById = (params: GetUserByIdRequest) => {
     return instance.get(UserRoutes.GetById, { params })

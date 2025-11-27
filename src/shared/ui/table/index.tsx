@@ -76,7 +76,7 @@ export function Table<T>(props: TableProps<T>) {
                         {table.getRowModel().rows.map((row, i) => (
                             <tr
                                 key={i}
-                                className={`grid w-full cursor-pointer`}
+                                className={`grid w-full cursor-pointer  text-center border-b border-[bbc0c5]`}
                                 onClick={() => props.onRowClick?.(row.original)}
                                 style={{
                                     gridTemplateColumns: gridTemplate,
@@ -86,7 +86,8 @@ export function Table<T>(props: TableProps<T>) {
                                     return (
                                         <td
                                             key={j}
-                                            className="2xl:text-[14px] text-[12px] text-center py-6 px-5 flex items-center"
+                                            className="2xl:text-[14px] text-[12px] text-center pt-7 pb-4 px-5 flex flex-cols items-center justify-center "
+                                            // className="2xl:text-[14px] text-[12px] text-center pt-7 pb-4 px-5 flex items-center"
                                             onClick={(e) => { e.stopPropagation(); props.onRowClick && props.onRowClick(row.original) }}
                                         >
                                             {flexRender(

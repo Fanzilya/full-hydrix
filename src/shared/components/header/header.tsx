@@ -1,13 +1,17 @@
 import { Icon } from "@/shared/ui/icon";
 import { observer } from "mobx-react-lite";
+import { useAuth } from "@/entities/user/context";
 
 import logo from "../../../app/static/img/logo.png"
 import illyas from "./assets/iilyas.png"
 import { Link, useLocation } from "react-router-dom";
+import { getRoleText } from "@/entities/user/hooks";
 
 export const Header = observer(() => {
 
     const location = useLocation();
+    const { user, isAuthenticated } = useAuth();
+
 
     return (
         <div className="flex relative max-w-full bg-white py-6 pr-14 pl-10 items-center border-solid border-[#D6D6D6] border-b-[0.5px]">
@@ -36,10 +40,12 @@ export const Header = observer(() => {
                 <div className="flex flex-row">
                     <div className="h-full w-[1px] bg-[#C2C2C2]" />
                     <div className="bg-[#C2C2C2] rounded-full w-[45px] h-[45px] ml-6" />
-                    <div className="flex h-full flex-col justify-center items-start ml-4">
-                        <span className="font-semibold text-[16px]">Фамилия Имя</span>
-                        <span className="text-[12px]">Admin</span>
-                    </div>
+                    {user &&
+                        <div className="flex h-full flex-col justify-center items-start ml-4">
+                            <span className="font-semibold text-[16px]">{user?.lastName + " " + user?.firstName}</span>
+                            <span className="text-[12px]">{getRoleText(user?.roleId)}</span>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

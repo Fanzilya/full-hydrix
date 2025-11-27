@@ -1,5 +1,5 @@
-import instance from "@/core/network/api"
-import { OrderRoutes } from "@/core/network/api-routes"
+import instance from "@/app/api/instances";
+import { OrderRoutes } from "@/app/cores/core-trieco/network/api-routes";
 
 export const createOrder = (data: CreateOrderEntity) => {
     return instance.post(OrderRoutes.Create, data);

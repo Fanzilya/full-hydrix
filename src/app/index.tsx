@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { AppRouter } from './routers/app-router';
+import { AuthProvider } from "@/entities/user/context";
 
 
 configure({ enforceActions: 'never', });
@@ -13,8 +14,10 @@ configure({ enforceActions: 'never', });
 export function Index() {
   return (
     <>
-      <ToastContainer position='bottom-right' />
-      <RouterProvider router={AppRouter} />
+      <AuthProvider>
+        <ToastContainer position='bottom-right' />
+        <RouterProvider router={AppRouter} />
+      </AuthProvider>
     </>
   );
 }

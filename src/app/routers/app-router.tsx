@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 
 export const AppRouter = createBrowserRouter([
@@ -617,5 +617,38 @@ export const AppRouter = createBrowserRouter([
             // }
         ]
     },
+    {
+        path: '*',
+        element: <Navigate to="/error/404" replace />
+    },
+    {
+        path: '/error',
+        async lazy() {
+            const { Layout } = await import("@/modules/errors/layout")
+            return {
+                Component: Layout
+            }
+        },
+        children: [
+            {
+                path: '404',
+                async lazy() {
+                    const { Error404 } = await import("@/modules/errors/404")
+                    return {
+                        Component: Error404
+                    }
+                }
+            },
+            // {
+            // path: '403',
+            // async lazy() {
+            // const { Error500 } = await import("@/modules/errors/403")
+            // return {
+            // Component: Error500
+            // }
+            // }
+            // }
+        ]
+    }
 
 ]);

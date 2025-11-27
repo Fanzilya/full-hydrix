@@ -1,5 +1,5 @@
-import instance from "@/core/network/api"
-import { PickupPointRoutes } from "@/core/network/api-routes"
+import instance from "@/app/api/instances"
+import { PickupPointRoutes } from "@/app/cores/core-trieco/network/api-routes"
 
 export const getAllPointsByUser = (params: GetAllPointRequest) => {
     return instance.get(PickupPointRoutes.GetByUser, { params })
@@ -10,7 +10,7 @@ export const createPoint = (data: Point) => {
 }
 
 export const editPoint = (data: UpdatePointRequest) => {
-    return instance.put(PickupPointRoutes.Update, data, {params: {"id": data.pointId}})
+    return instance.put(PickupPointRoutes.Update, data, { params: { "id": data.pointId } })
 }
 
 export type GetAllPointRequest = {

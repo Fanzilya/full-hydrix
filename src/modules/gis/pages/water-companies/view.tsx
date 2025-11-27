@@ -136,8 +136,8 @@ export const CompanyListView = observer(() => {
                         }}
                         children={
                             municipalities.map((municipality, index) => (
-                                <label className="flex items-center gap-3 cursor-pointer" key={index}>
-                                    <input type="checkbox" name="tankValue" onChange={(e) => pushmunicipality(Number(e.target.value), e.target.checked)} checked={municipalityFilterIds.includes(municipality.id)} value={municipality.id} />
+                                <label className="flex items-start gap-3 cursor-pointer" key={index}>
+                                    <input className="mt-2" type="checkbox" name="tankValue" onChange={(e) => pushmunicipality(Number(e.target.value), e.target.checked)} checked={municipalityFilterIds.includes(municipality.id)} value={municipality.id} />
                                     <span>{municipality.name}</span>
                                 </label>
                             ))}

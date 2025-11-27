@@ -14,7 +14,7 @@ export const cartLinks: MenuItemType[] = [
     },
     {
         name: "Gis",
-        link: "/gis",
+        link: "/gis/companies",
         userIds: [Role.Client, Role.Ministry]
     },
     {

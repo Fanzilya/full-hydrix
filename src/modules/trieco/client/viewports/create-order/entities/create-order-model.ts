@@ -1,9 +1,12 @@
 import { makeAutoObservable, runInAction, toJS } from "mobx";
 import { createOrder, createOrderByPoint } from "../service/order";
-import { getAllPointsByUser, Point } from "@/modules/client/components/points/service/point-service";
-import Cookies from "js-cookie";
+import { getAllPointsByUser, Point } from "../../../layout/points/service/point-service";
+import Cookies from 'universal-cookie';
+
 
 const code = "24928587-9095-4b8a-a99e-6eabfc05b2cd"
+const cookies = new Cookies();
+
 
 class CreateOrderModel {
   constructor() {
@@ -56,7 +59,7 @@ class CreateOrderModel {
 
   getPoints(userId: number) {
     this.showMap = false;
-    getAllPointsByUser({ userId: userId }).then(async x => {
+    getAllPointsByUser({ userId: userId }).then(async (x) => {
       this._pickupPoints = x.data;
     })
   }
@@ -163,7 +166,7 @@ class CreateOrderModel {
   }
 
   async save(userId: number) {
-    this._model = JSON.parse(Cookies.get("orderData") || "")
+    this._model = JSON.parse(cookies.get("orderData") || "")
     if (!this.canSave()) return;
     if (this.selectedPoint) {
       try {
@@ -188,7 +191,7 @@ class CreateOrderModel {
         window.localStorage.setItem('latitude', this.selectedPoint!.latitude.toString())
         window.localStorage.setItem('longitude', this.selectedPoint!.longitude.toString())
         this.clearData()
-        Cookies.remove("orderData");
+        cookies.remove("orderData");
       } catch (error) {
         console.log(error)
       }
@@ -214,7 +217,7 @@ class CreateOrderModel {
       selfCreated: false,
     })
     this.clearData()
-    Cookies.remove("orderData");
+    cookies.remove("orderData");
   }
 }
 
@@ -237,7 +240,5 @@ type CreateOrderEntity = {
   selfCreated: boolean,
 }
 
-const createOrderModel = new CreateOrderModel();
-
-export default createOrderModel
+export const createOrderModel = new CreateOrderModel();
 

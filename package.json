@@ -35,12 +35,14 @@
     "react-router-dom": "^6.24.1",
     "react-toastify": "^10.0.5",
     "tailwind": "^2.3.1",
+    "universal-cookie": "^8.0.1",
     "websocket-as-promised": "^2.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-input-mask": "^3.0.5",
+    "@types/universal-cookie": "^2.2.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",

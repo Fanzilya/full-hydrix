@@ -1,11 +1,14 @@
 import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
-import { LoginType } from "../services/login-service";
+import { authAdmin, AuthEntity } from "../services/login-service";
 import { testEmail } from "@/shared/ui/Inputs/setting/input-valid-email";
+import { Role } from "@/entities/user/role";
+import { getWaterCompanyByUserId } from "@/app/cores/core-gis/network/water-company/type";
+import { useAuth } from "@/entities/user/context";
 
 class LoginModel {
-    model: LoginType = { email: "", password: "" };
-    validError: LoginType = { email: "", password: "" };
+    model: AuthEntity = { username: "", password: "" };
+    validError: AuthEntity = { username: "", password: "" };
 
     isErrorStart: boolean = false;
     // isCapcha = false;
@@ -18,12 +21,12 @@ class LoginModel {
 
     setEmail(value: string) {
         if (this.isErrorStart) this.validEmail(value)
-        this.model.email = value;
+        this.model.username = value;
     }
 
     validEmail(value: string) {
-        this.validError.email = value.length == 0 ? "Поле пустое" : testEmail(value).errorTxt;
-        return Boolean(this.validError.email);
+        this.validError.username = value.length == 0 ? "Поле пустое" : testEmail(value).errorTxt;
+        return Boolean(this.validError.username);
     }
 
 
@@ -60,7 +63,7 @@ class LoginModel {
     // }
 
     get canSubmit() {
-        const hasCredentials = Boolean(this.model.email?.trim()) && Boolean(this.model.password?.trim());
+        const hasCredentials = Boolean(this.model.username?.trim()) && Boolean(this.model.password?.trim());
         return hasCredentials && !this.isLoading;
         // return hasCredentials && !this.isCapcha && !this.isLoading;
     }
@@ -69,11 +72,49 @@ class LoginModel {
         // this.setCapchaCount(this.capchaCount + 1);
     }
 
-    async login() {
 
-        window.location.href = "/menu-moduls";
+    public async login(initUser: () => void) {
+        await authAdmin(this.model)
+            .then(response => {
 
-        if (this.validEmail(this.model.email) && this.validPassword(this.model.password)) {
+
+                window.localStorage.setItem("access_token", response.data['jwtToken'])
+                window.localStorage.setItem("refresh_token", response.data['refreshToken'])
+                window.localStorage.setItem("user_id", response.data['id'])
+                initUser()
+                
+                switch (response.data.roleId) {
+                    case Role.Client:
+                        alert("Client")
+                        break;
+                    case Role.CompanyOperator:
+                        alert("CompanyOperator")
+                        break;
+                    case Role.WaterCompany:
+                        alert("WaterCompany")
+
+                        getWaterCompanyByUserId({ UserId: response.data.id }).then(x => {
+                            window.location.href = `/admin/company/${x.data.id}`
+                        })
+
+                        break;
+                    case Role.Ministry:
+                        alert("Ministry")
+                        window.location.href = '/menu-moduls'
+                        break;
+                    case Role.Admin:
+                        alert("Admin")
+                        break;
+                }
+
+            })
+    }
+
+    async logins() {
+
+        // window.location.href = "/menu-moduls";
+
+        if (this.validEmail(this.model.username) && this.validPassword(this.model.password)) {
             this.isErrorStart = true;
             this.incrementCapchaAttempts();
             return;
@@ -94,9 +135,9 @@ class LoginModel {
             this.incrementCapchaAttempts();
             toast.error("Не удалось выполнить авторизацию. Повторите попытку позже.");
         } finally {
-            // setTimeout(() => {
-            this.isLoading = false;
-            // }, 5000);
+            setTimeout(() => {
+                this.isLoading = false;
+            }, 5000);
         }
     }
 }

@@ -1,8 +1,8 @@
-import { WsRoute } from "@/core/network/api-routes";
-import { Meta } from "@/core/network/meta";
-import { User } from "@/core/network/models";
-import { GetUserById, getUserCompany } from "@/core/network/user/user";
-import WebSocketClient from "@/core/network/ws/ws-client";
+import { Meta } from "@/app/api/meta";
+import { WsRoute } from "@/app/cores/core-gis/network/api-routes";
+import { GetUserById, getUserCompany } from "@/app/cores/core-trieco/network/user/user";
+import WebSocketClient from "@/app/cores/core-trieco/network/ws/ws-client";
+import { User } from "@/entities/user/type";
 import { makeAutoObservable } from "mobx";
 
 export class AdminModel {
@@ -49,23 +49,23 @@ export class AdminModel {
     async init() {
         const token = window.localStorage.getItem('refresh-token')
 
-        // if (!token) {
-        //     window.location.href = "/auth"
-        // }
+        if (!token) {
+            window.location.href = "/auth"
+        }
 
         // TODO: Доделать
-        // const userResp = await GetUserById({ id: Number(window.localStorage.getItem('refresh-token')) })
-        // this.setUser(userResp.data)
+        const userResp = await GetUserById({ id: Number(window.localStorage.getItem('refresh-token')) })
+        this.setUser(userResp.data)
 
-        // const companyResp = await getUserCompany({ UserId: Number(window.localStorage.getItem('refresh-token')) })
+        const companyResp = await getUserCompany({ UserId: Number(window.localStorage.getItem('refresh-token')) })
 
 
-        // this._companyId = companyResp.data.companyId;
+        this._companyId = companyResp.data.companyId;
 
-        // this._wsClient = new WebSocketClient(WsRoute);
-        // this._wsClient.connect()
+        this._wsClient = new WebSocketClient(WsRoute);
+        this._wsClient.connect()
 
-        // this._meta = Meta.SUCCESS
+        this._meta = Meta.SUCCESS
     }
 }
 
