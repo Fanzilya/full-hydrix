@@ -100,8 +100,7 @@ export const SewerListView = observer(() => {
     const { search, setSearch, results } = useSearch<Sewer>({ data: list, searchFields: ['sewerNumberPlate', 'sewerCarModel', 'companyName', "firstName", "lastName", "patronymic"] })
 
 
-    // const companyId = gisModel.waterCompany?.id;
-    const companyId = 5;
+    const companyId = gisModel.waterCompany?.id;
 
     useEffect(() => {
         init(companyId)

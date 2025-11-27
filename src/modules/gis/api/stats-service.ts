@@ -1,13 +1,16 @@
 
-// export const getExportSummaryStats = (params: GetStatRequest) => {
-//     return instance.get(StatsRoutes.ExportSummary, { params, responseType: 'blob' })
-// }
-// export const getExportTransportingStats = (params: GetStatRequest) => {
-//     return instance.get(StatsRoutes.ExportTransporting, { params, responseType: 'blob' })
-// }
-// export const getExportUtilizationStats = (params: GetStatRequest) => {
-//     return instance.get(StatsRoutes.ExportUtilization, { params, responseType: 'blob' })
-// }
+export const getExportSummaryStats = (params: GetStatRequest) => {
+    return instance.get(StatsRoutes.ExportSummary, { params, responseType: 'blob' })
+}
+export const getExportTransportingStats = (params: GetStatRequest) => {
+    return instance.get(StatsRoutes.ExportTransporting, { params, responseType: 'blob' })
+}
+export const getExportUtilizationStats = (params: GetStatRequest) => {
+    return instance.get(StatsRoutes.ExportUtilization, { params, responseType: 'blob' })
+}
+
+import instance from "@/app/api/instances"
+import { StatsRoutes } from "@/app/cores/core-gis/network/api-routes"
 
 // export const getSummaryRecycleByCompanyStat = (params: GetStatRequest) => {
 //     return instance.get(StatsRoutes.SummaryCompanyRecycle, { params })
@@ -25,17 +28,17 @@
 //     return instance.get(StatsRoutes.SummaryOrdersPlant, { params })
 // }
 
-// export const getRecycleAllStat = (params: GetStatRequest) => {
-//     return instance.get(StatsRoutes.RecycleAll, { params })
-// }
+export const getRecycleAllStat = (params: GetStatRequest) => {
+    return instance.get(StatsRoutes.RecycleAll, { params })
+}
 
-// export const getRecycleCompaniesStat = (params: GetStatRequest) => {
-//     return instance.get(StatsRoutes.RecycleCompany, { params })
-// }
+export const getRecycleCompaniesStat = (params: GetStatRequest) => {
+    return instance.get(StatsRoutes.RecycleCompany, { params })
+}
 
-// export const getTariffChanges = (params: GetStatRequest) => {
-//     return instance.get(StatsRoutes.TariffChanges, { params })
-// }
+export const getTariffChanges = (params: GetStatRequest) => {
+    return instance.get(StatsRoutes.TariffChanges, { params })
+}
 
 // export const getAvgPrice = (params: GetStatRequest) => {
 //     return instance.get(StatsRoutes.AverageOrderPrice, { params })
@@ -49,6 +52,6 @@
 //     return instance.get(StatsRoutes.Profit, { params })
 // }
 
-// export type GetStatRequest = {
-//     WaterCompanyId: number;
-// }
+export type GetStatRequest = {
+    WaterCompanyId: number;
+}

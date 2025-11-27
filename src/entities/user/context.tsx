@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, ReactNode } from "react";
 import { userModel, UserModel } from "./user";
 import { User } from "./type";
+import { WaterCompany } from "../water-company/types";
 
 interface AuthContextType {
     // Данные пользователя
     user: User | null;
+    waterCompany: WaterCompany | null;
     isLoading: boolean;
     error: string | null;
     isAuthenticated: boolean;
@@ -13,6 +15,7 @@ interface AuthContextType {
     setUser: (user: User) => void;
     updateUser: (updates: Partial<User>) => void;
     initUser: () => Promise<void>;
+    initCompany: (data: WaterCompany) => void;
     logout: () => void;
 }
 
@@ -32,6 +35,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const value: AuthContextType = {
         // Данные
         user: userModel.user,
+        waterCompany: userModel.waterCompany,
         isLoading: userModel.isLoading,
         error: userModel.error,
         isAuthenticated: userModel.isAuthenticated,
@@ -40,6 +44,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUser: userModel.setUser,
         updateUser: userModel.updateUser,
         initUser: userModel.initUser,
+        initCompany: userModel.initCompany,
         logout: userModel.logout
     };
 

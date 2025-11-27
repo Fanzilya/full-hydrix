@@ -10,6 +10,7 @@ import { InputContainer } from "@/shared/ui/Inputs/input-container";
 import { Input } from "@/shared/ui/Inputs/input-text";
 import { Button } from "@/shared/ui/button";
 import { ModalDelete } from "@/shared/ui/modal/modal-delete";
+import { useAuth } from "@/entities/user/context";
 // import { Icon } from "@/core/UIKit/icon"
 // import { Card } from "./components/card"
 // import { useNavigate, useParams } from "react-router-dom"
@@ -23,15 +24,15 @@ import { ModalDelete } from "@/shared/ui/modal/modal-delete";
 
 export const WaterCompanyView = observer(() => {
     const navigate = useNavigate();
-    const { companyId } = useParams();
-    const id = Number(companyId);
+    const { waterCompany } = useAuth();
+
     const { init, meta, company, plants, editableModel, isEditing, setEditing, save,
         setName, setOperatorFirstName, setOperatorLastName, setOperatorPatronymic, setInn,
         setOgrn, setKpp, setLogin, setOperatorPhone, setOperatorEmail, setAddress,
         setMunicipality, showDelete, setShowDelete, deleteCompany } = waterCompanyModel;
 
     useEffect(() => {
-        init(id)
+        waterCompany && init(waterCompany.id)
     }, [])
 
     const handleEditClick = () => {

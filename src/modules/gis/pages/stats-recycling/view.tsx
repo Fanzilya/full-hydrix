@@ -6,7 +6,7 @@ import recyclingStatsModel from "./recycling-stats-model"
 import { getLineData } from "./helper/getData"
 import { Icon } from "@/shared/ui/icon"
 import { Button } from "@/shared/ui/button"
-import statsModel from "../stats/models/stats-model"
+import statsModel from "../../layout/model/stats-model"
 
 export const RecyclingStatsView = observer(() => {
     const { companyId } = useParams()
@@ -36,13 +36,12 @@ export const RecyclingStatsView = observer(() => {
         <div className="flex flex-row ml-16 justify-between h-full">
             <div>
                 <div className="flex flex-row gap-[28px] items-center  mt-8">
-                    <div className="bg-[#4A85F6] rounded-md w-[42px] h-[30px] flex items-center justify-center cursor-pointer" onClick={() => navigate(`/company/${Number(companyId)}`)}>
+                    <div className="bg-[#4A85F6] rounded-md w-[42px] h-[30px] flex items-center justify-center cursor-pointer" onClick={() => navigate(-1)}>
                         <Icon systemName="arrow-left" />
                     </div>
                     <span className="text-[#222B45] font-bold text-[34px]">Статистика утилизации</span>
                     <Button children="Скачать" class="bg-[#4A85F6] p-5 flex flex-row rounded-lg text-white py-2" onClick={() =>
-                        // statsModel.getExportUtilizationStats(Number(companyId))
-                        console.log("sd")
+                        statsModel.getExportUtilizationStats(Number(companyId))
                     }
                     />
                 </div>

@@ -4,11 +4,9 @@ import { cartLinks } from "./utils/items-links";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
-
 export const MenuModulsView = observer(() => {
 
     const { init, itemsInformations } = authModulsModel;
-
     useEffect(() => {
         init(cartLinks);
     }, [])

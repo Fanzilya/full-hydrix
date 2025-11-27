@@ -1,73 +1,72 @@
-// import { Role } from "@/core/enums/role";
-// import { WsRoute } from "@/core/network/api-routes";
-// import { Meta } from "@/core/network/meta";
-// import { User } from "@/core/network/models";
-// import { GetUserById } from "@/core/network/user/user";
-// import { getWaterCompanyByUserId, WaterCompany } from "@/core/network/water-company/water-company";
-// import WebSocketClient from "@/core/network/ws/ws-client";
-// import { makeAutoObservable } from "mobx";
+import { Meta } from "@/app/api/meta";
+import WebSocketClient from "@/app/cores/core-gis/network/ws/ws-client";
+import { GetUserById } from "@/app/cores/core-trieco/network/user/user";
+import { Role } from "@/entities/user/role";
+import { User } from "@/entities/user/type";
+import { WaterCompany } from "@/entities/water-company/types";
+import { makeAutoObservable } from "mobx";
 
 
-// export class GisModel {
-//     constructor() {
-//         makeAutoObservable(this, {}, { autoBind: true })
-//     }
+export class GisModel {
+    constructor() {
+        makeAutoObservable(this, {}, { autoBind: true })
+    }
 
-//     private _meta: Meta = Meta.INITIAL;
-//     private _user?: User;
-//     private _waterCompany?: WaterCompany;
-//     private _wsClient: WebSocketClient | null = null;
-
-
-//     get meta() {
-//         return this._meta;
-//     }
-
-//     get user() {
-//         return this._user;
-//     }
-
-//     get waterCompany() {
-//         return this._waterCompany
-//     }
-
-//     get wsClient() {
-//         return this._wsClient;
-//     }
+    private _meta: Meta = Meta.INITIAL;
+    private _user?: User;
+    private _waterCompany?: WaterCompany;
+    private _wsClient: WebSocketClient | null = null;
 
 
-//     setUser(value: any) {
-//         this._user = value;
-//     }
+    get meta() {
+        return this._meta;
+    }
 
-//     logout() {
-//         window.localStorage.removeItem('refresh-token');
-//         this._user = undefined;
-//         window.location.href = '/auth'
-//     }
+    get user() {
+        return this._user;
+    }
 
-//     async init() {
-//         const response = await GetUserById({ id: Number(window.localStorage.getItem('refresh-token')) })
+    get waterCompany() {
+        return this._waterCompany
+    }
 
-//         if (response.data.roleId != Role.Ministry && response.data.roleId != Role.WaterCompany) {
-//             window.location.href = "/auth"
-//             window.localStorage.removeItem("refresh-token")
-//             throw "Пользователь не найден!";
-//         }
+    get wsClient() {
+        return this._wsClient;
+    }
 
-//         if (response.data.roleId === Role.WaterCompany) {
-//             await getWaterCompanyByUserId({UserId: response.data.id}).then(watt => {
-//                 this._waterCompany = watt.data
-//             });
-//         }
 
-//         this.setUser(response.data)
-//         this._meta = Meta.SUCCESS
+    setUser(value: any) {
+        this._user = value;
+    }
 
-//         this._wsClient = new WebSocketClient(WsRoute);
-//         this._wsClient.connect()
-//     }
-// }
+    logout() {
+        window.localStorage.removeItem('refresh-token');
+        this._user = undefined;
+        window.location.href = '/auth'
+    }
 
-// const gisModel = new GisModel();
-// export default gisModel;
+    async init() {
+        const response = await GetUserById({ id: Number(window.localStorage.getItem('refresh-token')) })
+
+        if (response.data.roleId != Role.Ministry && response.data.roleId != Role.WaterCompany) {
+            window.location.href = "/auth"
+            window.localStorage.removeItem("refresh-token")
+            throw "Пользователь не найден!";
+        }
+
+        if (response.data.roleId === Role.WaterCompany) {
+            await getWaterCompanyByUserId({ UserId: response.data.id }).then(watt => {
+                this._waterCompany = watt.data
+            });
+        }
+
+        this.setUser(response.data)
+        this._meta = Meta.SUCCESS
+
+        this._wsClient = new WebSocketClient(WsRoute);
+        this._wsClient.connect()
+    }
+}
+
+const gisModel = new GisModel();
+export default gisModel;

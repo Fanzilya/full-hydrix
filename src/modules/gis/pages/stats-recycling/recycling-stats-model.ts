@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import { getRecycleAllStat, getRecycleCompaniesStat, getTariffChanges } from "../../api/stats-service";
 
 export class RecyclingStatsModel {
     constructor() {
@@ -17,17 +18,17 @@ export class RecyclingStatsModel {
         this.recycleCompaniesStat = []
         this.tariffChanges = [];
 
-        // await getRecycleAllStat({ WaterCompanyId: waterCompanyId }).then(x => {
-        //     this.recycleAllStat = x.data;
-        // })
+        await getRecycleAllStat({ WaterCompanyId: waterCompanyId }).then(x => {
+            this.recycleAllStat = x.data;
+        })
 
-        // await getRecycleCompaniesStat({WaterCompanyId: waterCompanyId}).then(x => {
-        //     this.recycleCompaniesStat = x.data
-        // })
+        await getRecycleCompaniesStat({ WaterCompanyId: waterCompanyId }).then(x => {
+            this.recycleCompaniesStat = x.data;
+        })
 
-        // await getTariffChanges({WaterCompanyId: waterCompanyId}).then(x => {
-        //     this.tariffChanges = x.data;
-        // })
+        await getTariffChanges({ WaterCompanyId: waterCompanyId }).then(x => {
+            this.tariffChanges = x.data;
+        })
 
         this.isInit = true;
     }

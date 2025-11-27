@@ -65,51 +65,15 @@ export class ListModel {
   }
 
   public async init() {
-
-    // for (let i = 0; i < 20; i++) {
-    //   this.model[i] = {
-    //     id: i,
-    //     name: "string" + i,
-    //     waterCompanyName: "string" + i,
-    //     address: "string" + i,
-    //     municipality: {
-    //       id: 0 + i,
-    //       name: "string" + i
-    //     },
-    //     municipalityName: "string",
-    //     ogrn: "string",
-    //     inn: "string",
-    //     kpp: "string",
-    //     operator: {
-    //       userId: 0,
-    //       firstName: "string",
-    //       lastName: "string",
-    //       patronymic: "string",
-    //       phone: "string",
-    //       email: "string",
-    //       login: "string",
-    //       roleName: "string",
-    //       isRevoked: true,
-    //       waterCompanyId: 0,
-    //       plantId: 0,
-    //       workplace: "string",
-    //     },
-    //     isTransporter: true,
-    //     isDeleted: true,
-    //     email: "string",
-    //     phoneNumber: "string",
-    //   }
-    // }
-
-
     try {
       const response = await getAllClientCompanies();
 
       const getMunicipalities = await getAllMunicipalities();
 
       runInAction(() => {
-        this.model = response.data.filter((x: any) => x.isDeleted == false);
-        this.model.sort((a, b) => a.id - b.id);
+        this.model = response.data;
+        // this.model = response.data.filter((x: any) => x.isDeleted == false);
+        // this.model.sort((a, b) => a.id - b.id);
 
         this.municipalities = getMunicipalities.data.map((municipality: Municipality) => ({
           id: municipality.id,

@@ -5,6 +5,7 @@ import { testEmail } from "@/shared/ui/Inputs/setting/input-valid-email";
 import { Role } from "@/entities/user/role";
 import { getWaterCompanyByUserId } from "@/app/cores/core-gis/network/water-company/type";
 import { useAuth } from "@/entities/user/context";
+import { WaterCompany } from "@/entities/water-company/types";
 
 class LoginModel {
     model: AuthEntity = { username: "", password: "" };
@@ -73,7 +74,7 @@ class LoginModel {
     }
 
 
-    public async login(initUser: () => void) {
+    public async login(initUser: () => void, initCompany: (data: WaterCompany) => void) {
         await authAdmin(this.model)
             .then(response => {
 
@@ -82,7 +83,7 @@ class LoginModel {
                 window.localStorage.setItem("refresh_token", response.data['refreshToken'])
                 window.localStorage.setItem("user_id", response.data['id'])
                 initUser()
-                
+
                 switch (response.data.roleId) {
                     case Role.Client:
                         alert("Client")
@@ -92,9 +93,9 @@ class LoginModel {
                         break;
                     case Role.WaterCompany:
                         alert("WaterCompany")
-
                         getWaterCompanyByUserId({ UserId: response.data.id }).then(x => {
-                            window.location.href = `/admin/company/${x.data.id}`
+                            initCompany(x.data)
+                            window.location.href = `/gis/company/${x.data.id}`
                         })
 
                         break;

@@ -1,3 +1,4 @@
+import { useAuth } from '@/entities/user/context';
 import { SidebarItem } from '../../../../shared/components/sidebar-item'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useRef, useState } from 'react';
@@ -9,26 +10,28 @@ export const Sidebar = observer(() => {
     const sidebarRef = useRef<HTMLDivElement>(null);
     const [isSticky, setIsSticky] = useState(false);
 
+    const { logout } = useAuth();
+
     // Функция для расширения сайдбара при прокрутке
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         if (!sidebarRef.current) return;
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!sidebarRef.current) return;
 
-    //         const sidebarRect = sidebarRef.current.getBoundingClientRect();
-    //         const isTopReached = sidebarRect.top - 50 <= 0;
+            const sidebarRect = sidebarRef.current.getBoundingClientRect();
+            const isTopReached = sidebarRect.top - 50 <= 0;
 
-    //         setIsSticky(isTopReached);
-    //     };
+            setIsSticky(isTopReached);
+        };
 
-    //     window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
 
-    //     // Вызываем сразу для установки начального состояния
-    //     handleScroll();
+        // Вызываем сразу для установки начального состояния
+        handleScroll();
 
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     };
-    // }, []);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
         <div
@@ -38,7 +41,7 @@ export const Sidebar = observer(() => {
             <div className={`flex flex-col justify-between transition-all duration-300 sticky top-10 ${isSticky ? 'h-[95vh] pb-0' : 'h-[85vh] pb-5 '}`}>
                 <div className='flex gap-4 flex-col w-full'>
                     <SidebarItem link='/gis/companies' icon='water-company' title='Водоканалы' isActive={location.pathname === "/gis/companies"} />
-                    <SidebarItem link={`/gis/company/4`} icon='water-company' title='Водоканал' isActive={location.pathname === `/gis/company/4`} />
+                    <SidebarItem link={`/gis/company/4`} icon='water-company' title='Водоканал' isActive={location.pathname.includes('/gis/company/')} />
 
                     <SidebarItem link='/gis/sewers' icon='sewer-car' title='Ассенизаторы' isActive={location.pathname === '/gis/sewers'} />
                     <SidebarItem link='/gis/orders' icon='arrows-clockwise' title='Заявки' isActive={location.pathname === '/gis/orders'} />
@@ -50,9 +53,9 @@ export const Sidebar = observer(() => {
                     <SidebarItem link={`/gis/company/5/stats`} icon='graph' title='Статистика' isActive={location.pathname === `/gis/company/5/stats`} />
                 </div>
                 <div>
-                    {false && <SidebarItem link='/gis/sewers' icon='cog' title='Настройки' isActive={location.pathname === '/gis/settings'} />}
-                    {false && <SidebarItem link='/gis/sewers' icon='help-circle' title='Помощь' isActive={location.pathname === '/gis/help'} />}
-                    {false && <SidebarItem link='/exit' icon='exit-client' title='Выйти' />}
+                    {location.pathname.includes("gis") && <SidebarItem link='/gis/sewers' icon='cog' title='Настройки' isActive={location.pathname === '/gis/settings'} />}
+                    {location.pathname.includes("gis") && <SidebarItem link='/gis/sewers' icon='help-circle' title='Помощь' isActive={location.pathname === '/gis/help'} />}
+                    {location.pathname.includes("gis") && <SidebarItem link='/exit' icon='exit-client' title='Выйти' onClick={logout} />}
                 </div>
             </div>
         </div >

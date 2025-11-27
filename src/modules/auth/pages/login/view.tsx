@@ -13,7 +13,7 @@ import { useAuth } from "@/entities/user/context";
 import { Link } from "react-router-dom";
 
 export const LoginView = observer(() => {
-    const { initUser } = useAuth();
+    const { initUser, initCompany } = useAuth();
 
     const [isregister, setIsRegister] = useState<boolean>(false)
     const { model, validError, isLoading, canSubmit, isErrorStart, login, } = loginModel;
@@ -21,7 +21,7 @@ export const LoginView = observer(() => {
     const handleSubmit = useCallback(
         (event: FormEvent<HTMLFormElement>) => {
             event.preventDefault();
-            login(initUser);
+            login(initUser, initCompany);
         },
         [login],
     );

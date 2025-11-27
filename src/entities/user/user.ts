@@ -1,9 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import { GetUserById } from "@/app/cores/core-trieco/network/user/user";
 import { User } from "./type";
+import { WaterCompany } from "../water-company/types";
 
 export class UserModel {
     private _user: User | null = null;
+    private _waterCompany: WaterCompany | null = null;
     private _isLoading = false;
     private _error: string | null = null;
 
@@ -14,6 +16,10 @@ export class UserModel {
 
     get user() {
         return this._user;
+    }
+
+    get waterCompany() {
+        return this._waterCompany;
     }
 
     get isLoading() {
@@ -75,15 +81,20 @@ export class UserModel {
         }
     }
 
+    initCompany(data: WaterCompany) {
+        this._waterCompany = data;
+    }
+
     logout() {
         this.clearUser();
-        window.location.href = '/auth';
+        window.location.href = '/';
     }
 
     private clearUser() {
         this._user = null;
         this._error = null;
         this.clearStorage();
+
     }
 
     private clearStorage() {
