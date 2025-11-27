@@ -3,6 +3,7 @@ import infoCom1 from "../assets/info-com-1.jpg";
 import infoCom2 from "../assets/info-com-2.jpg";
 import infoCom3 from "../assets/info-com-3.jpg";
 import infoCom4 from "../assets/info-com-4.jpg";
+import infoCom5 from "../assets/5278676053201194684.jpg";
 
 import { CountersType, HardWareStatus, InformationsComponentsType, SchemeViewerPointType } from "../types/type";
 
@@ -169,7 +170,7 @@ export const InformationsComponents: InformationsComponentsType[] = [
     },
     {
         title: "Мешалка усреднителя №3",
-        img: infoCom4,
+        img: infoCom5,
         items: [
             {
 
