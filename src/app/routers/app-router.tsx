@@ -193,7 +193,7 @@ export const AppRouter = createBrowserRouter([
             {
                 index: true,
                 async lazy() {
-                    const { Scheme } = await import("@/modules/dispatcher/scheme")
+                    const { Scheme } = await import("@/modules/dispatcher/pages/scheme")
                     return {
                         Component: Scheme
                     }
@@ -202,7 +202,7 @@ export const AppRouter = createBrowserRouter([
             {
                 path: 'helper',
                 async lazy() {
-                    const { Helper } = await import("@/modules/dispatcher/helper")
+                    const { Helper } = await import("@/modules/dispatcher/pages/helper")
                     return {
                         Component: Helper
                     }
@@ -211,7 +211,7 @@ export const AppRouter = createBrowserRouter([
             {
                 path: "timmodel",
                 async lazy() {
-                    const { TimModel } = await import("@/modules/dispatcher/tim-model")
+                    const { TimModel } = await import("@/modules/dispatcher/pages/tim-model")
                     return {
                         Component: TimModel
                     }
@@ -220,7 +220,7 @@ export const AppRouter = createBrowserRouter([
             {
                 path: "equipment",
                 async lazy() {
-                    const { EquipmentRegistry } = await import("@/modules/dispatcher/equipment")
+                    const { EquipmentRegistry } = await import("@/modules/dispatcher/pages/equipment")
                     return {
                         Component: EquipmentRegistry
                     }
@@ -229,7 +229,7 @@ export const AppRouter = createBrowserRouter([
             {
                 path: "equipment-about",
                 async lazy() {
-                    const { EquipmentAbout } = await import("@/modules/dispatcher/equipment-about")
+                    const { EquipmentAbout } = await import("@/modules/dispatcher/pages/equipment-about")
                     return {
                         Component: EquipmentAbout
                     }
@@ -238,7 +238,7 @@ export const AppRouter = createBrowserRouter([
                     {
                         path: "passport",
                         async lazy() {
-                            const { EquipmentPassport } = await import("@/modules/dispatcher/equipment-about/tabs/passport")
+                            const { EquipmentPassport } = await import("@/modules/dispatcher/pages/equipment-about/tabs/passport")
                             return {
                                 Component: EquipmentPassport
                             }
@@ -247,7 +247,7 @@ export const AppRouter = createBrowserRouter([
                     {
                         path: "controll",
                         async lazy() {
-                            const { EquipmentControll } = await import("@/modules/dispatcher/equipment-about/tabs/controll")
+                            const { EquipmentControll } = await import("@/modules/dispatcher/pages/equipment-about/tabs/controll")
                             return {
                                 Component: EquipmentControll
                             }
@@ -258,7 +258,7 @@ export const AppRouter = createBrowserRouter([
             {
                 path: "orders",
                 async lazy() {
-                    const { RequestRegistry } = await import("@/modules/dispatcher/orders")
+                    const { RequestRegistry } = await import("@/modules/dispatcher/pages/orders")
                     return {
                         Component: RequestRegistry
                     }
@@ -267,7 +267,7 @@ export const AppRouter = createBrowserRouter([
                     {
                         index: true,
                         async lazy() {
-                            const { RequestRegistryList } = await import("@/modules/dispatcher/orders/tabs/list")
+                            const { RequestRegistryList } = await import("@/modules/dispatcher/pages/orders/tabs/list")
                             return {
                                 Component: RequestRegistryList
                             }
@@ -276,7 +276,7 @@ export const AppRouter = createBrowserRouter([
                     {
                         path: "create",
                         async lazy() {
-                            const { RequestRegistryForm } = await import("@/modules/dispatcher/orders/tabs/form")
+                            const { RequestRegistryForm } = await import("@/modules/dispatcher/pages/orders/tabs/form")
                             return {
                                 Component: RequestRegistryForm
                             }
@@ -285,7 +285,7 @@ export const AppRouter = createBrowserRouter([
                             {
                                 path: "form",
                                 async lazy() {
-                                    const { RequestForm } = await import("@/modules/dispatcher/orders/tabs/form/tabs/request-form")
+                                    const { RequestForm } = await import("@/modules/dispatcher/pages/orders/tabs/form/tabs/request-form")
                                     return {
                                         Component: RequestForm
                                     }
@@ -294,7 +294,7 @@ export const AppRouter = createBrowserRouter([
                             {
                                 path: "information",
                                 async lazy() {
-                                    const { RequestForm } = await import("@/modules/dispatcher/orders/tabs/form/tabs/request-form")
+                                    const { RequestForm } = await import("@/modules/dispatcher/pages/orders/tabs/form/tabs/request-form")
                                     return {
                                         Component: RequestForm
                                     }
@@ -303,7 +303,7 @@ export const AppRouter = createBrowserRouter([
                             {
                                 path: "tasks",
                                 async lazy() {
-                                    const { RequestForm } = await import("@/modules/dispatcher/orders/tabs/form/tabs/request-form")
+                                    const { RequestForm } = await import("@/modules/dispatcher/pages/orders/tabs/form/tabs/request-form")
                                     return {
                                         Component: RequestForm
                                     }
@@ -312,7 +312,7 @@ export const AppRouter = createBrowserRouter([
                             {
                                 path: "journal",
                                 async lazy() {
-                                    const { RequestForm } = await import("@/modules/dispatcher/orders/tabs/form/tabs/request-form")
+                                    const { RequestForm } = await import("@/modules/dispatcher/pages/orders/tabs/form/tabs/request-form")
                                     return {
                                         Component: RequestForm
                                     }
@@ -321,7 +321,7 @@ export const AppRouter = createBrowserRouter([
                             {
                                 path: "history",
                                 async lazy() {
-                                    const { RequestHistory } = await import("@/modules/dispatcher/orders/tabs/form/tabs/request-history")
+                                    const { RequestHistory } = await import("@/modules/dispatcher/pages/orders/tabs/form/tabs/request-history")
                                     return {
                                         Component: RequestHistory
                                     }

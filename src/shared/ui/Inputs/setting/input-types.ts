@@ -28,7 +28,7 @@ export type InputTextType = {
     isError?: boolean;
     minValue?: number;
     maxValue?: number;
-    lengthOptions?: { minLength: number; maxLength: number };
+    lengthOptions?: { minLength?: number; maxLength?: number };
 
     onChange?: (value: string) => void;
     readonly?: boolean; // Не понятно что это

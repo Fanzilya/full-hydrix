@@ -173,7 +173,7 @@ input.MuiInputBase-input {
   }
 }
 
-@keyframes fadeInUp {
+@keyframes clr-accent {
   from {
     opacity: 0;
     transform: translateY(10px);

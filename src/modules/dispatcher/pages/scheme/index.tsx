@@ -1,35 +1,53 @@
-import "./Scheme.scss";
+import "./index.scss";
 // import leftScheme from '@assets/imgs/scheme-left.jpg'
 // import rightScheme from '@assets/imgs/scheme-right.jpg'
 import { useState } from 'react';
-import InfoCart from './components/info-card.js';
-import SchemeViewer from "./ViewScheme.js";
-
-import InfoComp from "./InfoComp.js"
-
+import SchemeViewer from "./tabs/scheme/ViewScheme.js";
 
 // data
 import { InformationsComponents, points } from "./data/data.js";
-import { InformationsComponentsType } from "./types/type.js";
+import { HardWareStatus, InformationsComponentsType } from "./types/type.js";
 import { TableScheme } from "./tabs/table/index.js";
+import HardwareCard from "../../components/info-hardware/index.js";
 
 
 
 
 export const Scheme = () => {
     const [fade, setFade] = useState(false);
+    const [focusHardware, setFocusHardware] = useState<number>(0);
     const [panelInfoComponent, setPanelInfoComponent] = useState<InformationsComponentsType>({ title: '', img: '', items: [] });
 
     const handleChangeImage = (id: number) => {
         setFade(true);
+        if (focusHardware == id) {
+            setFocusHardware(0)
+        } else {
+            setFocusHardware(id)
+        }
+        setPanelInfoComponent(id == 0 ? { title: '', img: '', items: [] } : InformationsComponents[id - 1]);
+        setFade(false);
 
-        setTimeout(() => {
-            setPanelInfoComponent(id == 0 ? { title: '', img: '', items: [] } : InformationsComponents[id - 1]);
-            setFade(false);
-        }, 300);
+        // setTimeout(() => {
+        //     setFocusHardware(0)
+        //     setPanelInfoComponent(id == 0 ? { title: '', img: '', items: [] } : InformationsComponents[id - 1]);
+        //     setFade(false);
+        // }, 300);
     };
 
-    const [nubmerTab, setNumberTab] = useState<number>(5);
+    const [nubmerTab, setNumberTab] = useState<number>(0);
+
+
+    const getRandomStatus = (): HardWareStatus => {
+        const statuses = [HardWareStatus.OK, HardWareStatus.WORK, HardWareStatus.ERROR];
+        const randomIndex = Math.floor(Math.random() * statuses.length);
+        return statuses[randomIndex];
+    };
+
+
+    setInterval(() => {
+        points[points.length - 1].status = getRandomStatus()
+    }, 2000)
 
     return (
         <>
@@ -57,18 +75,10 @@ export const Scheme = () => {
 
                 <div className="grid grid-cols-[1fr_auto] gap-[20px] h-full pb-[80px]">
 
-                    {nubmerTab != 5 && <SchemeViewer setInfo={handleChangeImage} />}
+                    {nubmerTab != 5 && <SchemeViewer setInfo={handleChangeImage} points={points} />}
                     {nubmerTab == 5 && <TableScheme />}
 
-                    <div className="bg-white rounded-[20px] p-[30px] h-full">
-
-                        {
-                            panelInfoComponent.title.length == 0
-                                ? <InfoCart className={`panel-scheme__info ${fade ? "fade-out" : "fade-in"} `} />
-                                : <InfoComp className={`panel-scheme__info ${fade ? "fade-out" : "fade-in"}`} item={panelInfoComponent} onClick={handleChangeImage} />
-                        }
-
-                    </div>
+                    {focusHardware != 0 && <HardwareCard className={`panel-scheme__info ${fade ? "fade-out" : "fade-in"}`} item={panelInfoComponent} onClick={handleChangeImage} />}
                 </div>
             </div >
         </>

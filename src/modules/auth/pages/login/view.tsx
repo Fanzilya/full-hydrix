@@ -10,6 +10,7 @@ import { Button } from "@/shared/ui/button";
 import loginModel from "./model/login-model";
 import { Registration } from "../registration";
 import { useAuth } from "@/entities/user/context";
+import { Link } from "react-router-dom";
 
 export const LoginView = observer(() => {
     const { initUser } = useAuth();
@@ -87,6 +88,8 @@ export const LoginView = observer(() => {
                             {isLoading ? "Загрузка..." : "Вход"}
                         </span>
                     </Button>
+
+                    <Link to={"/menu-moduls"}>В меню</Link>
 
                     <div className="cursor-pointer font-semibold text-[var(--clr-accent)] hover:opacity-50 w-fit duration-300" onClick={() => setIsRegister(true)}>Заявка на регистрацию в системе</div>
                 </form>

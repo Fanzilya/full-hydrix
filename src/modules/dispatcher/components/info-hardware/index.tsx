@@ -1,0 +1,63 @@
+import { Icon } from "@/shared/ui/icon"
+import { useState } from 'react';
+import { HardwareReview } from "./tabs/hardware-review";
+import { HardwareControlle } from "./tabs/hardware-controlle";
+import { InfoCompType } from "../../pages/scheme/types/type";
+
+
+
+export default function HardwareCard({ className, item, onClick }: InfoCompType) {
+
+    const [mode, setMode] = useState<number>(0);
+
+    return (
+        <>
+            <div className={`info-comp ${className}`}>
+                <div className="info-comp__body">
+                    <button className="info-comp__close" onClick={() => onClick(0)}>
+                        <Icon systemName="arrow-back-blue" />
+                        <span>назад</span>
+                    </button>
+
+                    <div className="info-comp__name">
+                        {item.title}
+                    </div>
+
+                    <div className="info-comp__image">
+                        <img src={item.img} alt="Info" />
+                    </div>
+
+                    <div className="flex items-center gap-2 ml-5 mb-5">
+                        <div className="block w-3 h-3 rounded-[20px] bg-[red]"></div>
+                        <div>Авария</div>
+                    </div>
+
+                    <div className="flex gap-4 mb-5 bg-[#E6E9EF] py-2 px-3 rounded-lg">
+                        <div onClick={() => setMode(0)} className={`w-full text-center rounded-lg cursor-pointer py-2 ${mode === 0 && "bg-[var(--clr-accent)] text-white"}`}>Обзор</div>
+                        <div onClick={() => setMode(1)} className={`w-full text-center rounded-lg cursor-pointer py-2 ${mode === 1 && "bg-[var(--clr-accent)] text-white"}`}>Управление</div>
+                        <div onClick={() => setMode(2)} className={`w-full text-center rounded-lg cursor-pointer py-2 ${mode === 2 && "bg-[var(--clr-accent)] text-white"}`}>Сервис</div>
+                    </div>
+
+                    {mode === 0 && (<HardwareReview items={item.items} />)}
+                    {mode === 1 && (<HardwareControlle />)}
+
+                    <div className="info-comp__section">
+                        <div className="info-comp__subtitle">Журнал событий</div>
+
+                        <div className="info-comp__act">
+                            <span className='info-comp__act-date'>18.10.2025 12.34 - </span> <span className='info-comp__act-status _red'>отключение</span>
+                        </div>
+                        <div className="info-comp__act">
+                            <span className='info-comp__act-date'>18.10.2025 12.36 - </span> <span className='info-comp__act-status _green'>запуск</span>
+                        </div>
+                        <div className="info-comp__act">
+                            <span className='info-comp__act-date'>20.12.2025 12.10 - </span> <span className='info-comp__act-status _orange'>ТО1</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </>
+    )
+}

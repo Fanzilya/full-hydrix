@@ -19,6 +19,7 @@
     align-items: center;
 
     width: 1300px;
+
     & img {
         height: 100%;
         width: 100%;
@@ -31,14 +32,6 @@
     user-select: none;
     pointer-events: none;
     /* чтобы не мешало drag'у */
-}
-
-.scheme-view__point {
-    position: absolute;
-    // background-color: #ff4d4f;
-    // border: 2px s    olid white;
-    cursor: pointer;
-    opacity: 0;
 }
 
 .scheme-counter {
@@ -54,6 +47,7 @@
         margin-bottom: 3px;
         text-align: center;
     }
+
     &__value {
         text-align: center;
 
