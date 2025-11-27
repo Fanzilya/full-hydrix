@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Icon } from './icon';
 
 interface TooltipProps {
-  text: string;
-  onCopy: () => void;
-  onMouseLeave: () => void;
+  text?: string;
+  onCopy?: () => void;
+  onMouseLeave?: () => void;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({ text, onCopy, onMouseLeave }) => {
@@ -14,7 +14,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text, onCopy, onMouseLeave }) => {
     <div
       className="relative"
       onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => { setShowTooltip(false); onMouseLeave() }}
+      onMouseLeave={() => { setShowTooltip(false); onMouseLeave && onMouseLeave() }}
       onClick={onCopy}
     >
       <Icon systemName="copy" />

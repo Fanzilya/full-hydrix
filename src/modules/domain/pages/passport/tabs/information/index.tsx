@@ -178,7 +178,7 @@ export const PassportInformation = observer(() => {
                         </div>
 
                         <div className="text-[var(--clr-accent)] mt-[60px] flex flex-col items-end">
-                            <Link to="/dispatcher" className=" flex items-center gap-3 underline cursor-pointer hover:opacity-50 duration-300 w-fit">
+                            <Link to="/gis" className="mb-3 flex items-center gap-3 underline cursor-pointer hover:opacity-50 duration-300 w-fit">
                                 <span>Перейти в Управление ЖБО</span>
                                 <div className="mt-2">
                                     <img draggable="false"
@@ -187,8 +187,8 @@ export const PassportInformation = observer(() => {
                                     />
                                 </div>
                             </Link>
-                            <Link to={'/domain/map'} className="mt-[15px] flex items-center gap-3 underline cursor-pointer hover:opacity-50 duration-300 w-fit">
-                                <span>Показать на карте</span>
+                            <Link to="/dispatcher" className=" flex items-center gap-3 underline cursor-pointer hover:opacity-50 duration-300 w-fit">
+                                <span>Перейти в Диспетчерскую</span>
                                 <div className="mt-2">
                                     <img draggable="false"
                                         src={arrowBlue}

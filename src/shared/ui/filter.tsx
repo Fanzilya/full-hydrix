@@ -24,7 +24,7 @@ export const Filter = (props: Props) => {
                 <div className="p-2 border-[#EFF4FA] border-solid border-2">
                     {
                         props.data.map(x =>
-                            <div className="cursor-pointer" onClick={() => {props.onClickItem && props.onClickItem(x)}}>
+                            <div className="cursor-pointer" onClick={() => { props.onClickItem && props.onClickItem(x) }}>
                                 {x.title}
                             </div>
                         )

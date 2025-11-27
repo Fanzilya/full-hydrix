@@ -6,16 +6,15 @@ import { SwitchButton } from '@/shared/ui/switch-button';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { datainpt } from '../data/data';
-import { Block } from '../components/block';
+import { BlockSelect } from '../components/block-select';
 
 export const HardwareControlle = observer(() => {
 
 
     const [btnCount, setBtnCount] = useState<number>(0);
-    const [value, setValue] = useState<string>("");
     const [show, setShow] = useState<boolean>(false);
 
-    const counter = [1, 2, 3, 4, 5, 6, 7];
+    const [value, setValue] = useState<string>("");
 
     return (
         <>
@@ -50,11 +49,44 @@ export const HardwareControlle = observer(() => {
                     <Button onClick={() => setBtnCount(2)} class={`border-2 w-full justify-center ${btnCount == 2 ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[var(--clr-border-gray)] text-[var(--clr-gray-dark)]"}`}>Cброс аварии</Button>
                 </div>
 
-
-
                 {datainpt.map((info, key) => {
                     return (
-                        <Block key={key} title={info.title} items={info.items} setShow={setShow} />
+                        <BlockSelect key={key} title={info.title} children={
+                            info.items.map((item, key) => {
+                                return (
+                                    <div key={key} className="flex justify-between gap-3 items-center mb-5 border-b pb-5">
+                                        <span className="font-semibold text-[14px]">{item.name}</span>
+                                        <div className='flex items-center gap-4'>
+                                            {item.type == "boolean"
+                                                ?
+                                                <SwitchButton
+                                                    onChange={() => { console.log() }}
+                                                    classNames={{
+                                                        button: "w-[40px] rounded-[150px] block bg-[#757575] p-[3px]",
+                                                        circle: "rounded-[150px] bg-white h-[18px] w-[18px]",
+                                                    }}
+                                                />
+                                                :
+
+                                                <>
+                                                    <div>42</div>
+                                                    <Input type="number" value={value} onChange={setValue}
+                                                        className="border rounded-lg max-w-[80px] py-1 px-2"
+                                                        lengthOptions={{
+                                                            maxLength: 5,
+                                                        }}
+                                                    />
+                                                </>
+                                            }
+
+                                            <div className='px-2 py-2 bg-[var(--clr-accent)] rounded-lg hover:opacity-50 cursor-pointer duration-300' onClick={() => setShow(true)}>
+                                                <Icon systemName='save-white' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        } />
                     )
                 })}
             </div>

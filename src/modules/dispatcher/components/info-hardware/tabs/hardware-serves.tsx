@@ -1,0 +1,56 @@
+import { Icon } from '@/shared/ui/icon';
+import { observer } from 'mobx-react-lite';
+import { BlockSelect } from '../components/block-select';
+import { everyDayServerDate, everyKapitalServerDate, everyPlanerServerDate } from '../data/hardware-serves-data';
+import { InfoObject } from '../components/info-object';
+import Tooltip from '@/shared/ui/tooltip';
+
+export const HardwareServes = observer(() => {
+    return (
+        <div className="w-full mt-10 p-[0_0_50px_0]">
+
+            <div className="border-2 border-[#4A85F6] bg-[#4A85F620] rounded-[8px] mb-5 flex items-center justify-center gap-[16px] py-[16px] pl-[16px] pr-[34px]">
+                <Icon systemName="info-blue" width={32} />
+                <div className="text-regular text-[#4A85F6]">Нужно проверить и заменить масла</div>
+            </div>
+
+            <BlockSelect title="Ежедневное обслуживание"
+
+                className="flex flex-col gap-3"
+                children={
+                    everyDayServerDate.map((item, key) => {
+                        return (
+                            <InfoObject key={key}
+                                className='w-full'
+                                info={item.info}
+
+                                children={
+                                    <div className='flex items-center justify-between'>
+                                        <span className=''>{item.title}</span>
+                                        <Icon systemName='info-blue' />
+                                    </div>
+                                }
+                            />
+                        )
+                    })
+                } />
+            <BlockSelect title="Периодическое (плановое) обслуживание" children={
+                everyPlanerServerDate.map((item, key) => {
+                    return (
+                        <>
+                        </>
+                    )
+                })
+            } />
+            <BlockSelect title="Капитальное обслуживание" children={
+                everyKapitalServerDate.map((item, key) => {
+                    return (
+                        <>
+                        </>
+                    )
+                })
+            } />
+
+        </div>
+    );
+});
