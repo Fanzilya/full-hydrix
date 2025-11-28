@@ -4,6 +4,7 @@ import { BlockSelect } from '../components/block-select';
 import { everyDayServerDate, everyKapitalServerDate, everyPlanerServerDate } from '../data/hardware-serves-data';
 import { InfoObject } from '../components/info-object';
 import Tooltip from '@/shared/ui/tooltip';
+import InputCheckbox from '@/shared/ui/Inputs/input-checkbox';
 
 export const HardwareServes = observer(() => {
     return (
@@ -26,7 +27,9 @@ export const HardwareServes = observer(() => {
 
                                 children={
                                     <div className='flex items-center justify-between'>
-                                        <span className=''>{item.title}</span>
+                                        <InputCheckbox
+                                            label={item.title}
+                                        />
                                         <Icon systemName='info-blue' />
                                     </div>
                                 }
@@ -38,6 +41,12 @@ export const HardwareServes = observer(() => {
                 everyPlanerServerDate.map((item, key) => {
                     return (
                         <>
+                            <div className='flex items-center justify-between'>
+                                <InputCheckbox
+                                    label={item.title}
+                                />
+                                <Icon systemName='info-blue' />
+                            </div>
                         </>
                     )
                 })
@@ -46,6 +55,12 @@ export const HardwareServes = observer(() => {
                 everyKapitalServerDate.map((item, key) => {
                     return (
                         <>
+                            <div className='flex items-center justify-between'>
+                                <InputCheckbox
+                                    label={item.title}
+                                />
+                                <Icon systemName='info-blue' />
+                            </div>
                         </>
                     )
                 })

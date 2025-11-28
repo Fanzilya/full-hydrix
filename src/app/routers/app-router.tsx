@@ -218,11 +218,29 @@ export const AppRouter = createBrowserRouter([
                 },
             },
             {
+                path: "video-surveillance",
+                async lazy() {
+                    const { VideoSurveillance } = await import("@/modules/dispatcher/pages/video-surveillance")
+                    return {
+                        Component: VideoSurveillance
+                    }
+                },
+            },
+            {
                 path: "equipment",
                 async lazy() {
                     const { EquipmentRegistry } = await import("@/modules/dispatcher/pages/equipment")
                     return {
                         Component: EquipmentRegistry
+                    }
+                },
+            },
+            {
+                path: "equipment/create",
+                async lazy() {
+                    const { EquipmentCreate } = await import("@/modules/dispatcher/pages/equipment-create")
+                    return {
+                        Component: EquipmentCreate
                     }
                 },
             },

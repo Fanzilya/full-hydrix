@@ -3,7 +3,7 @@ import axios from "axios";
 // const baseUrl = window.location.protocol + '//' + window.location.host;
 // const baseUrl = "https://triapi.ru";
 // const baseUrl = "http://localhost:5000";
-const baseUrl = "http://localhost:8080";
+const baseUrl = "http://localhost:5000";
 
 const instance = axios.create({
     baseURL: baseUrl + '/api',

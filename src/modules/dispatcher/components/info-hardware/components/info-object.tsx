@@ -40,6 +40,10 @@ export const InfoObject = observer(({ children, info, className, position = 'top
                         ${className}
                         ${positionClasses[position]}
                     `}
+
+                    style={{
+                        animation: 'fadeInInOpacity 0.2s ease forwards'
+                    }}
                 >
                     {info}
                 </div>

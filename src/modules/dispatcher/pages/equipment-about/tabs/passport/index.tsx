@@ -1,7 +1,7 @@
 import { Icon } from "@/shared/ui/icon";
 import image from "../../assets/info-com-1.jpg";
-import { InformationsComponents } from "@/modules/dispatcher/scheme/data/data";
 import { Link } from "react-router-dom";
+import { InformationsComponents } from "../../../scheme/data/data";
 
 
 export const EquipmentPassport = () => {

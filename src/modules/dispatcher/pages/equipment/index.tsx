@@ -1,11 +1,18 @@
 import { TableColumn } from "@/shared/ui/table/setting/types";
-import { itemstable } from "./data/data";
-import { ItemsTableType, StatusClass, StatusText } from "./type/type";
+import { StatusClass, StatusText } from "./type/type";
 import { Table } from "@/shared/ui/table/index";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Search } from "@/shared/ui/Inputs/input-search";
+import { useSearch } from "@/shared/ui/Inputs/hooks/hook-search";
+import { Button } from "@/shared/ui/button";
+import { ButtonCheckList } from "@/shared/ui/button-check-list";
+import { Icon } from "@/shared/ui/icon";
+import { hardwareListModel } from "./model/hardware-list-model";
+import { HardwareInterface } from "@/entities/hardware/type";
+import { useEffect } from "react";
 
 
-const columns: TableColumn<ItemsTableType>[] = [
+const columns: TableColumn<HardwareInterface>[] = [
     {
         header: "Наименование",
         key: 'companyName',
@@ -20,9 +27,9 @@ const columns: TableColumn<ItemsTableType>[] = [
         header: "Расположение",
         key: 'companyName',
         width: '0.7fr',
-        cell: ({ adress }) => {
+        cell: ({ position }) => {
             return (
-                <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{adress}</span>
+                <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{position}</span>
             )
         },
     },
@@ -30,9 +37,9 @@ const columns: TableColumn<ItemsTableType>[] = [
         header: "Марка",
         key: 'companyName',
         width: '0.7fr',
-        cell: ({ marka }) => {
+        cell: ({ opcDescription }) => {
             return (
-                <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{marka}</span>
+                <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{opcDescription}</span>
             )
         },
     },
@@ -40,9 +47,9 @@ const columns: TableColumn<ItemsTableType>[] = [
         header: "Изготовитель",
         key: 'companyName',
         width: '0.7fr',
-        cell: ({ manufacturer }) => {
+        cell: ({ developerName }) => {
             return (
-                <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{manufacturer}</span>
+                <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{developerName}</span>
             )
         },
     },
@@ -50,9 +57,9 @@ const columns: TableColumn<ItemsTableType>[] = [
         header: "Поставщик",
         key: 'companyName',
         width: '0.7fr',
-        cell: ({ supplier }) => {
+        cell: ({ supplierName }) => {
             return (
-                <span className="text-[14px] text-[#222B45] font-semibold text-center w-full">{supplier}</span>
+                <span className="text-[14px] text-[#222B45] font-semibold text-center w-full">{supplierName}</span>
             )
         },
     },
@@ -60,12 +67,12 @@ const columns: TableColumn<ItemsTableType>[] = [
         header: "Статус",
         key: 'companyName',
         width: '0.7fr',
-        cell: ({ status }) => {
+        cell: () => {
             return (
                 <span className="text-[14px] text-[#222B45] font-semibold w-full">
                     <div className="table__column" >
-                        <span className={`table-equipmentregistry__column-status ${StatusClass(status)}`} >
-                            {StatusText(status)}
+                        <span className={`table-equipmentregistry__column-status ${StatusClass(1)}`} >
+                            {StatusText(1)}
                         </span>
                     </div>
                 </span>
@@ -75,6 +82,12 @@ const columns: TableColumn<ItemsTableType>[] = [
 ]
 
 export const EquipmentRegistry = () => {
+
+    const { list, init } = hardwareListModel
+
+    useEffect(() => {
+        init()
+    }, [])
 
     const getStatus = (status: number) => {
         switch (status) {
@@ -99,33 +112,71 @@ export const EquipmentRegistry = () => {
         }
     }
 
-
     const navigate = useNavigate();
+
+    const { search, setSearch, results } = useSearch<HardwareInterface>({ data: list, searchFields: ['name', 'opcDescription'] });
 
     return (
         <>
-            {/* <div className="table__top">
-                <div className="table__search search ">
-                    <div className="search__body">
-                        <input type="text" className="search__input" placeholder="Поиск по наименованию" />
-                        <button className="search__icon _icon-search">
-                            <Icons name="search" />
-                        </button>
-                    </div>
-                </div>
+            <div className="table__top flex items-center gap-5 mb-5">
+                <Link to="/dispatcher/equipment/create" className="rounded-lg flex items-center gap-1 duration-300 text-white bg-[var(--clr-accent)] pl-3 px-4 py-2 hover:opacity-50">
+                    <Icon systemName="plus-white" />
+                    <span>Добавить оборудование</span>
+                </Link>
+                <Search value={search} onChange={setSearch} placeholder="Поиск..."
+                    classNames={{
+                        container: "max-w-[450px] py-2 rounded-lg"
+                    }}
+                />
 
-                <div className="table__left">
-                    <ComboBox className="table__combobox" list={["Все", "Онлайн", "Оффлайн"]} />
-                    <ComboBox className="table__combobox" list={["Функционирует", "Авария", "Плановое обслуживание"]} />
+                <ButtonCheckList
+                    name="Фильтр по доступу"
+                    classNames={{
+                        button: "w-max"
+                    }}
+                    children={
+                        ["Все", "Онлайн", "Оффлайн"].map((value, key) => (
+                            <label key={key} className="flex items-center gap-3 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="tankValue"
+                                    onChange={(e) => console.log("asd")}
+                                    // checked={tanks.includes(value)}
+                                    value={value}
+                                />
+                                <span>{value}</span>
+                            </label>
+                        ))
+                    }
+                />
+                <ButtonCheckList
+                    name="Фильтр по работе"
+                    classNames={{
+                        button: "w-max"
+                    }}
+                    children={
+                        ["Функционирует", "Авария", "Плановое обслуживание"].map((value, key) => (
+                            <label key={key} className="flex items-center gap-3 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="tankValue"
+                                    onChange={(e) => console.log("asd")}
+                                    // checked={tanks.includes(value)}
+                                    value={value}
+                                />
+                                <span>{value}</span>
+                            </label>
+                        ))
+                    }
+                />
 
-                    <div className="table__export export-button">Экспортировать</div>
-                </div>
-            </div> */}
+                <Button class="table__export export-button ml-auto">Экспортировать</Button>
+            </div>
 
 
             <Table
                 columns={columns}
-                data={itemstable}
+                data={results.length > 0 ? results : []}
                 onRowClick={() => navigate("/dispatcher/equipment-about/passport")}
             />
         </>

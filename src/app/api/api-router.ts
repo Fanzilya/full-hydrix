@@ -151,26 +151,38 @@
 //   TableOrders: "/Stats/table/orders",
 // };
 
-// export const PlantRoutes = {
-//   Create: "/Plants/CreatePlant",
-//   GetByWaterCompany: "/Plants/all/watercompany",
-//   GetByCompany: "/Plants/GetAllCompanyPlants",
-//   Delete: "/Plants/delete",
-//   CreateOperator: "/Plants/operator",
-//   Update: "/Plants/update",
-// };
+export const PlantRoutes = {
+  Create: "/Plants/CreatePlant",
+  GetByWaterCompany: "/Plants/all/watercompany",
+  GetByCompany: "/Plants/GetAllCompanyPlants",
+  Delete: "/Plants/delete",
+  CreateOperator: "/Plants/operator",
+  Update: "/Plants/update",
+};
 
 // export const Tariff = {
 //   Create: "/Tariff",
 // };
 
-// export const ClientCompanyRoutes = {
-//   GetAll: "/Users/clientcompany/all",
-//   GetByWaterCompany: "/Users/clientcompany/by/watercompany",
-// };
+export const ClientCompanyRoutes = {
+  GetAll: "/Users/clientcompany/all",
+  GetByWaterCompany: "/Users/clientcompany/by/watercompany",
+};
 
 // export const WsRoute = `wss://${import.meta.env.VITE_WEBSOCKET_HOST
 //   }/socket/notifications`;
-// === GIS ===
 
 
+export const ControlBlock = {
+  all: "/ControlBlock/all",
+}
+export const Hardware = {
+  all: "/Hardware/all",
+  info: "/Hardware/info",
+  create: "/Hardware/create",
+}
+
+export const Characteristics = {
+  createOnde: "/Characteristics/createOne",
+  createMany: "/Characteristics/createMany",
+}

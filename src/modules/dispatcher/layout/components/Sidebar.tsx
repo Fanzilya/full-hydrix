@@ -31,15 +31,15 @@ export const Sidebar = observer(() => {
     // }, []);
 
     return (
-        <div
-            ref={sidebarRef}
-            className="pt-10 pl-8 pr-6 bg-white min-h-full w-[245px] 2xl:w-[290px] flex-shrink-0 gap-10 flex flex-col rounded-r-lg"
+        <div ref={sidebarRef}
+            className="pt-10 pl-8 pr-6 bg-white min-h-full w-[300px] 2xl:w-[300px] flex-shrink-0 gap-10 flex flex-col rounded-r-lg"
         >
             <div className={`flex flex-col justify-between transition-all duration-300 sticky top-10 ${isSticky ? 'h-[95vh] pb-0' : 'h-[80vh] pb-5 '}`}>
                 <div className='flex gap-4 flex-col w-full'>
                     <SidebarItem link={`/dispatcher`} title='Очистные сооружения БОС Кайбицы' className='font-bold' />
                     <SidebarItem link={`/dispatcher`} icon='scheme' title='Мнемосхемы' isActive={location.pathname == ('/dispatcher')} />
                     <SidebarItem link={`/dispatcher/timmodel`} icon='cube' title='3D модель' isActive={location.pathname.includes('/dispatcher/timmodel')} />
+                    <SidebarItem link={`/dispatcher/video-surveillance`} icon='video-surveillance' title='Видеонаблюдение' isActive={location.pathname.includes('/dispatcher/video-surveillance')} />
                     <SidebarItem link={`/dispatcher/equipment`} icon='wrench' title='Оборудование' isActive={location.pathname.includes('/dispatcher/equipment')} />
                     <SidebarItem link={`/dispatcher/orders`} icon='clipboard' title='Заявки' isActive={location.pathname.includes('/dispatcher/orders')} />
                 </div>

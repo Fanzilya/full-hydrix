@@ -7,6 +7,7 @@ export const EquipmentAbout = () => {
 
     return (
         <div className="informations-dispatch__requestregistry relative mt-10">
+
             <div className="absolute  top-[-38px] left-[30px] flex gap-3">
                 <NavLink
                     to="/dispatcher/equipment-about/passport"
@@ -21,7 +22,6 @@ export const EquipmentAbout = () => {
                     Управление
                 </NavLink>
             </div>
-
 
             <Outlet />
         </div>

@@ -1,4 +1,6 @@
+import { getAllMunicipalities } from "@/app/cores/core-gis/network/water-company/type";
 import { Municipality } from "@/entities/municipality/type";
+import { getAllOrders, getOrdersByIdWaterCompany } from "@/entities/order/api";
 import { Order } from "@/entities/order/type";
 import { makeAutoObservable } from "mobx";
 
@@ -68,111 +70,70 @@ export class OrderListModel {
     checked ? this.statusModel.push(value) : (this.statusModel = this.statusModel.filter((item) => item !== value));
   }
 
-  // pushStatus(value: number, checked: boolean) {
-  //   checked
-  //     ? this._statuses.push(value)
-  //     : (this._statuses = this._statuses.filter((item) => item !== value));
-  // }
-
   async init(companyId: number | null = null) {
+    try {
+      const ordersPromise = companyId
+        ? getOrdersByIdWaterCompany({ WaterCompanyId: companyId })
+        : getAllOrders();
+      const municipalitiesPromise = getAllMunicipalities();
 
+      const [orders, municipalities] = await Promise.all([
+        ordersPromise,
+        municipalitiesPromise,
+      ]);
 
-    for (let i = 0; i < 20; i++) {
+      this.model = orders.data || [];
+      this.municipalitiesAll = municipalities.data.map(
+        (municipality: Municipality) => ({
+          id: municipality.id,
+          name: municipality.name,
+        })
+      );
 
-      this.model[i] =
-      {
-        userFirstName: "string" + i,
-        userLastName: "string" + i,
-        userPatronymic: "string" + i,
-        userPhone: "string" + i,
+      this.municipalityMap = new Map(
+        municipalities.data.map((municipality: Municipality) => [
+          municipality.id,
+          municipality.name,
+        ])
+      );
 
-        id: i,
-        comment: "string",
-        wasteVolume: i,
-        adress: "string",
-        timeOfPublication: "string",
-        orderStatusId: i,
-        userId: i,
-        latitude: i,
-        longitude: i,
-        arrivalStartDate: "string",
-        arrivalEndDate: "string",
-        municipalityId: i,
-        selfCreated: true,
+      this.model = this.model.map((order) => ({
+        ...order,
+        municipalities: {
+          id: order.municipalityId,
+          name: this.municipalityMap.get(order.municipalityId) || "Неизвестно",
+        },
+      }));
 
-        sewerFirstName: "string",
-        sewerId: i,
-        sewerLastName: "string",
-        sewerPatronymic: "string",
-      }
+      this.model.sort(
+        (a, b) =>
+          new Date(b.timeOfPublication).getTime() -
+          new Date(a.timeOfPublication).getTime()
+      );
+    } catch (error) {
+      this.model = [];
+      this.municipalitiesAll = [];
     }
-
-
-    //   try {
-    //     const ordersPromise = companyId
-    //       ? getOrdersByIdWaterCompany({ WaterCompanyId: companyId })
-    //       : getAllOrders();
-    //     const municipalitiesPromise = getAllMunicipalities();
-
-    //     const [orders, municipalities] = await Promise.all([
-    //       ordersPromise,
-    //       municipalitiesPromise,
-    //     ]);
-
-    //     this.model = orders.data || [];
-    //     this.municipalitiesAll = municipalities.data.map(
-    //       (municipality: Municipality) => ({
-    //         id: municipality.id,
-    //         name: municipality.name,
-    //       })
-    //     );
-
-    //     this._municipalityMap = new Map(
-    //       municipalities.data.map((municipality: Municipality) => [
-    //         municipality.id,
-    //         municipality.name,
-    //       ])
-    //     );
-
-    //     this.model = this.model.map((order) => ({
-    //       ...order,
-    //       municipalities: {
-    //         id: order.municipalityId,
-    //         name: this._municipalityMap.get(order.municipalityId) || "Неизвестно",
-    //       },
-    //     }));
-
-    //     this.model.sort(
-    //       (a, b) =>
-    //         new Date(b.timeOfPublication).getTime() -
-    //         new Date(a.timeOfPublication).getTime()
-    //     );
-    //   } catch (error) {
-    //     this.model = [];
-    //     this.municipalitiesAll = [];
-    //   } finally {
-    //     this.isInit = true;
-    //   }
   }
 
-  // filterByMunicipalityModel() {
-  //   if (this._tanks.length === 0) {
-  //     return this.filterByMunicipalityModel;
-  //   }
-  //   return this.filterByMunicipalityModel.filter((item) =>
-  //     this._tanks.includes(item.wasteVolume)
-  //   );
-  // }
+  filterByMunicipalityModel                                                                                                                                                                               () {
+    if (this.tanks.length === 0) {
+      return this.filterByMunicipalityModel;
+    }
+    return this.filterByMunicipalityModel.filter((item) =>
+      this.tanks.includes(item.wasteVolume)
+    );
+  }
 
-  // filterByTanksAndStatuses() {
-  //   return this.model.filter(
-  //     (item) =>
-  //       (this._tanks.length === 0 || this._tanks.includes(item.wasteVolume)) &&
-  //       (this._statuses.length === 0 ||
-  //         (item.orderStatusId !== undefined &&
-  //           this._statuses.includes(item.orderStatusId)))
-  //   );
-  // }
+  filterByTanksAndStatuses() {
+    return this.model.filter(
+      (item) =>
+        (this.tanks.length === 0 || this.tanks.includes(item.wasteVolume)) &&
+        (this.statuses.length === 0 ||
+          (item.orderStatusId !== undefined &&
+            this.statuses.includes(item.orderStatusId)))
+    );
+  }
 }
 const orderListModel = new OrderListModel();
 export default orderListModel;

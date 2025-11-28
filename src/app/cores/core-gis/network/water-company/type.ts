@@ -81,10 +81,6 @@ export const deleteCompany = (params: DeleteCompanyRequest) => {
     return instance.delete(WaterCompanyRoutes.Delete, { params })
 }
 
-export const getAllMunicipalities = () => {
-    return instance.get(MunicipalityRoutes.GetAll)
-}
-
 export const getWaterCompany = (params: GetWaterCompanyRequest) => {
     return instance.get(WaterCompanyRoutes.Get, { params })
 }

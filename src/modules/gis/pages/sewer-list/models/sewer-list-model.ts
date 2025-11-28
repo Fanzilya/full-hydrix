@@ -1,3 +1,4 @@
+import { getAllSewers, getByWaterCompany } from "@/entities/sewer/api";
 import { Sewer } from "@/entities/sewer/type";
 import { makeAutoObservable, runInAction } from "mobx";
 
@@ -11,8 +12,6 @@ export class SewerListModel {
     makeAutoObservable(this, {}, { autoBind: true }
     );
   }
-
-
 
   get list() {
     if (this.tanks.length !== 0) {
@@ -39,39 +38,19 @@ export class SewerListModel {
   }
 
   public async loadSewersByCompany(companyId: number) {
-    // getByWaterCompany({ WaterCompanyId: companyId }).then((x) => {
-    //   this.model = x.data;
-    // });
+    getByWaterCompany({ WaterCompanyId: companyId }).then((x) => {
+      this.model = x.data;
+    });
   }
 
   public async loadAllSewers() {
-    // getAllSewers().then((x: Sewer) => {
-    //   this.model = x.data;
-    // });
+    getAllSewers().then((x) => {
+      this.model = x.data;
+    });
   }
 
   async init(companyId: number) {
     companyId ? await this.loadSewersByCompany(companyId) : await this.loadAllSewers();
-
-    for (let i = 0; i < 20; i++) {
-      this.model[i] = {
-        id: i,
-        sewerNumberPlate: "string",
-        sewerCarModel: "string",
-        sewerBusinessType: "string",
-        tankVolume: i * 2,
-        companyId: i,
-        companyName: "string",
-        email: "string",
-        phoneNumber: "string",
-        rating: i,
-        userId: i,
-        firstName: "string" + i,
-        lastName: "string" + i,
-        patronymic: "string" + i
-      }
-    }
-
   }
 }
 

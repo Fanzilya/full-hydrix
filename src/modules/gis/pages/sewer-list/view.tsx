@@ -13,6 +13,7 @@ import sewerMapModel from "./models/sewer-map-model";
 import { volumes } from "@/entities/volume/data";
 import { AccidentReportModal } from "./component/accident-report-modal";
 import { useSearch } from "@/shared/ui/Inputs/hooks/hook-search";
+import { useAuth } from "@/entities/user/context";
 
 const columns: TableColumn<Sewer>[] = [
     {
@@ -100,10 +101,10 @@ export const SewerListView = observer(() => {
     const { search, setSearch, results } = useSearch<Sewer>({ data: list, searchFields: ['sewerNumberPlate', 'sewerCarModel', 'companyName', "firstName", "lastName", "patronymic"] })
 
 
-    const companyId = gisModel.waterCompany?.id;
+    const { waterCompany } = useAuth();
 
     useEffect(() => {
-        init(companyId)
+        waterCompany && init(waterCompany?.id)
     }, []);
 
     const [selectedRow, setSelectedRow] = useState<Sewer | null>(null);

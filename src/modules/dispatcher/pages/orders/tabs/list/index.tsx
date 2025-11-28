@@ -136,11 +136,9 @@ export const RequestRegistryList = () => {
         },
     ]
 
-
-
     return (
         <div className="requestregistry-dispatch__container bg-white rounded-[20px] p-[45px_30px_50px_40px] mb-5 relative">
-            <div className="requestregistry-dispatch__title font-semibold">
+            <div className="font-semibold text-[34px] mb-[32px]">
                 Реестр заявок
             </div>
             <div className="requestregistry-dispatch__statistics statistics-requestregistry">
