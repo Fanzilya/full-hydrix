@@ -10,9 +10,14 @@ export const Input = (props: InputTextType) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
-        if (props.lengthOptions && newValue.length > props.lengthOptions.maxLength) return;
+        if (props.lengthOptions && props.lengthOptions.maxLength && newValue.length > props.lengthOptions.maxLength) return;
         props.onChange && props.onChange(newValue);
     };
+
+    const changeFocused = (value: boolean) => {
+        setIsFocused(value)
+        props.onFocus && props.onFocus(value)
+    }
 
     return (
         <InputComponent
@@ -28,8 +33,8 @@ export const Input = (props: InputTextType) => {
             mask={props.type === "phone" ? phoneMask : ""}
             value={props.value}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            onFocus={() => changeFocused(true)}
+            onBlur={() => changeFocused(false)}
             style={{
                 borderColor: isFocused ? "var(--clr-accent)" : (props.isError ? "var(--clr-error)" : "var(--clr-border-gray)"),
                 ...props.style

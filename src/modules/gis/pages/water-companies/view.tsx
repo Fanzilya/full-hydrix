@@ -13,6 +13,7 @@ import { formatAddress } from "@/shared/ui/format-adress"
 import { ModalDelete } from "@/shared/ui/modal/modal-delete"
 import { CreateCompanyModal } from "./components/add-company-modal"
 import { useSearch } from "@/shared/ui/Inputs/hooks/hook-search"
+import InputCheckbox from "@/shared/ui/Inputs/input-checkbox"
 
 const columns: TableColumn<WaterCompany>[] = [
     {
@@ -135,11 +136,15 @@ export const CompanyListView = observer(() => {
                             button: "w-max"
                         }}
                         children={
-                            municipalities.map((municipality, index) => (
-                                <label className="flex items-start gap-3 cursor-pointer" key={index}>
-                                    <input className="mt-2" type="checkbox" name="tankValue" onChange={(e) => pushmunicipality(Number(e.target.value), e.target.checked)} checked={municipalityFilterIds.includes(municipality.id)} value={municipality.id} />
-                                    <span>{municipality.name}</span>
-                                </label>
+                            municipalities.map((municipality, key) => (
+                                <InputCheckbox
+                                    key={key}
+                                    containerClassName="w-fit"
+                                    onChange={(e) => pushmunicipality(Number(e.target.value), e.target.checked)}
+                                    checked={municipalityFilterIds.includes(municipality.id)}
+                                    value={municipality.id}
+                                    label={`${municipality.name}`}
+                                />
                             ))}
                     />
                 </div>

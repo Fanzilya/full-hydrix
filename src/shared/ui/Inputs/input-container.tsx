@@ -21,7 +21,7 @@ export const InputContainer = (props: InputContainerType) => {
                 )}
 
                 {props.iconName && (
-                    <div className={`text-gray-500 absolute top-1/2 transform -translate-y-1/2 ${props.classNames?.icon ?? ""}`}>
+                    <div className={`${props.classNames?.icon ?? ""}`}>
                         <Icon systemName={props.iconName} className="text-gray-500" height={20} width={20} />
                     </div>
                 )}

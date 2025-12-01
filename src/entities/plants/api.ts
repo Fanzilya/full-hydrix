@@ -1,6 +1,10 @@
-// export const getWaterCompanyPlants = (params: GetWaterCompanyPlantsRequest) => {
-//     return instance.get(PlantRoutes.GetByWaterCompany, { params });
-// };
+import { PlantRoutes } from "@/app/api/api-router";
+import instance from "@/app/api/instances";
+import { GetWaterCompanyPlantsRequest } from "./types";
+
+export const getWaterCompanyPlants = (params: GetWaterCompanyPlantsRequest) => {
+    return instance.get(PlantRoutes.GetByWaterCompany, { params });
+};
 
 // export const deletePlant = async (params: DeletePlantRequest) => {
 //     // eslint-disable-next-line no-useless-catch

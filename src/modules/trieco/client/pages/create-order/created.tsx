@@ -1,10 +1,10 @@
-import { Button } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
 import { useNavigate } from "react-router-dom"
-import createOrderModel from "./entities/create-order-model"
+import { createOrderModel } from "./entities/create-order-model";
+import { Icon } from "@/shared/ui/icon";
+import { Button } from "@/shared/ui/button";
 
 export const Created = () => {
-    const {clearCounter} = createOrderModel;
+    const { clearCounter } = createOrderModel;
     const navigate = useNavigate();
 
     return (
@@ -17,7 +17,7 @@ export const Created = () => {
                     {/* <span className="text-[20px] font-bold">Номер вашей заявки № 5550</span> */}
                 </div>
             </div>
-            <Button onClick={() => {clearCounter(); navigate('/')}} children={"На главную"} class="bg-[#4A85F6] flex items-center justify-center py-2 px-16" />
+            <Button onClick={() => { clearCounter(); navigate('/trieco/client/') }} children={"На главную"} class="text-white bg-[#4A85F6] flex items-center justify-center py-2 px-16" />
         </div>
     )
 }

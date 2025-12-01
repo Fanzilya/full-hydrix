@@ -4,7 +4,6 @@ import { authAdmin, AuthEntity } from "../services/login-service";
 import { testEmail } from "@/shared/ui/Inputs/setting/input-valid-email";
 import { Role } from "@/entities/user/role";
 import { getWaterCompanyByUserId } from "@/app/cores/core-gis/network/water-company/type";
-import { useAuth } from "@/entities/user/context";
 import { WaterCompany } from "@/entities/water-company/types";
 
 class LoginModel {

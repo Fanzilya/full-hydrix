@@ -2,6 +2,7 @@ import { Operator } from "@/entities/operator/type";
 import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
 import operatorModel from "./operator-model";
+import { getWaterCompanyOperators } from "@/entities/water-company/api";
 
 export class OperatorListModel {
 
@@ -40,32 +41,15 @@ export class OperatorListModel {
 
 
   async init(waterCompanyId: number) {
-    // getWaterCompanyOperators({ WaterCompanyId: waterCompanyId })
-    //   .then((x) => {
-    //     this.model = x.data;
-    //   })
-    //   .catch(() => {
-    //     toast("Операторов не найдено", {
-    //       progressStyle: { background: "red" },
-    //     });
-    //   });
-
-    for (let i = 0; i < 10; i++) {
-      this.model[i] = {
-        userId: i,
-        firstName: "string" + i,
-        lastName: "string" + i,
-        patronymic: "string" + i,
-        phone: "string" + i,
-        email: "string" + i,
-        login: "string" + i,
-        roleName: i % 3 === 0 ? "WaterCompanyOperator" : (i % 2 == 0 ? "TreatmentPlantOperator" : "WaterCompanyAdmin"),
-        isRevoked: true,
-        waterCompanyId: i,
-        plantId: i,
-        workplace: "string" + i
-      }
-    }
+    getWaterCompanyOperators({ WaterCompanyId: waterCompanyId })
+      .then((x) => {
+        this.model = x.data;
+      })
+      .catch(() => {
+        toast("Операторов не найдено", {
+          progressStyle: { background: "red" },
+        });
+      });
   }
 }
 

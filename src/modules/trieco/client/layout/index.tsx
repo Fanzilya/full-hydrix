@@ -5,6 +5,7 @@ import { Sidebar } from "./sidebar"
 // import clientModel from "../kernel/model/client-model";
 // import { Meta } from "@/core/network/meta";
 import { observer } from "mobx-react-lite";
+import { Navbar } from "./navbar";
 
 export const ClientLayout = observer(() => {
 
@@ -29,7 +30,7 @@ export const ClientLayout = observer(() => {
                 <div className="w-scree h-screen flex flex-row">
                     <Sidebar />
                     <div className="w-full pt-10 pr-12 pl-7 f-full overflow-auto pb-5">
-                        {/* <Navbar /> */}
+                        <Navbar />
                         <Outlet />
                     </div>
                 </div>

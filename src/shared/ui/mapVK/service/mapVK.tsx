@@ -1,5 +1,5 @@
 // Пропсы для работы с картой
-type Props = {
+export type Props = {
     mapContainer?: any,
     mapRef?: any,
     markerRef?: any,
@@ -11,14 +11,14 @@ type Props = {
     getResultMap?: (data: Result) => void,
 }
 
-type Result = {
+export type Result = {
     address: string,
     address_details: any,
     pin: [number, number],
 }
 
 // Пропсы для дефолтных данных карты
-type MapData = {
+export type MapData = {
     initialZoom: number,
     initialCenter: [number, number],
     token: string,

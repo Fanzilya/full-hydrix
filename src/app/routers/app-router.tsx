@@ -363,84 +363,29 @@ export const AppRouter = createBrowserRouter([
                     }
                 },
                 children: [
-                    // {
-                    //     path: 'registration',
-                    //     async lazy() {
-                    //         const { Registration } = await import("@/modules/client/viewports/registration/registration")
-                    //         return {
-                    //             Component: Registration
-                    //         }
-                    //     }
-                    // },
-                    // {
-                    //     path: 'registration',
-                    //     element: <Navigate to="/auth" replace />,
-                    //     async lazy() {
-                    //         const { Auth } = await import("@/modules/admin/viewports/auth/auth")
-                    //         return {
-                    //             Component: Auth
-                    //         }
-                    //     }
-                    // },
-                    // {
-                    //     path: 'auth',
-                    //     async lazy() {
-                    //         const { Auth } = await import("@/modules/client/viewports/auth/auth")
-                    //         return {
-                    //             Component: Auth
-                    //         }
-                    //     }
-                    // },
-                    // {
-                    //     path: 'registration/confirm',
-                    //     async lazy() {
-                    //         const { EmailConfirm } = await import("@/modules/client/viewports/emal-confirm/email-confirm")
-                    //         return {
-                    //             Component: EmailConfirm
-                    //         }
-                    //     }
-                    // },
-                    // {
-                    //     path: 'reset',
-                    //     async lazy() {
-                    //         const { PasswordRecovery } = await import("@/modules/client/viewports/recovery-password/recovery")
-                    //         return {
-                    //             Component: PasswordRecovery
-                    //         }
-                    //     }
-                    // },
-                    // {
-                    //     path: '',
-                    //     async lazy() {
-                    //         const { ClientLayout } = await import("@/modules/client/components/client-layout")
-                    //         return {
-                    //             Component: ClientLayout
-                    //         }
-                    //     },
-                    //     children: [
-                    //         {
-                    //             path: '',
-                    //             async lazy() {
-                    //                 const { Main } = await import("@/modules/client/viewports/main/main")
-                    //                 return {
-                    //                     Component: Main
-                    //                 }
-                    //             }
+                    {
+                        path: '',
+                        async lazy() {
+                            const { Main } = await import("@/modules/trieco/client/pages/main")
+                            return {
+                                Component: Main
+                            }
+                        }
 
-                    //         },
-                    //         {
-                    //             path: 'order/create',
-                    //             async lazy() {
-                    //                 const { CreateOrder } = await import("@/modules/client/viewports/create-order/create-order")
-                    //                 return {
-                    //                     Component: CreateOrder
-                    //                 }
-                    //             }
-                    //         },
+                    },
+                    {
+                        path: 'order/create',
+                        async lazy() {
+                            const { CreateOrder } = await import("@/modules/trieco/client/pages/create-order")
+                            return {
+                                Component: CreateOrder
+                            }
+                        }
+                    },
                     //         {
                     //             path: 'pickup/create',
                     //             async lazy() {
-                    //                 const { CreatePoint } = await import("@/modules/client/viewports/create-pickup-point/create-point")
+                    //                 const { CreatePoint } = await import("@/modules/client/pages/create-pickup-point/create-point")
                     //                 return {
                     //                     Component: CreatePoint
                     //                 }
@@ -449,25 +394,25 @@ export const AppRouter = createBrowserRouter([
                     //         {
                     //             path: 'pickup/edit',
                     //             async lazy() {
-                    //                 const { EditPoint } = await import("@/modules/client/viewports/edit-point/edit-point")
+                    //                 const { EditPoint } = await import("@/modules/client/pages/edit-point/edit-point")
                     //                 return {
                     //                     Component: EditPoint
                     //                 }
                     //             }
                     //         },
-                    //         {
-                    //             path: 'orders',
-                    //             async lazy() {
-                    //                 const { Orders } = await import("@/modules/client/viewports/orders/orders")
-                    //                 return {
-                    //                     Component: Orders
-                    //                 }
-                    //             }
-                    //         },
+                    {
+                        path: 'orders',
+                        async lazy() {
+                            const { Orders } = await import("@/modules/trieco/client/pages/orders")
+                            return {
+                                Component: Orders
+                            }
+                        }
+                    },
                     //         {
                     //             path: 'profile',
                     //             async lazy() {
-                    //                 const { Profile } = await import("@/modules/client/viewports/profile/profile")
+                    //                 const { Profile } = await import("@/modules/client/pages/profile/profile")
                     //                 return {
                     //                     Component: Profile
                     //                 }

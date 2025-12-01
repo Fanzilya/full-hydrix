@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { getOrderCode } from "../viewports/orders/service/order";
-import { OrderStatus, StatusColor } from "@/core/lib/order";
 import { Link } from "react-router-dom";
 import Ornament from "../kernel/static/img/Ornament.png";
+import { getOrderCode } from "../pages/orders/service/order";
 
 type Props = {
     id: number
@@ -14,7 +13,7 @@ type Props = {
     code?: string
 }
 
-export const OrderCard = ({ title, status, date, time, id}: Props) => {
+export const OrderCard = ({ title, status, date, time, id }: Props) => {
     const [code, setCode] = useState("")
     useEffect(() => {
         getOrderCode({ OrderId: id }).then(x => {

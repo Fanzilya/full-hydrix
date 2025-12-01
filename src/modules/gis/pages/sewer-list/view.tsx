@@ -14,6 +14,7 @@ import { volumes } from "@/entities/volume/data";
 import { AccidentReportModal } from "./component/accident-report-modal";
 import { useSearch } from "@/shared/ui/Inputs/hooks/hook-search";
 import { useAuth } from "@/entities/user/context";
+import InputCheckbox from "@/shared/ui/Inputs/input-checkbox";
 
 const columns: TableColumn<Sewer>[] = [
     {
@@ -143,18 +144,16 @@ export const SewerListView = observer(() => {
                             }}
                             children={
                                 volumes.map((tank) => (
-                                    <label key={tank} className="flex items-center gap-3 cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            name="tankValue"
-                                            onChange={(e) =>
-                                                pushTank(Number(e.target.value), e.target.checked)
-                                            }
-                                            checked={tanks.includes(tank)}
-                                            value={tank}
-                                        />
-                                        <span>{tank} м³</span>
-                                    </label>
+                                    <InputCheckbox
+                                        containerClassName="w-fit"
+                                        name="tankValue"
+                                        onChange={(e) =>
+                                            pushTank(Number(e.target.value), e.target.checked)
+                                        }
+                                        checked={tanks.includes(tank)}
+                                        value={tank}
+                                        label={`${tank} м³`}
+                                    />
                                 ))
                             }
                         />

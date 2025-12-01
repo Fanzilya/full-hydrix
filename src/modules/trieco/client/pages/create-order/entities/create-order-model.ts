@@ -1,7 +1,8 @@
 import { makeAutoObservable, runInAction, toJS } from "mobx";
 import { createOrder, createOrderByPoint } from "../service/order";
-import { getAllPointsByUser, Point } from "../../../layout/points/service/point-service";
 import Cookies from 'universal-cookie';
+import { getAllPointsByUser } from "@/entities/point/api";
+import { Point } from "@/entities/point/type";
 
 
 const code = "24928587-9095-4b8a-a99e-6eabfc05b2cd"
@@ -35,7 +36,7 @@ class CreateOrderModel {
   _pickupPoints: Point[] = [];
 
   selectedPoint: Point | null = null;
-  isSelfCreated: boolean = true;
+  isSelfCreated: boolean = false;
 
   private _model: CreateOrderEntity;
 

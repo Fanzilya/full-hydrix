@@ -16,6 +16,7 @@ import { OrderModal } from "./components/order-modal";
 import { Table } from "@/shared/ui/table/index";
 import { ModalDelete } from "@/shared/ui/modal/modal-delete";
 import { useSearch } from "@/shared/ui/Inputs/hooks/hook-search";
+import InputCheckbox from "@/shared/ui/Inputs/input-checkbox";
 
 const columns: TableColumn<Order>[] = [
     {
@@ -150,7 +151,7 @@ export const OderListView = observer(() => {
                 <div className="flex flex-col w-[50%] gap-6">
                     <span className="text-[34px] font-semibold">Управление заявками</span>
                     <div className="flex flex-row gap-8">
-                            <Search placeholder="Поиск..." value={search} onChange={setSearch} classNames={{
+                        <Search placeholder="Поиск..." value={search} onChange={setSearch} classNames={{
                             container: "w-min rounded-lg h-[38px]",
                             input: "!w-[400px]",
                         }} />
@@ -159,19 +160,16 @@ export const OderListView = observer(() => {
                             name="Фильтр по объёму"
                             classNames={{ button: "w-max" }}
                             children={
-                                volumes.map((volume) => (
-                                    <label key={volume} className="flex items-center gap-3 cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            name="tankValue"
-                                            value={volume}
-                                            checked={volumesModel.includes(volume)}
-                                            onChange={(e) =>
-                                                pushVolumes(Number(e.target.value), e.target.checked)
-                                            }
-                                        />
-                                        <span>{volume} м³</span>
-                                    </label>
+                                volumes.map((volume, key) => (
+                                    <InputCheckbox
+                                        key={key}
+                                        containerClassName="w-fit"
+                                        name="tankValue"
+                                        onChange={(e) => pushVolumes(Number(e.target.value), e.target.checked)}
+                                        checked={volumesModel.includes(volume)}
+                                        value={volume}
+                                        label={`${volume}м³`}
+                                    />
                                 ))
                             }
                         />

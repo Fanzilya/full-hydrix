@@ -1,9 +1,9 @@
 import { observer } from "mobx-react-lite"
 import clientModel from "../kernel/model/client-model"
 import { useLocation, useNavigate } from "react-router-dom"
-import { createOrderModel } from "../viewports/create-order/entities/create-order-model"
 import { Icon } from "@/shared/ui/icon"
 import { Button } from "@/shared/ui/button"
+import { createOrderModel } from "../pages/create-order/entities/create-order-model"
 
 export const Sidebar = observer(() => {
     const { logout } = clientModel;
@@ -54,9 +54,9 @@ export const Sidebar = observer(() => {
             </div>
             <div className="flex flex-col gap-7">
                 <span className="text-[36px] font-semibold text-white">Повысьте комфорт<br /> с TRIECO</span>
-                <Button class="flex flex-row items-center gap-4" onClick={() => { logout(); navigate('/auth') }}>
+                <Button class="flex flex-row items-center gap-4 hover:opacity-50" onClick={() => { logout(); navigate('/auth') }}>
                     <Icon systemName="exit" />
-                    <span className="font-semibold text-[20px]">Выйти</span>
+                    <span className="font-semibold text-[20px] text-white">Выйти</span>
                 </Button>
             </div>
         </div>

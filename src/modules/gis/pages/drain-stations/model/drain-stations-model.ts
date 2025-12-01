@@ -1,4 +1,5 @@
 import { Meta } from "@/app/api/meta";
+import { getWaterCompanyPlants } from "@/entities/plants/api";
 import { Plant } from "@/entities/plants/types";
 import { makeAutoObservable, runInAction } from "mobx";
 import { toast } from "react-toastify";
@@ -86,42 +87,14 @@ class PlantsListModel {
     });
   }
 
-  async init(companyId: number | null) {
+  async init(companyId: number) {
+    const response = await getWaterCompanyPlants({ WaterCompanyId: companyId });
 
-    for (let i = 0; i < 5; i++) {
-      this.plants[i] = {
-        id: i,
-        adress: "Иннополис, Верхнеуслонский район, Республика Татарстан" + i,
-        waterCompanyId: i,
-        companyName: "Канализационные-очистные сооружения" + i,
-        firstName: "Иванов" + i,
-        lastName: "Иванов" + i,
-        patronymic: "Иванов" + i,
-        post: "string" + i,
-        phone: "+799633211458" + i,
-        email: "string@gmail.ru" + i,
-        latitude: 48.762559,
-        longitude: 55.775450,
-        dailyLimit: 320,
-        isArchived: true,
-        name: "Канализационные-очистные сооружения" + i,
-        municipalities: [
-          {
-            id: i,
-            name: "Высокогорский район, г. Иннополис" + i
-          }
-        ],
-        municipalitiesId: [i, 2, 3],
-      }
-    }
-
-    // const response = await getWaterCompanyPlants({ WaterCompanyId: companyId });
-
-    // runInAction(() => {
-    //   this.plants = response.data
-    //     .filter((x: any) => x.isArchived === false)
-    //     .sort((a: any, b: any) => a.id - b.id);
-    // });
+    runInAction(() => {
+      this.plants = response.data
+        .filter((x: any) => x.isArchived === false)
+        .sort((a: any, b: any) => a.id - b.id);
+    });
   }
 }
 

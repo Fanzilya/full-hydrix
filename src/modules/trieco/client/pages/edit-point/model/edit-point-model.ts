@@ -1,4 +1,5 @@
-import { createPoint, editPoint, Point } from "@/modules/client/components/points/service/point-service";
+import { editPoint } from "@/entities/point/api";
+import { Point } from "@/entities/point/type";
 import { makeAutoObservable } from "mobx";
 
 export class EditPointModel {

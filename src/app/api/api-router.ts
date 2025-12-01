@@ -40,12 +40,12 @@
 //     GetAll: "/Municipality/all",
 // };
 
-// export const PickupPointRoutes = {
-//     Create: "/Order/CreatePickUpPoint",
-//     GetByUser: "/Order/GetAllPointsByCompany",
-//     Update: "/Order/UpdatePoint",
-//     Delete: "/Order/DeletePoint",
-// };
+export const PickupPointRoutes = {
+  Create: "/Order/CreatePickUpPoint",
+  GetByUser: "/Order/GetAllPointsByCompany",
+  Update: "/Order/UpdatePoint",
+  Delete: "/Order/DeletePoint",
+};
 
 // export const PlantsRoutes = {
 //     Create: "/Plants/CreatePlant",
@@ -75,19 +75,19 @@
 // export const WsRoute = `wss://${import.meta.env.VITE_WEBSOCKET_HOST}/socket/notifications`;
 
 // === GIS ===
-// export const UserRoutes = {
-//   GetById: "/Users/GetUserById",
-//   EnterCode: "/Users/UserEnterCode",
-//   IdentifyByPhone: "/Users/UserIdentification",
-//   RefreshToken: "/Users/RefreshAuthorization",
-//   Authorization: "/Users/Authorization",
-//   Create: "/Users/CreateUser",
-//   Update: "/Users/UpdateUser",
-//   EmailConfirm: "/Users/email/send",
-//   PasswordRecovery: "/Users/password/recovery",
-//   Approve: "/Users/email/approve",
-//   AuthorizationByPhone: "/Users/login/phone",
-// };
+export const UserRoutes = {
+  GetById: "/Users/GetUserById",
+  EnterCode: "/Users/UserEnterCode",
+  IdentifyByPhone: "/Users/UserIdentification",
+  RefreshToken: "/Users/RefreshAuthorization",
+  Authorization: "/Users/Authorization",
+  Create: "/Users/CreateUser",
+  Update: "/Users/UpdateUser",
+  EmailConfirm: "/Users/email/send",
+  PasswordRecovery: "/Users/password/recovery",
+  Approve: "/Users/email/approve",
+  AuthorizationByPhone: "/Users/login/phone",
+};
 
 // export const SewersRoutes = {
 //   Create: "/Sewers/CreateSewer",
@@ -97,20 +97,21 @@
 //   GetByIdWaterCompany: "Sewers/waterCompany",
 // };
 
-// export const OrderRoutes = {
-//   GetAll: "/Order/all",
-//   Create: "/Order/CreateOrder",
-//   GetByUserId: "/Order/OrdersByUserId",
-//   GetById: "/Order/OrdersById",
-//   GetByIdWaterCompany: "/Order/collection/water",
-//   GetByCompanyId: "/Order/transporter/orders",
-//   AttachSewer: "/Order/AttachSewer",
-//   AttachCompany: "/Order/AttachCompany",
-//   ChangeStatus: "/Order/ChangeOrderStatus",
-//   GetByStatusId: "/Order/GetOrdersByStatusId",
+export const OrderRoutes = {
+  GetAll: "/Order/all",
+  Create: "/Order/CreateOrder",
+  CreateByPoint: "/Order/СreateOrderByPoint",
+  GetByUserId: "/Order/OrdersByUserId",
+  GetById: "/Order/OrdersById",
+  GetByIdTransporterCompany: "/Order/transporter/orders",
+  AttachSewer: "/Order/AttachSewer",
+  AttachCompany: "/Order/AttachCompany",
+  ChangeStatus: "/Order/ChangeOrderStatus",
+  GetByStatusId: "/Order/GetOrdersByStatusId",
+  GetCode: "/Order/confirm",
+};
 
-//   GetAllClientCompanyOrders: "/Order/clientcompany/orders",
-// };
+
 
 // export const WaterCompanyRoutes = {
 //   GetAll: "/WaterCompany/all",
@@ -186,3 +187,5 @@ export const Characteristics = {
   createOnde: "/Characteristics/createOne",
   createMany: "/Characteristics/createMany",
 }
+
+

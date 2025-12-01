@@ -1,8 +1,8 @@
-import { Button } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
 import { Link, useNavigate } from "react-router-dom"
-import editPointModel from "../../viewports/edit-point/model/edit-point-model"
 import clientModel from "../../kernel/model/client-model"
+import { Icon } from "@/shared/ui/icon"
+import { Button } from "@/shared/ui/button"
+import editPointModel from "../../pages/edit-point/model/edit-point-model"
 
 type Props = {
     id: number,

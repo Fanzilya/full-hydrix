@@ -26,13 +26,13 @@ export const WaterCompanyView = observer(() => {
     const navigate = useNavigate();
     const { waterCompany } = useAuth();
 
-    const { init, meta, company, plants, editableModel, isEditing, setEditing, save,
+    const { init, company, plants, isEditing, setEditing, save,
         setName, setOperatorFirstName, setOperatorLastName, setOperatorPatronymic, setInn,
         setOgrn, setKpp, setLogin, setOperatorPhone, setOperatorEmail, setAddress,
         setMunicipality, showDelete, setShowDelete, deleteCompany } = waterCompanyModel;
 
     useEffect(() => {
-        waterCompany && init(waterCompany.id)
+        waterCompany && init(waterCompany)
     }, [])
 
     const handleEditClick = () => {
@@ -70,22 +70,14 @@ export const WaterCompanyView = observer(() => {
                     <div className="mt-6 grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
                         <div className="flex flex-row flex-wrap gap-5">
                             <Card
-                                onClick={() => {
-                                    // if (user?.id === 399 || (user?.id === 48 && id == 55)) {
-                                    window.open('http://213.87.95.60:8755/BosKaibici', '_blank');
-                                    // }
-                                }}
-                                // disabled={!(user?.id === 399 || (user?.id === 48 && id == 55))}
-
+                                link="http://213.87.95.60:8755/BosKaibici"
                                 title="АРМ - оператор"
                                 description="Станция подключена к системе"
                                 disabledDescription="Станция не подключена к системе"
                                 icon=""
                             />
                             <Card
-                                onClick={() => {
-                                    navigate(`stats/recycling`);
-                                }}
+                                link={`stats/recycling`}
                                 title="Статистика утилизации"
                                 icon="stat-waste"
                             />
@@ -94,7 +86,7 @@ export const WaterCompanyView = observer(() => {
                             <Card
                                 onClick={() => {
                                     if (!company.isTransporter) return;
-                                    navigate(`/admin/company/${id}/stats/transportation`);
+                                    navigate(`/admin/company/${company.id}/stats/transportation`);
                                 }}
                                 disabled={!company.isTransporter}
                                 title="Статистика транспортировки"
@@ -104,7 +96,7 @@ export const WaterCompanyView = observer(() => {
                                 disabledIcon="disabled-stat-sewer"
                             />
                             <Card
-                                onClick={() => navigate(`/admin/company/${id}/stats/all`)}
+                                onClick={() => navigate(`/admin/company/${company.id}/stats/all`)}
                                 title="Сводная статистика"
                                 icon="statistic-up"
                             />

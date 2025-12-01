@@ -34,6 +34,5 @@ export const PaymentTypeList = [
     {
         value: PaymentType.Cash,
         label: "Наличные",
-        disabled: true,
     }
 ]

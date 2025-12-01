@@ -1,5 +1,5 @@
 import instance from "../api"
-import { MunicipalityRoutes, WaterCompanyRoutes } from "../api-routes"
+import { WaterCompanyRoutes } from "../api-routes"
 
 export type GetWaterCompanyRequest = {
     id: number

@@ -1,19 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import modelModel from './entities/create-order-model';
-import { Button, Input } from '@/core/UIKit';
 import clientModel from '../../kernel/model/client-model';
 import { observer } from 'mobx-react-lite';
-import { getAdressCoordinates, getAdressList, getAdressText, getSuggestionClick } from "@/core/UIKit/mapVK/mapVk-functions";
 import mmrgl, { Map, MapLibreGL } from 'mmr-gl';
-import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
-
-const code = "24928587-9095-4b8a-a99e-6eabfc05b2cd"
+import mapVKModel from '@/shared/ui/mapVK/model/mapVK-model';
+import { createOrderModel } from './entities/create-order-model';
+import { getAdressCoordinates, getAdressList, getAdressText, getSuggestionClick } from '@/shared/ui/mapVK/mapVk-functions';
+import { Input } from '@/shared/ui/Inputs/input-text';
+import { InputContainer } from '@/shared/ui/Inputs/input-container';
+import { Button } from '@/shared/ui/button';
 
 const YandexMapComponent: React.FC = observer(() => {
     const { user } = clientModel;
-    const { nextPage, isAddress, changeAddress, model, getPoints, pickupPoints, setPickupPoint, showMap, setCoords, selectedPoint, changeMunicipality } = modelModel;
+    const { nextPage, isAddress, changeAddress, model, getPoints, pickupPoints, setPickupPoint, showMap, setCoords, selectedPoint, changeMunicipality } = createOrderModel;
 
-    const [showPoints, setShowPoints] = useState<any>(false);
+    const [showPoints, setShowPoints] = useState<boolean>(false);
     const { modelMap } = mapVKModel;
 
 
@@ -151,6 +151,13 @@ const YandexMapComponent: React.FC = observer(() => {
 
     if (user?.roleId === 5 && !showMap) return <></>
 
+    const changeAdress = (value: string) => {
+        const isValid = value.length > 0
+        setShow(isValid);
+        setShowPoints(!isValid);
+        changeAddress(value)
+    }
+
     return (
         <div>
             <div className="mb-9 mt-10">
@@ -158,19 +165,29 @@ const YandexMapComponent: React.FC = observer(() => {
             </div>
 
             <div className='mb-[30px] w-full relative'>
-                <Input
-                    onFocus={() => setShowPoints(true)}
-                    value={model.address}
-                    onChange={(v) => { setShow(true); setShowPoints(false); changeAddress(v) }}
-                    placeholder='Адрес...'
-                    isRequired={true}
-                    headerText='Адрес' underlineText='Обязательное поле'
-                    iconClass={showPoints ? "rotate-180" : ""}
-                    icon='array-blue'
-                />
+                <InputContainer
+                    isRequired
+                    headerText='Адрес'
+                    underlineText='Обязательное поле'
+                    iconName='arrow-down'
+                    classNames={{
+                        icon: `duration-300 ${showPoints ? "rotate-180" : ""}`,
+                        children: "w-full bg-white flex px-5 items-center py-3",
+                    }}
+
+                >
+                    <Input
+                        type='text'
+                        onFocus={setShowPoints}
+                        value={model.address}
+                        onChange={changeAdress}
+                        placeholder='Адрес...'
+                        className='w-full'
+                    />
+                </InputContainer>
 
 
-                {showPoints && suggestions.length === 0 &&
+                {showPoints && suggestions?.length === 0 && pickupPoints.length > 0 &&
                     <ul className='absolute z-10 bg-white border-[#4A85F6] border-[1px] rounded-lg max-h-[400px] overflow-y-auto w-full adress'>
                         <li className='px-3 py-2 font-bold adress'>
                             Ваши точки
@@ -186,7 +203,7 @@ const YandexMapComponent: React.FC = observer(() => {
                         ))}
                     </ul>
                 }
-                {(suggestions.length > 0 && model.address.length > 0 && show) && (
+                {(show && suggestions?.length > 0 && model.address?.length > 0) && (
                     <ul className='absolute z-10 bg-white border-[#4A85F6] border-[1px] rounded-lg max-h-[400px] overflow-y-auto w-full adress'>
                         {suggestions.map((suggestion, index) => (
                             <li key={index} onClick={() => { handleSuggestionClick(suggestion) }} className='adress px-3 py-2 cursor-pointer hover:bg-[#4A85F624] hover:rounded-lg'>
@@ -199,12 +216,11 @@ const YandexMapComponent: React.FC = observer(() => {
 
             <div ref={mapContainer} style={{ width: '100%', height: '400px' }} />
 
-
             <Button
                 disabled={!isAddress()}
                 onClick={nextPage} children="Продолжить"
-                class='bg-[#4A85F6] mt-[20px] rounded-lg max-w-[242px] w-full flex items-center justify-center font-bold text-[17px]' />
-        </div>
+                class='bg-[#4A85F6] text-white mt-[20px] rounded-lg max-w-[242px] w-full flex items-center justify-center font-bold text-[17px]' />
+        </div >
     );
 })
 

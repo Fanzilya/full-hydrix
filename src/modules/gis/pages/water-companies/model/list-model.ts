@@ -1,5 +1,5 @@
-import { getAllMunicipalities } from "@/app/cores/core-gis/network/water-company/type";
 import { getAllClientCompanies } from "@/entities/company/api";
+import { getAllMunicipalities } from "@/entities/municipality/api";
 import { Municipality } from "@/entities/municipality/type";
 import { WaterCompany } from "@/entities/water-company/types";
 import { makeAutoObservable, runInAction } from "mobx";
@@ -67,7 +67,6 @@ export class ListModel {
   public async init() {
     try {
       const response = await getAllClientCompanies();
-
       const getMunicipalities = await getAllMunicipalities();
 
       runInAction(() => {

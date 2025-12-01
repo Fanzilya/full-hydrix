@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "hls.js": "^1.6.15",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.5",
+    "@mui/x-date-pickers": "^8.19.0",
     "@pbe/react-yandex-maps": "^1.2.5",
     "@tanstack/react-table": "^8.19.3",
     "@yandex/smart-captcha": "2.6.3",
@@ -18,9 +21,11 @@
     "chart.js": "^4.4.3",
     "chartjs-adapter-date-fns": "^3.0.0",
     "date-fns": "^3.6.0",
+    "dayjs": "^1.11.19",
     "express": "^4.19.2",
     "guid": "^0.0.12",
     "guid-typescript": "^1.0.9",
+    "hls.js": "^1.6.15",
     "http-proxy-middleware": "^3.0.0",
     "imask": "^7.6.1",
     "mmr-gl": "^0.2.43",

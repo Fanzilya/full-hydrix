@@ -10,14 +10,15 @@ import { ModalDelete } from "@/shared/ui/modal/modal-delete";
 import { useSearch } from "@/shared/ui/Inputs/hooks/hook-search";
 import { Plant } from "@/entities/plants/types";
 import { Contact } from "./components/contact-information";
+import { useAuth } from "@/entities/user/context";
 
 
 export const StationsListView = observer(() => {
     const { init, list, setTypeModal, setShowPlantDelete, showPlantDelete, deletePlant, showModalInfo, setShowModalInfo } = plantsListModel;
-
     const { search, setSearch, results } = useSearch<Plant>({ data: list, searchFields: ['companyName', 'adress'] })
+    const { waterCompany } = useAuth();
 
-    useEffect(() => { init(0) }, []);
+    useEffect(() => { waterCompany && init(waterCompany?.id) }, []);
 
     const changeAdd = () => {
         setShowModalInfo(true)

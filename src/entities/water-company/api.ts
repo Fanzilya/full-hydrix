@@ -1,3 +1,8 @@
+
+import instance from "@/app/api/instances"
+import { WaterCompanyRoutes } from "@/app/cores/core-gis/network/api-routes"
+import { GetWaterCompanyOperatorsRequest } from "./types"
+
 // export const getAllCompanies = () => {
 //     return instance.get(WaterCompanyRoutes.GetAll)
 // }
@@ -18,9 +23,9 @@
 //     return instance.get(WaterCompanyRoutes.GetByUserId, { params })
 // }
 
-// export const getWaterCompanyOperators = (params: GetWaterCompanyOperatorsRequest) => {
-//     return instance.get(WaterCompanyRoutes.GetAllOperators, { params })
-// }
+export const getWaterCompanyOperators = (params: GetWaterCompanyOperatorsRequest) => {
+    return instance.get(WaterCompanyRoutes.GetAllOperators, { params })
+}
 
 // export const createWaterCompanyOperator = (data: Operator) => {
 //     return instance.post(WaterCompanyRoutes.CreateOperator, data)

@@ -1,4 +1,5 @@
 import { Meta } from "@/app/api/meta";
+import { getAllClientCompanies } from "@/entities/company/api";
 import { ClientCompany } from "@/entities/company/type";
 import { makeAutoObservable } from "mobx";
 
@@ -28,19 +29,9 @@ export class ClientCompaniesModel {
     }
 
     async init() {
-        // const clientCompaniesResponse = await getAllClientCompanies();
-        // this.companies = clientCompaniesResponse.data;
+        const clientCompaniesResponse = await getAllClientCompanies();
+        this.companies = clientCompaniesResponse.data;
         this.meta = Meta.SUCCESS;
-
-        for (let i = 0; i < 10; i++) {
-            this.companies[i] = {
-                waterCompanyName: "string" + i,
-                companyName: "string" + i,
-                contractId: i,
-                municipalityName: "string" + i,
-
-            }
-        }
     }
 }
 

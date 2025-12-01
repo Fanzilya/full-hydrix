@@ -3,7 +3,7 @@ import { Button } from "@/shared/ui/button";
 import { useSearch } from "@/shared/ui/Inputs/hooks/hook-search";
 import { Search } from "@/shared/ui/Inputs/input-search";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import operatorListModel from "./models/operator-list-model";
 import { Table } from "@/shared/ui/table/index";
 import { TableColumn } from "@/shared/ui/table/setting/types";
@@ -12,6 +12,7 @@ import { OperatorRole, operatorRole } from "@/entities/user/hooks";
 import { OperatorInfoModal } from "./components/info-operator-madal";
 import { OperatorModal } from "./components/operator-modal";
 import operatorModel from "./models/operator-model";
+import { useAuth } from "@/entities/user/context";
 
 
 const columns: TableColumn<Operator>[] = [
@@ -79,16 +80,11 @@ export const OperatorsView = observer(() => {
 
     const { init, list, setShowInfo, setShowModalChange } = operatorListModel;
     const { setTypeModal } = operatorModel;
+    const { waterCompany } = useAuth();
 
-
-
-    useEffect(() => {
-        // init(gisModel.waterCompany?.id || 0)
-        init(5)
-    }, [])
+    useEffect(() => { waterCompany && init(waterCompany.id) }, [])
 
     const { search, setSearch, results } = useSearch<Operator>({ data: list, searchFields: ['firstName', 'lastName', 'patronymic', 'email', 'phone'] })
-
 
     // const toggleAddSidebar = () => {
     //     initOperator(null, gisModel.waterCompany?.id)

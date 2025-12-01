@@ -1,9 +1,6 @@
-import { Table } from "@/core/UIKit/table"
 import { ColumnDef } from "@tanstack/react-table"
 import { format, parseISO } from 'date-fns';
-import { Button } from "@/core/UIKit";
 import { Link } from "react-router-dom";
-import { Icon } from "@/core/UIKit/icon";
 import { useEffect, useRef, useState } from "react";
 import clientModel from "../../kernel/model/client-model";
 import ordersListModel from "./model/order-list-model";
@@ -11,21 +8,26 @@ import { observer } from "mobx-react-lite";
 import { ru } from "date-fns/locale";
 import { OrderModal } from "./components/order-modal";
 import orderModel from "./model/order-model";
-import { OrderStatus, StatusColor, OrderStatusText } from "@/core/lib/order";
-import { formatAddress } from "@/core/UIKit/format-adress";
 import { toast } from "react-toastify";
-import { OrderCard } from "../../components/oder-card";
+import { Icon } from "@/shared/ui/icon";
+import { TableColumn } from "@/shared/ui/table/setting/types";
+import { Order } from "./service/order";
+import { formatAddress } from "@/shared/ui/format-adress";
+import { OrderStatus } from "@/entities/order/order-status";
+import useOrderStatus from "@/entities/order/useOrderStatus";
+import { OrderStatusText, StatusColor } from "@/app/cores/core-trieco/lib/order";
+import { OrderCard } from "../../layout/oder-card";
+import { Table } from "@/shared/ui/table/index";
+import { Button } from "@/shared/ui/button";
 
-
-const columns: ColumnDef<any, any>[] = [
+const columns: TableColumn<Order>[] = [
     {
         header: "",
-        accessorKey: "selfCreated",
-        size: 30,
-        cell: ({ row }) => {
+        key: "selfCreated",
+        cell: ({ selfCreated }) => {
             return (
                 <div style={{ flex: "0 0 50px", textAlign: "center" }}>
-                    {row.original["selfCreated"] ? (
+                    {selfCreated ? (
                         <Icon width={30} systemName="ambulance" className="cursor-pointer" />
                     ) : (
                         <div style={{ width: 30, height: 30 }}></div>
@@ -36,85 +38,82 @@ const columns: ColumnDef<any, any>[] = [
     },
     {
         header: "Номер заявки",
-        accessorKey: 'id',
-        size: 190,
-        cell: info => <div className="text-[#4A66C9] text-[12px] font-bold">{info.getValue()}</div>,
+        key: 'id',
+        cell: ({ id }) => {
+            return (<div className="text-[#4A66C9] text-[12px] font-bold" > {id}</ div>)
+        }
     },
     {
         header: "Адрес",
-        accessorKey: 'adress',
-        size: 350,
-        cell: info => {
+        key: 'adress',
+        cell: ({ adress }) => {
             return (
-                <span className="text-[12px]">{formatAddress(info.getValue())}</span>
+                <span className="text-[12px]">{adress && formatAddress(adress)}</span>
             )
         },
     },
     {
         header: 'Объём',
-        size: 100,
-        accessorKey: 'wasteVolume',
-        cell: info => {
+        key: 'wasteVolume',
+        cell: ({ wasteVolume }) => {
             return (
-                <span className="text-[12px]">{info.getValue()} м3</span>
+                <span className="text-[12px]">{wasteVolume} м3</span>
             )
         },
 
     },
     {
         header: 'Дата и время',
-        accessorKey: 'carNumber',
-        cell: ({ row }) => {
-            const arrivalStartDate = parseISO(row.original["arrivalStartDate"])
-            const arrivalEndDate = parseISO(row.original["arrivalEndDate"])
+        key: 'arrivalStartDate',
+        cell: ({ arrivalStartDate, arrivalEndDate }) => {
+            // const arrivalStartDateISO = parseISO(arrivalStartDate || "")
+            // const arrivalEndDateISO = parseISO(arrivalEndDate || "")
+            const arrivalStartDateISO = arrivalStartDate || "";
+            const arrivalEndDateISO = arrivalEndDate || "";
             return (
-                <div className="text-[12px] text-center">{format(arrivalStartDate, 'dd.MM.yyyy')} {format(arrivalStartDate, 'HH:mm')}-{format(arrivalEndDate, 'HH:mm')}</div>
+                <span className="text-[12px]">{arrivalStartDateISO.toString()} {arrivalStartDateISO.toString()}-{arrivalEndDateISO.toString()}</span>
+                // <span className="text-[12px]">{format(arrivalStartDateISO, 'dd.MM.yyyy')} {format(arrivalStartDateISO, 'HH:mm')}-{format(arrivalEndDateISO, 'HH:mm')}</span>
             )
         },
-
     },
     {
         header: 'Дата создания',
-        accessorKey: 'timeOfPublication',
-        cell: info => {
-            const date = new Date(info.getValue())
+        key: 'timeOfPublication',
+        cell: ({ timeOfPublication }) => {
+            const date = new Date(timeOfPublication)
             return (
-                <div className="text-[12px] text-center">{format(date, 'd MMMM yyyy HH:mm', { locale: ru })}</div>
+                <div className="text-[12px] text-center">{date.toString()}</div>
+                // <div className="text-[12px] text-center">{format(date, 'd MMMM yyyy HH:mm', { locale: ru })}</div>
             )
         },
 
     },
     {
         header: 'Статус',
-        accessorKey: 'orderStatusId',
-        size: 250,
-        cell: info => {
-            let el = Number(info.getValue()) as OrderStatus
+        key: 'orderStatusId',
+        width: "190px",
+        cell: ({ orderStatusId }) => {
+            let el = Number(orderStatusId) as OrderStatus
 
-            if (info.getValue() === undefined) {
+            if (orderStatusId === undefined) {
                 el = OrderStatus.Cancelled
             }
-            const bgColor = `${StatusColor(el)} `
+            const bgColor = `${useOrderStatus().StatusColor(el)} `
             const style = `text-white rounded-[30px] py-[6px] px-[32px] text-center m-auto w-max whitespace-nowrap`
 
-            if (!info.getValue()) {
-                toast("Подходящих заявок не найдено", { progressStyle: { background: "red" } });
-            }
             return (
-
                 <div className={style} style={{ backgroundColor: bgColor }}>
-                    <span>{OrderStatusText[el]}</span>
+                    <span>{useOrderStatus().StatusText(el)}</span>
                 </div>
             )
         },
     },
     {
         header: 'Код',
-        accessorKey: 'code',
-        size: 190,
-        cell: info => {
+        key: 'code',
+        cell: ({ code }) => {
             return (
-                <span className="text-[12px] w-full text-center font-semibold">{info.getValue()}</span>
+                <span className="text-[12px] w-full text-center font-semibold">{code}</span>
             )
         },
     },
@@ -142,7 +141,7 @@ export const OrdersView = observer(() => {
     return (
         <>
             <div className="relative">
-                <OrderModal isOpen={isOrderModalOpen} setShow={setIsOrderModalOpen} />
+                {/* <OrderModal isOpen={isOrderModalOpen} setShow={setIsOrderModalOpen} /> */}
                 <div className="py-16 flex flex-col gap-8">
 
                     <div className="overflow-x-auto w-full pb-1">
@@ -180,7 +179,13 @@ export const OrdersView = observer(() => {
                                 </div>
                             </div>
                         </div>
-                        <Table pageSize={10} columns={columns} data={model} onRowClick={(value) => { orderModel.open(model.find(x => x.id === value.id)!); setIsOrderModalOpen(true) }} />
+                        <Table
+                            options={{
+                                pageSize: [10, 20, 50]
+                            }}
+                            columns={columns}
+                            data={model.length > 0 ? model : []}
+                            onRowClick={(value) => { orderModel.open(model.find(x => x.id === value.id)!); setIsOrderModalOpen(true) }} />
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, ReactNode } from "react";
-import { userModel, UserModel } from "./user";
+import { userModel } from "./user";
 import { User } from "./type";
 import { WaterCompany } from "../water-company/types";
 

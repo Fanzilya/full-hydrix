@@ -31,7 +31,8 @@ export type InputTextType = {
     lengthOptions?: { minLength?: number; maxLength?: number };
 
     onChange?: (value: string) => void;
-    readonly?: boolean; // Не понятно что это
+    onFocus?: (value: boolean) => void;
+    readonly?: boolean;
 };
 
 export type SearchType = {

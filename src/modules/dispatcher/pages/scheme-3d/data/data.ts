@@ -194,15 +194,29 @@ export const InformationsComponents: InformationsComponentsType[] = [
 ];
 
 export const points: SchemeViewerPointType[] = [
-    { top: "48%", left: "5%", size: [18, 18], label: "Насос Н4.1 рецикла", id: 1,accident: true, },
-    { top: "7%", left: "17%", size: [47, 47], label: "Барабанное сито №1", id: 2,accident: true, },
-    { top: "25%", left: "17%", size: [47, 47], label: "Барабанное сито №2", id: 3,accident: true, },
-    { top: "25%", left: "23%", size: [117, 68], label: "Песколовка №1", id: 5,accident: true, },
-    { top: "8%", left: "23%", size: [117, 68], label: "Песколовка №2", id: 4,accident: true, },
-    { top: "30.5%", left: "36%", size: [25, 25], label: "Мешалка усреднителя №1", id: 6,accident: true, },
-    { top: "30.5%", left: "40.5%", size: [25, 25], label: "Мешалка усреднителя №2", id: 7,accident: true, },
-    { top: "30.5%", left: "45.5%", size: [25, 25], label: "Мешалка усреднителя №3", id: 8,accident: true, },
-    { top: "25.5%", left: "77.8%", size: [41, 10], label: "Тестовый мен", id: 8, accident: true, control: { type: "auto", top: "-65%", left: "70%" }, status: HardWareStatus.OK, image: "permeate-pump" },
+    { top: "48%", left: "5%", size: [18, 18], label: "Насос Н4.1 рецикла", id: 1, accident: true, },
+    { top: "7%", left: "17%", size: [47, 47], label: "Барабанное сито №1", id: 2, accident: true, },
+    { top: "25%", left: "17%", size: [47, 47], label: "Барабанное сито №2", id: 3, accident: true, },
+    { top: "25%", left: "23%", size: [117, 68], label: "Песколовка №1", id: 5, accident: true, },
+    { top: "8%", left: "23%", size: [117, 68], label: "Песколовка №2", id: 4, accident: true, },
+    { top: "30.5%", left: "36%", size: [25, 25], label: "Мешалка усреднителя №1", id: 6, accident: true, },
+    { top: "30.5%", left: "40.5%", size: [25, 25], label: "Мешалка усреднителя №2", id: 7, accident: true, },
+    { top: "30.5%", left: "45.5%", size: [25, 25], label: "Мешалка усреднителя №3", id: 8, accident: true, },
+    {
+        top: "25.5%",
+        left: "77.8%",
+        size: [41, 10],
+        label: "Тестовый мен",
+        id: 8,
+        accident: true,
+        control: {
+            type: "auto",
+            top: "-65%",
+            left: "70%"
+        },
+        status: HardWareStatus.OK,
+        image: "permeate-pump"
+    },
 ];
 
 

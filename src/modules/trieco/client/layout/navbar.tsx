@@ -5,12 +5,13 @@ import notificationModel from "./notifications/model/notification-model";
 import { NotificationList } from "./notifications/notification";
 import { Roles } from "./utils/getRoles";
 import { Icon } from "@/shared/ui/icon";
+import { useAuth } from "@/entities/user/context";
 
 export const Navbar = () => {
     const { setShow } = notificationModel;
     const location = useLocation();
     const navigate = useNavigate();
-    const { user } = clientModel;
+    const { user } = useAuth();
     // @ts-ignore
     const header = Headers[location.pathname]
     return (
@@ -21,8 +22,8 @@ export const Navbar = () => {
             </div>
             <div className="flex flex-row gap-6 w-full justify-end">
                 <div className="flex flex-row items-center justify-center gap-9 mr-7">
-                    <NavbarItem isActive={location.pathname === "/"} link="/" title="Главная" icon="home" />
-                    <NavbarItem isActive={location.pathname === "/orders"} link="/orders" title="Заявки" icon="clipboard" />
+                    <NavbarItem isActive={location.pathname === "/trieco/client/"} link="/trieco/client/" title="Главная" icon="home" />
+                    <NavbarItem isActive={location.pathname === "/trieco/client/orders"} link="/trieco/client/orders" title="Заявки" icon="clipboard" />
                 </div>
                 <div className="flex items-center justify-center relative">
                     <Icon systemName="bell" className="cursor-pointer" onClick={() => setShow(true)} />

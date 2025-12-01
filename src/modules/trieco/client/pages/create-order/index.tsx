@@ -1,23 +1,21 @@
 // import { AddAddress } from "./add-address-2"
-import createOrderModel from "./entities/create-order-model"
 import { AddDetails } from "./add-details";
 import { observer } from "mobx-react-lite";
 import { Created } from "./created";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import clientModel from "../../kernel/model/client-model";
 import { toast } from "react-toastify";
 import YandexMapComponent from "./add-adderss";
-import { getAdressCoordinates } from "@/core/UIKit/mapVK/mapVk-functions";
+import { createOrderModel } from "./entities/create-order-model";
+import { useAuth } from "@/entities/user/context";
+import { getAdressCoordinates } from "@/shared/ui/mapVK/mapVk-functions";
 
 export const CreateOrder = observer(() => {
-    const { pageCounter, setPage } = createOrderModel;
-    const { user } = clientModel;
+    const { user } = useAuth();
     const location = useLocation();
     const [params] = useSearchParams();
 
-
-    const { changeAddress, model, changeMunicipality } = createOrderModel;
+    const { pageCounter, setPage, changeAddress, model, changeMunicipality } = createOrderModel;
 
 
     useEffect(() => {
@@ -42,7 +40,7 @@ export const CreateOrder = observer(() => {
 
                 model.longitude = Number(params.get("longitude"))
                 model.latitude = Number(params.get("latitude"))
-                setPage(2)
+                setPage(1)
 
             })
         }
@@ -53,7 +51,7 @@ export const CreateOrder = observer(() => {
             {pageCounter === 1 && <YandexMapComponent />}
             {pageCounter === 2 && <AddDetails />}
             {pageCounter === 3 && <Created />}
-            {pageCounter === 4 && <></>}
+            {/* {pageCounter === 4 && <></>} */}
         </>
     )
 

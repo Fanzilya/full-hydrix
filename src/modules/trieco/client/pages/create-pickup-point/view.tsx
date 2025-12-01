@@ -155,6 +155,7 @@ export const CreatePointView = observer(() => {
                         placeholder='Адрес...'
                         isRequired={true}
                         headerText='Адрес' underlineText='Обязательное поле' />
+                        
                     {(suggestions.length > 0 && model.address.length > 0 && show) && (
                         <ul className='absolute z-10 bg-white border-[#4A85F6] border-[1px] rounded-lg max-h-[400px] overflow-y-auto w-full adress'>
                             {suggestions.map((suggestion, index) => (

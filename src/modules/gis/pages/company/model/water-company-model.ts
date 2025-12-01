@@ -11,24 +11,24 @@ export class WaterCompanyModel {
 
     company: WaterCompany = {
         id: 0,
-        address: "г. Казань",
+        address: "",
         isDeleted: false,
-        inn: "2312332132132",
-        kpp: "2312332132132",
-        ogrn: "2312332132132",
+        inn: "",
+        kpp: "",
+        ogrn: "",
         isTransporter: false,
         municipality: {
             id: 0,
-            name: "municipality",
+            name: "",
         },
-        name: "Большая станция",
+        name: "",
         operator: {
-            login: "login",
-            email: "email",
-            firstName: "firstName",
-            lastName: "lastName",
-            patronymic: "patronymic",
-            phone: "phone",
+            login: "",
+            email: "",
+            firstName: "",
+            lastName: "",
+            patronymic: "",
+            phone: "",
         },
         municipalityName: "municipalityName"
     }
@@ -97,13 +97,8 @@ export class WaterCompanyModel {
 
 
 
-    public async init(companyId: number) {
-        // const companyResponse = await getWaterCompany({ id: companyId });
-        // this.company = companyResponse.data;
-
-        // const plantsResponse = await getWaterCompanyPlants({ WaterCompanyId: companyId });
-        // this.plants = plantsResponse.data.filter((x: any) => !x.isArchived);
-
+    public async init(company: WaterCompany) {
+        this.company = company
         this.meta = Meta.SUCCESS;
     }
 

@@ -1,6 +1,6 @@
 import { Button } from "@/shared/ui/button";
 import { Icon } from "@/shared/ui/icon";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 type Props = {
     isActive: boolean,
@@ -13,10 +13,10 @@ export const NavbarItem = ({ isActive, link, title, icon }: Props) => {
     const navigate = useNavigate();
     return (
         <div>
-            <Button class="flex flex-row items-center gap-4" onClick={() => { navigate(link) }}>
+            <Link to={link} className="flex flex-row items-center gap-4">
                 <Icon width={36} height={36} systemName={`${icon}${isActive ? "-active" : ""}`} />
                 <span className={`font-semibold text-[16px] ${isActive ? "text-[#4A85F6]" : "text-[#999999]"}`}>{title}</span>
-            </Button>
+            </Link>
         </div>
     )
 }

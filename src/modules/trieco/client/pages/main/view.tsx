@@ -1,33 +1,28 @@
-import { Button } from "@/core/UIKit"
-import { OrderCard } from "../../components/oder-card"
-import { Icon } from "@/core/UIKit/icon"
+
 import { Link } from "react-router-dom"
 import { observer } from "mobx-react-lite"
-import clientModel from "../../kernel/model/client-model"
 import orderListModel from "../orders/model/order-list-model"
 import { useEffect, useRef } from "react"
 import { format } from "date-fns"
 import moment from "moment"
 import { ru } from "date-fns/locale"
-import { Points } from "../../components/points/points"
-import { OrderStatusText, OrderStatus } from "@/core/lib/order"
+import { useAuth } from "@/entities/user/context"
+import { OrderCard } from "../../layout/oder-card"
+import { Button } from "@/shared/ui/button"
+import { Icon } from "@/shared/ui/icon"
+import useOrderStatus from "@/entities/order/useOrderStatus"
+import { Points } from "../../layout/points/points"
+
 moment.locale('ru');
 
-
 export const MainView = observer(() => {
-    const { user } = clientModel;
+    const { user } = useAuth();
     const { initMain, modelMain } = orderListModel;
 
-    useEffect(() => {
-        initMain(user?.id ?? 0)
-    }, [])
-    useEffect(() => {
-        console.log(modelMain)
-    }, [modelMain])
-
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        user && initMain(user?.id)
+
         const handleWheel = (event: any) => {
             event.preventDefault();
 
@@ -46,7 +41,9 @@ export const MainView = observer(() => {
                 scrollContainer.removeEventListener('wheel', handleWheel);
             }
         };
-    }, []);
+    }, [])
+
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     return (
         <div>
@@ -57,17 +54,18 @@ export const MainView = observer(() => {
                             const startDate = new Date(x.arrivalStartDate ?? "")
                             const endDate = new Date(x.arrivalEndDate ?? "")
                             const formattedDate = format(startDate, 'd MMMM yyyy', { locale: ru });
-                            return (<OrderCard id={x.id} date={formattedDate} time={`${format(startDate, 'HH:mm')}-${format(endDate, 'HH:mm')}`} statusId={x.orderStatusId} status={OrderStatusText[x.orderStatusId as OrderStatus]} title="Вывоз ЖБО" code={""} />)
+                            return (
+                                <OrderCard id={x.id} date={formattedDate} time={`${format(startDate, 'HH:mm')}-${format(endDate, 'HH:mm')}`} statusId={x.orderStatusId} status={useOrderStatus().StatusText(x.orderStatusId)} title="Вывоз ЖБО" code={""} />
+                            )
                         })}
                     </div>
                 </div>
 
-                <Button class="bg-[#E03131] rounded-lg px-4 py-3 max-w-[180px]">
-                    <Link to={'/order/create'} className="w-full flex items-center justify-between">
-                        <span className="text-white">Создать заявку</span>
-                        <Icon systemName="arrow-left" />
-                    </Link>
-                </Button>
+                <Link to={'order/create'} className="bg-[#E03131] rounded-lg px-4 py-3 w-fit text-center flex items-center justify-between hover:opacity-50 duration-300">
+                    <span className="text-white">Создать заявку</span>
+                    {/* <Icon systemName="arrow-left" /> */}
+                </Link>
+
                 <div className="flex flex-col gap-8">
                     <span className="text-[28px] font-semibold">Услуги</span>
                     <div className="flex flex-row w-full justify-between">

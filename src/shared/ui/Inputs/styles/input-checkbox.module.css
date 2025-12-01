@@ -48,6 +48,7 @@
 }
 
 .checkbox::after {
+    top: 25%;
     content: '';
     width: 10px;
     height: 6px;
@@ -67,6 +68,7 @@
 
 .input:checked+.checkbox::after {
     transform: rotate(-45deg) scale(1);
+    
 }
 
 .input:indeterminate+.checkbox {
