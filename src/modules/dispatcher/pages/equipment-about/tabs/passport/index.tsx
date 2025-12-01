@@ -1,12 +1,12 @@
 import { Icon } from "@/shared/ui/icon";
 import image from "../../assets/info-com-1.jpg";
 import { Link } from "react-router-dom";
-import { InformationsComponents } from "../../../scheme/data/data";
+import { observer } from "mobx-react-lite";
+import { hardwareModel } from "@/entities/hardware/model";
 
 
-export const EquipmentPassport = () => {
-
-    const item = InformationsComponents[0]
+export const EquipmentPassport = observer(() => {
+    const { model, сharacteristic } = hardwareModel
 
     return (
         <div className="bg-white rounded-tr-[20px] rounded-bl-[20px] rounded-br-[20px] p-[45px_30px_50px_40px]">
@@ -23,7 +23,7 @@ export const EquipmentPassport = () => {
             <div className="flex gap-5">
                 <div className="w-[350px]">
                     <div className="info-comp__image">
-                        <img src={item.img} alt="Info" />
+                        <img src={"/hardware/" + model?.photoName} alt="Info" />
                     </div>
                     <div className="flex items-center gap-1 text-[12px] justify-center mb-10 mt-3">
                         <span>Статус подключения к ИАС</span>
@@ -64,22 +64,45 @@ export const EquipmentPassport = () => {
                 </div>
                 <div className="w-[50%]">
                     <div className="info-comp__name font-bold text-left border-b pb-8">
-                        {item.title}
+                        {model.name}
                     </div>
 
                     <div className="info-comp__content">
                         <div className="info-comp__section">
                             <div className="info-comp__subtitle font-bold">Характеристики</div>
-                            {item.items.map((item, index) => (
-                                <div className="grid grid-cols-[250px_1fr] " key={index}>
-                                    <div className="info-comp__title font-bold">{item.title}</div>
-                                    <div className="info-comp__description">{item.value}</div>
-                                </div>
-                            ))}
+
+                            <div className="grid grid-cols-[250px_1fr] ">
+                                <div className="info-comp__title font-bold">Модель</div>
+                                <div className="info-comp__description">{model.position}</div>
+                            </div>
+
+                            <div className="grid grid-cols-[250px_1fr] ">
+                                <div className="info-comp__title font-bold">Производительность</div>
+                                <div className="info-comp__description">{model.developerName}</div>
+                            </div>
+
+                            <div className="grid grid-cols-[250px_1fr] ">
+                                <div className="info-comp__title font-bold">Поставщик</div>
+                                <div className="info-comp__description">{model.supplierName}</div>
+                            </div>
+                            <div className="grid grid-cols-[250px_1fr] ">
+                                <div className="info-comp__title font-bold">Производитель</div>
+                                <div className="info-comp__description">{model.developerName}</div>
+                            </div>
+
+                            {сharacteristic.map((item, key) => {
+                                return (
+                                    <div className="grid grid-cols-[250px_1fr]" key={key}>
+                                        <div className="info-comp__title font-bold">{item.name}</div>
+                                        <div className="info-comp__description">{item.value}</div>
+                                    </div>
+                                )
+                            })}
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+})

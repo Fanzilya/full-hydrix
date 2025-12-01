@@ -1,6 +1,6 @@
 // hooks/useCharacteristics.ts
 import { useState } from 'react';
-import { Characteristic } from '../types/characteristics';
+import { Characteristic } from './type';
 
 export const useCharacteristics = () => {
     const [characteristics, setCharacteristics] = useState<Characteristic[]>([

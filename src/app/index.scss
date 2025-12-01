@@ -670,8 +670,13 @@ body {
 
 .info-comp {
     width: 490px;
+    max-height: 100%;
+    height: fit-content;
+    overflow: auto;
 
-    &__body {}
+    &__body {
+        min-height: min-content;
+    }
 
     &__close {
         display: flex;

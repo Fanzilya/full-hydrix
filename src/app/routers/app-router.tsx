@@ -254,7 +254,7 @@ export const AppRouter = createBrowserRouter([
                 },
                 children: [
                     {
-                        path: "passport",
+                        path: "passport/:id",
                         async lazy() {
                             const { EquipmentPassport } = await import("@/modules/dispatcher/pages/equipment-about/tabs/passport")
                             return {
@@ -263,7 +263,7 @@ export const AppRouter = createBrowserRouter([
                         }
                     },
                     {
-                        path: "controll",
+                        path: "controll/:id",
                         async lazy() {
                             const { EquipmentControll } = await import("@/modules/dispatcher/pages/equipment-about/tabs/controll")
                             return {

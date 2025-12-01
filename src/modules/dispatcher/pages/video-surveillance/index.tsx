@@ -1,10 +1,11 @@
 import { VideoSlider } from "./components/video-slider"
 import { StreamPlayer } from "./components/stream-player"
 import { useState } from "react"
+import { videoSurveillanceModel } from "./model/video-surveillance-model"
+import { observer } from "mobx-react-lite"
 
 export const VideoSurveillance = () => {
 
-    const [video, setVideo] = useState<string>('')
 
     return (
         <>
@@ -13,7 +14,7 @@ export const VideoSurveillance = () => {
                     <div className="text-[34px] font-semibold mb-[20px]">Видеонаблюдение</div>
                     <VideoSlider />
 
-                    <StreamPlayer src="" />
+                    <StreamPlayer />
                 </div>
             </div>
         </>

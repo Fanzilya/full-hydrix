@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react";
 import Hls from "hls.js";
 
-export const CameraItem = ({ src }: { src: string }) => {
+interface CameraItemProps {
+    src: string,
+    setSrc: (value: string) => void
+}
+
+export const CameraItem = ({ src, setSrc }: CameraItemProps) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
@@ -33,6 +38,7 @@ export const CameraItem = ({ src }: { src: string }) => {
         <div
             className="flex-shrink-0 transition-transform duration-300"
             style={{ width: `calc(${100 / 4}% - 16px)` }}
+            onClick={() => setSrc(src)}
         >
             <video
                 ref={videoRef}

@@ -179,6 +179,7 @@ export const ControlBlock = {
 }
 export const Hardware = {
   all: "/Hardware/all",
+  one: "/Hardware/infoSingle",
   info: "/Hardware/info",
   create: "/Hardware/create",
 }
@@ -186,6 +187,13 @@ export const Hardware = {
 export const Characteristics = {
   createOnde: "/Characteristics/createOne",
   createMany: "/Characteristics/createMany",
+  all: "/Characteristics/characteristics",
 }
 
-
+export const Control = {
+  createOndeInfo: "/NodeInfo/createInfo",
+  createManyInfo: "/NodeInfo/createMassInfo",
+  createOndeCommand: "/NodeInfo/createCommand",
+  createManyCommand: "/NodeInfo/createMassCommand",
+  all: "/NodeInfo/commands",
+}

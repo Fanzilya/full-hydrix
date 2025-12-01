@@ -22,17 +22,11 @@ export const SwitchButton = (props: SwitchButtonProps) => {
 
     const handleClick = () => {
         if (props.onChange) {
-            props.onChange(!props.value);
+            props.onChange(checked);
 
             setChecked(!checked)
         }
     }
-
-
-
-
-
-
     return (
         <div className={`flex items-cennter cursor-pointer ${props.classNames?.container}`} onClick={handleClick}>
             <div className={`duration-300 ${props.classNames?.button}`}

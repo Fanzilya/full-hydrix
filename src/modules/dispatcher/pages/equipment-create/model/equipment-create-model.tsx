@@ -1,9 +1,11 @@
-import { CahrCreateDTO, EquipmentCreateInterface } from "@/entities/hardware/type";
+import { CharacteristicsCreateInterface, EquipmentCreateInterface } from "@/entities/hardware/type";
 import { makeAutoObservable } from "mobx";
 import { ChangeEvent } from "react";
 import { Characteristic } from "../components/characteristic/type";
-import { createHardware, getAllHardware, manyCharacteristic } from "@/entities/hardware/api";
+import { createHardware, createManyCommand, createManyInfo, createOndeInfo, getAllHardware, manyCharacteristic } from "@/entities/hardware/api";
 import { toast } from "react-toastify";
+import { ControlType, ControlTypeCreate } from "../components/control/type";
+import { isValid } from "date-fns";
 
 class EquipmentCreateModel {
 
@@ -62,7 +64,7 @@ class EquipmentCreateModel {
         this.imgPreview = "";
     }
 
-    async create(characteristics: Characteristic[]) {
+    async create() {
         const formData = new FormData();
         formData.append("image", this.saveIMage);
 
@@ -75,43 +77,104 @@ class EquipmentCreateModel {
 
         this.model.img = result.url;
 
-        // await getAllHardware().then((res) => {
-        //     console.log(res.data)
-        // })
-
         await createHardware({
-            Name: this.model.name,
-            Category: this.model.category,
-            DeveloperName: this.model.manufacturer,
-            SupplierName: this.model.supplier,
-            PhotoName: this.model.img,
-            Position: this.model.position,
-            OpcDescription: this.model.model,
-            ControlBlockId: 1,
+            name: this.model.name,
+            category: this.model.category,
+            developerName: this.model.manufacturer,
+            supplierName: this.model.supplier,
+            photoName: this.model.img,
+            position: this.model.position,
+            opcDescription: this.model.model,
+            model: this.model.model,
+            controlBlockId: 1
         }).then((res) => {
+            this.model.id = res.data
             toast.success("Оборудование создано", { progressStyle: { background: "green" } })
-            this.clear();
+        })
+    }
+
+    async createCharacteristic(characteristics: Characteristic[]) {
+        let data: CharacteristicsCreateInterface[] = [];
+
+        if (this.model.id == 0 || this.model.id == null) return
+
+        for (let i = 0; i < characteristics.length; i++) {
+            data[i] = {
+                hardwareId: this.model.id,
+                name: characteristics[i].name,
+                value: characteristics[i].value
+            };
+        }
+        await manyCharacteristic({
+            hardwareId: this.model.id,
+            characteristics: data
+        }).then((resa) => {
+            toast.success("Характеристики добавлены", { progressStyle: { background: "green" } })
+            console.log(resa.data)
+        })
+    }
+
+    async createControl(controls: ControlType[]) {
+        let dataInfo: ControlTypeCreate[] = [];
+        let dataCommand: ControlTypeCreate[] = [];
+
+        if (this.model.id == 0 || this.model.id == null) return
+
+        for (let i = 0; i < controls.length; i++) {
+            if (controls[i].isInfo == true) {
+                dataInfo[i] = {
+                    hardwareId: this.model.id,
+                    name: controls[i].name,
+                    mesurement: controls[i].mesurement,
+                    plcNodeid: controls[i].plcNodeid,
+                    isValue: controls[i].isValue,
+                };
+            } else {
+                dataCommand[i] = {
+                    hardwareId: this.model.id,
+                    name: controls[i].name,
+                    mesurement: controls[i].mesurement,
+                    plcNodeid: controls[i].plcNodeid,
+                    isValue: controls[i].isValue,
+                }
+            }
+        }
+        await createManyInfo({
+            hardwareId: this.model.id,
+            nodes: dataInfo
+        }).then((resa) => {
+            console.log(resa.data)
         })
 
-
-        // let data: CahrCreateDTO[] = [];
-
-        // for (let i = 0; i < characteristics.length; i++) {
-        //     data[i] = {
-        //         HardwareId: 1,
-        //         Name: characteristics[i].name,
-        //         Value: characteristics[i].value
-        //     };
-        // }
-
-        // console.log(data)
-
-        // await manyCharacteristic(data).then((resa) => {
-        //     console.log(resa.data)
-        // })
-
-        // console.log({ model: this.model, characteristics: characteristics })
+        await createManyCommand({
+            hardwareId: this.model.id,
+            nodes: dataCommand
+        }).then((resa) => {
+            console.log(resa.data)
+            toast.success("Управления добавлены", { progressStyle: { background: "green" } })
+        })
     }
+
+    // async createService(characteristics: Characteristic[]) {
+    //     let data: CahrCreateDTO[] = [];
+
+    //     for (let i = 0; i < characteristics.length; i++) {
+    //         data[i] = {
+    //             HardwareId: 1,
+    //             Name: characteristics[i].name,
+    //             Value: characteristics[i].value
+    //         };
+    //     }
+
+    //     console.log(data)
+
+    //     await manyCharacteristic(data).then((resa) => {
+    //         console.log(resa.data)
+    //     })
+
+    //     console.log({ model: this.model, characteristics: characteristics })
+    // }
+
 }
 
 export const equipmentCreateModel = new EquipmentCreateModel();

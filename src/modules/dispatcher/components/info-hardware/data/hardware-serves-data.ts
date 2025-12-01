@@ -47,7 +47,7 @@ export const everyDayServerDate: EveryDayServerType[] = [
     },
 ]
 
-export const everyPlanerServerDate: EveryPlanerServer[] = [
+export const everyPlanerServerDate: EveryPlanerServerType[] = [
     {
         date: "27.02.2025",
         title: "Проверка и замена масла",

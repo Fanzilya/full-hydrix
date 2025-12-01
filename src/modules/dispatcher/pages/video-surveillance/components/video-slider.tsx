@@ -2,18 +2,17 @@ import { useState } from "react";
 import { Button } from "@/shared/ui/button";
 import { Icon } from "@/shared/ui/icon";
 import { CameraItem } from "./video-item";
+import { videoSurveillanceModel } from "../model/video-surveillance-model";
 
-const cameraSources = [
-    "http://localhost:3000/stream_1/index.m3u8",
-    "http://localhost:3000/stream_2/index.m3u8",
-    "http://localhost:3000/stream_3/index.m3u8",
-    "http://localhost:3000/stream_4/index.m3u8",
-    "http://localhost:3000/stream_5/index.m3u8",
-    "http://localhost:3000/stream_6/index.m3u8",
-    "http://localhost:3000/stream_7/index.m3u8",
-];
+
+interface VideoSliderProps {
+    cameraSources: string[];
+    setBigViewSrc: (src: string) => void;
+}
 
 export const VideoSlider = () => {
+    const { cameraSources, setBigViewSrc } = videoSurveillanceModel
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsToShow = 4;
 
@@ -42,13 +41,13 @@ export const VideoSlider = () => {
 
                 <div className="flex-1 overflow-hidden">
                     <div
-                        className="flex gap-[16px] transition-transform duration-500 ease-out"
+                        className="flex gap-[16px] transition-transform duration-500 ease-out cursor-pointer"
                         style={{
                             transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)`,
                         }}
                     >
                         {cameraSources.map((src, index) => (
-                            <CameraItem key={index} src={src} />
+                            <CameraItem setSrc={setBigViewSrc} key={index} src={src} />
                         ))}
                     </div>
                 </div>

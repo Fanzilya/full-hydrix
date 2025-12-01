@@ -1,11 +1,13 @@
+import { hardwareModel } from "@/entities/hardware/model";
 import { Icon } from "@/shared/ui/icon";
 import { Input } from "@/shared/ui/Inputs/input-text";
 import { SwitchButton } from "@/shared/ui/switch-button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const EquipmentControll = () => {
 
+export const EquipmentControll = () => {
+    const { model, commands } = hardwareModel
     const [value, setValue] = useState("");
 
     return (
@@ -22,33 +24,37 @@ export const EquipmentControll = () => {
                     Управление
                 </div>
 
-                <div className="text-[24px] mb-4 font-semibold">Насос Н4.1 рецикла</div>
+                <div className="text-[24px] mb-4 font-semibold">{model.name}</div>
             </div>
             <div className="flex items-top gap-5">
                 <div className="w-full bg-white rounded-[20px] p-[45px_30px_50px_40px]">
-                    <div className="flex justify-between mb-5 border-b pb-5">
-                        <span className="font-bold">Вкл/Выкл</span>
-
-                        <SwitchButton
-                            onChange={() => { console.log() }}
-                            classNames={{
-                                container: "ml-7 gap-3",
-                                button: "w-[40px] rounded-[150px] block bg-[#757575] p-[3px]",
-                                circle: "rounded-[150px] bg-white h-[18px] w-[18px]",
-                            }}
-                        />
-
-                    </div>
-                    <div className="flex justify-between mb-5 border-b pb-5">
-                        <span className="font-bold">Параметр</span>
 
 
-                        <div className="flex items-center gap-2">
-                            <Input type="number" value={value} onChange={setValue}
-                                className="border rounded-lg max-w-[80px] py-1 px-2" />
-                            m3
-                        </div>
-                    </div>
+                    {commands.map((item, key) => {
+                        return item.isValue == true
+                            ?
+                            <div className="flex justify-between mb-5 border-b pb-5" key={key}>
+                                <span className="font-bold">{item.name}</span>
+
+                                <div className="flex items-center gap-2">
+                                    <Input type="number" value={value} onChange={setValue}
+                                        className="border rounded-lg max-w-[80px] py-1 px-2" />
+                                    m3
+                                </div>
+                            </div>
+                            :
+                            <div className="flex justify-between mb-5 border-b pb-5" key={key}>
+                                <span className="font-bold">{item.name}</span>
+                                <SwitchButton
+                                    onChange={() => { console.log() }}
+                                    classNames={{
+                                        container: "ml-7 gap-3",
+                                        button: "w-[40px] rounded-[150px] block bg-[#757575] p-[3px]",
+                                        circle: "rounded-[150px] bg-white h-[18px] w-[18px]",
+                                    }}
+                                />
+                            </div>
+                    })}
                 </div>
                 <div className="w-full bg-white rounded-[20px] p-[45px_30px_50px_40px]">
                     <div className="info-comp__section">

@@ -10,6 +10,7 @@ import accident from './icons/accident.svg';
 import autoControl from './icons/auto-control.svg';
 import block from './icons/block.svg';
 import manualControl from './icons/manual-control.svg';
+import { hardwareModel } from "@/entities/hardware/model";
 
 
 export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
@@ -178,7 +179,7 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
 
                 {/* {points.map((p, i) => ( */}
                 <div
-                    onClick={() => setInfo(5)}
+                    onClick={() => setInfo(11)}
                     // key={i}
                     className="absolute cursor-pointer"
                     style={{
@@ -197,7 +198,7 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
                     </div>
                 </div>
                 <div
-                    onClick={() => setInfo(5)}
+                    onClick={() => setInfo(11)}
                     // key={i}
                     className="absolute cursor-pointer"
                     style={{

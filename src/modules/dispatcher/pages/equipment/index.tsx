@@ -10,6 +10,7 @@ import { Icon } from "@/shared/ui/icon";
 import { hardwareListModel } from "./model/hardware-list-model";
 import { HardwareInterface } from "@/entities/hardware/type";
 import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
 
 
 const columns: TableColumn<HardwareInterface>[] = [
@@ -79,9 +80,25 @@ const columns: TableColumn<HardwareInterface>[] = [
             )
         },
     },
+    // {
+    //     header: " ",
+    //     key: '',
+    //     width: '0.2fr',
+    //     cell: ({ id }) => {
+    //         return (
+    //             <span className="text-[14px] text-[#222B45] font-semibold w-full">
+    //                 <div className="table__column" >
+    //                     <Link to={"id"} >
+    //                         <Icon systemName="edit" />
+    //                     </Link>
+    //                 </div>
+    //             </span>
+    //         )
+    //     },
+    // },
 ]
 
-export const EquipmentRegistry = () => {
+export const EquipmentRegistry = observer(() => {
 
     const { list, init } = hardwareListModel
 
@@ -113,7 +130,6 @@ export const EquipmentRegistry = () => {
     }
 
     const navigate = useNavigate();
-
     const { search, setSearch, results } = useSearch<HardwareInterface>({ data: list, searchFields: ['name', 'opcDescription'] });
 
     return (
@@ -177,8 +193,8 @@ export const EquipmentRegistry = () => {
             <Table
                 columns={columns}
                 data={results.length > 0 ? results : []}
-                onRowClick={() => navigate("/dispatcher/equipment-about/passport")}
+                onRowClick={(row) => navigate(`/dispatcher/equipment-about/passport/${row.id}`)}
             />
         </>
     )
-}
+})

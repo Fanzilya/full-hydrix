@@ -10,22 +10,27 @@ export interface EquipmentCreateInterface {
 }
 
 export interface CreateHardwareInterface {
-    Name: string,
-    Category: string,
-    DeveloperName: string,
-    SupplierName: string,
-    PhotoName: string,
-    Position: string,
-    OpcDescription: string,
-    ControlBlockId: number,
+    name: string,
+    category: string,
+    developerName: string,
+    supplierName: string,
+    photoName: string,
+    position: string,
+    opcDescription: string,
+    model: string,
+    controlBlockId: number,
 }
 
-export interface CahrCreateDTO {
-    HardwareId: number,
-    Name: string,
-    Value: string,
+export interface CharacteristicsCreateManyInterface {
+    hardwareId: number,
+    characteristics: CharacteristicsCreateInterface[]
 }
 
+export interface CharacteristicsCreateInterface {
+    hardwareId: number,
+    name: string,
+    value: string
+}
 
 export interface HardwareInterface {
     id: number,
@@ -46,6 +51,21 @@ export interface ControlBlockInterface {
     name: string,
     plcIpAdress: string,
 }
+
+
+export interface ModelHardwareOneInterface {
+    id: number,
+    name: string,
+    model?: string,
+    category?: string,
+    developerName: string,
+    supplierName: string,
+    photoName: string,
+    position: string,
+    opcDescription?: string,
+    controlBlockId: number
+}
+
 
 
 

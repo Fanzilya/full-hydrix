@@ -14,6 +14,7 @@ import HardwareCard from "../../components/info-hardware/index.js";
 
 
 export const Scheme = () => {
+
     const [fade, setFade] = useState(false);
     const [focusHardware, setFocusHardware] = useState<number>(0);
     const [panelInfoComponent, setPanelInfoComponent] = useState<InformationsComponentsType>({ title: '', img: '', items: [] });
@@ -51,7 +52,7 @@ export const Scheme = () => {
 
     return (
         <>
-            <div className="informations-dispatch__scheme scheme-dispatch relative mt-10">
+            <div className="informations-dispatch__scheme scheme-dispatch !h-[90vh] relative mt-10">
                 <div className="absolute  top-[-38px] left-[30px] flex gap-3">
                     <div className={`hover:bg-[var(--clr-accent)] hover:text-white duration-300 cursor-pointer px-[15px] pt-[7px] pb-[6px] rounded-tl-lg rounded-tr-lg font-semibold  ${nubmerTab == 0 ? "bg-[var(--clr-accent)] text-white" : "bg-[#E6E9EF] text-[#757575]"}`} onClick={() => setNumberTab(0)}>
                         Технологическое оборудование
@@ -78,7 +79,7 @@ export const Scheme = () => {
                     {nubmerTab != 5 && <SchemeViewer setInfo={handleChangeImage} points={points} />}
                     {nubmerTab == 5 && <TableScheme />}
 
-                    {focusHardware != 0 && <HardwareCard className={`panel-scheme__info ${fade ? "fade-out" : "fade-in"}`} item={panelInfoComponent} onClick={handleChangeImage} />}
+                    {focusHardware != 0 && <HardwareCard className={`panel-scheme__info ${fade ? "fade-out" : "fade-in"}`} id={focusHardware} onClick={handleChangeImage} />}
                 </div>
             </div >
         </>

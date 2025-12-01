@@ -7,9 +7,11 @@ import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { datainpt } from '../data/data';
 import { BlockSelect } from '../components/block-select';
+import { hardwareModel } from '@/entities/hardware/model';
 
 export const HardwareControlle = observer(() => {
 
+    const { commands } = hardwareModel
 
     const [btnCount, setBtnCount] = useState<number>(0);
     const [show, setShow] = useState<boolean>(false);
@@ -49,7 +51,41 @@ export const HardwareControlle = observer(() => {
                     <Button onClick={() => setBtnCount(2)} class={`border-2 w-full justify-center ${btnCount == 2 ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[var(--clr-border-gray)] text-[var(--clr-gray-dark)]"}`}>Cброс аварии</Button>
                 </div>
 
-                {datainpt.map((info, key) => {
+
+                {commands.map((item, key) => {
+                    return (
+                        <div key={key} className="flex justify-between gap-3 items-center mb-5 border-b pb-5">
+                            <span className="font-semibold text-[14px]">{item.name}</span>
+                            <div className='flex items-center gap-4'>
+                                {item.isValue ?
+                                    <>
+                                        <div>42</div>
+                                        <Input type="number" value={value} onChange={setValue}
+                                            className="border rounded-lg max-w-[80px] py-1 px-2"
+                                            lengthOptions={{
+                                                maxLength: 5,
+                                            }}
+                                        />
+                                    </>
+                                    :
+                                    <SwitchButton
+                                        onChange={() => { console.log() }}
+                                        classNames={{
+                                            button: "w-[40px] rounded-[150px] block bg-[#757575] p-[3px]",
+                                            circle: "rounded-[150px] bg-white h-[18px] w-[18px]",
+                                        }}
+                                    />
+                                }
+
+                                <div className='px-2 min-w-[40px] py-2 bg-[var(--clr-accent)] rounded-lg hover:opacity-50 cursor-pointer duration-300' onClick={() => setShow(true)}>
+                                    <Icon systemName='save-white' />
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+
+                {/* {datainpt.map((info, key) => {
                     return (
                         <BlockSelect key={key} title={info.title} children={
                             info.items.map((item, key) => {
@@ -79,7 +115,7 @@ export const HardwareControlle = observer(() => {
                                                 </>
                                             }
 
-                                            <div className='px-2 py-2 bg-[var(--clr-accent)] rounded-lg hover:opacity-50 cursor-pointer duration-300' onClick={() => setShow(true)}>
+                                            <div className='px-2 min-w-[40px] py-2 bg-[var(--clr-accent)] rounded-lg hover:opacity-50 cursor-pointer duration-300' onClick={() => setShow(true)}>
                                                 <Icon systemName='save-white' />
                                             </div>
                                         </div>
@@ -88,7 +124,7 @@ export const HardwareControlle = observer(() => {
                             })
                         } />
                     )
-                })}
+                })} */}
             </div>
         </>
     );

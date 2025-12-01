@@ -14,7 +14,7 @@ export const BlockSelect = observer(({ title, children, className }: BlockProps)
 
     return (
         <div className=''>
-            <div className='flex items-center justify-between gap-2 cursor-pointer]' onClick={() => setOpen(!open)}>
+            <div className='cursor-pointer flex items-center justify-between gap-2 cursor-pointer]' onClick={() => setOpen(!open)}>
                 <div className='font-semibold !text-[var(--clr-accent)] pt-3 pb-5'>{title}</div>
 
                 <div style={{
