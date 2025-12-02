@@ -1,11 +1,10 @@
-import { SelectionComponent } from "@/modules/client/components/selection"
 import { useEffect, useState } from "react"
 import LineStatistic from "./components/graphs/line"
 import { observer } from "mobx-react-lite"
-import { Table } from "@/core/UIKit/table"
+import { Table } from "@/app/cores/core-trieco/UIKit/table"
 import statModel from "./models/stat-model"
 import adminModel from "../../kernel/model/admin-model"
-import { getData, getLineData } from "@/core/lib/getData"
+import { getLineData } from "@/app/cores/core-trieco/lib/getData"
 
 export const StatsView = observer(() => {
     const [view, setView] = useState(StatsVariants[0].value)

@@ -1,4 +1,4 @@
-import { Button } from "@/core/UIKit";
+import { Button } from "@/app/cores/core-trieco/UIKit";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import mobileModel from "../../kernel/model/mobile-model";
@@ -6,7 +6,7 @@ import ordersListModel from "./model/order-list-model";
 import { observer } from "mobx-react-lite";
 import { OrderModal } from "./components/order-modal";
 import { OrderCard } from './components/order-card';
-import { StatusColor, OrderStatusText } from '@/core/lib/order';
+import { StatusColor, OrderStatusText } from '@/app/cores/core-trieco/lib/order';
 import { toast } from "react-toastify";
 
 

@@ -1,10 +1,6 @@
-import { Button } from "@/core/UIKit/button"
-import { Icon } from "@/core/UIKit/icon"
-import { Input } from "@/core/UIKit/input"
 import { useEffect, useRef, useState } from "react"
 import { CreateSewerModal } from "./component/create-sewer-modal"
 import { AccidentReportModal } from "./component/accident-report-modal"
-import { ExtendedColumnDef, Table } from "@/core/UIKit/table"
 import sewerListModel from "./models/sewer-list-model"
 import adminModel from "../../kernel/model/admin-model"
 import { observer } from "mobx-react-lite"
@@ -13,6 +9,10 @@ import { SewerMapModal } from "./component/sewer-map-modal"
 import { SewerInfoModal } from "./component/sewer-info-modal"
 import { getTank } from "./utils/getTank"
 import { Link, useLocation, useParams } from "react-router-dom"
+import { ExtendedColumnDef, Table } from "@/app/cores/core-trieco/UIKit/table"
+import { Button } from "@/shared/ui/button"
+import { Icon } from "@/shared/ui/icon"
+import { Input } from "@/shared/ui/GIS"
 
 const columns: ExtendedColumnDef<any, any>[] = [
     {
@@ -126,9 +126,6 @@ export const SewerListView = observer(() => {
         const searchParams = new URLSearchParams(location.search);
         const userId = searchParams.get('userId');
         console.log(userId)
-        alert(userId);
-
-
 
         // init(adminModel.companyId || 0)
     }, [])
@@ -171,7 +168,7 @@ export const SewerListView = observer(() => {
                     <div className="flex flex-col w-[70%] gap-6">
                         <span className="text-[34px] font-semibold">Список ассенизаторов</span>
                         <div className="flex flex-row gap-8 items-center">
-                            <Button children="Создать" class="bg-[#4A85F6] p-5" onClick={toggleAddSidebar} />
+                            <Button children="Создать" class="text-white bg-[#4A85F6] p-5" onClick={toggleAddSidebar} />
                             <div className="flex flex-row gap-8 items-center">
                                 <Input placeholder="Поиск..." id={'sewerNumberPlate'} value={searchValue} onChange={search} class="border-[#EFF4FA]" icon="search" />
 

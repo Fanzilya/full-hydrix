@@ -1,4 +1,4 @@
-import { Icon } from "@/core/UIKit/icon";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 
 type Props = {
     title: string;

@@ -6,7 +6,7 @@ import {
   getIP,
 } from "../services/auth-service";
 import { toast } from "react-toastify";
-import { Role } from "@/core/enums/role";
+import { Role } from "@/app/cores/core-trieco/enums/role";
 
 export class AuthModel {
   constructor() {

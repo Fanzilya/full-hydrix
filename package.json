@@ -39,6 +39,7 @@
     "react-input-mask": "^2.0.4",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^6.24.1",
+    "react-tabs": "^6.1.0",
     "react-toastify": "^10.0.5",
     "tailwind": "^2.3.1",
     "universal-cookie": "^8.0.1",

@@ -1,4 +1,4 @@
-// import { Button, Input } from "@/core/UIKit"
+// import { Button, Input } from "@/app/cores/core-trieco/UIKit"
 // import createOrderModel from "./entities/create-order-model"
 import { observer } from "mobx-react-lite";
 // import { SelectionComponent } from "../../components/selection";

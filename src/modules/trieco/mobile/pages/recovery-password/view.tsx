@@ -1,6 +1,6 @@
 import bg from '../../kernel/static/img/bg.png'
-import { Button, Input } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button, Input } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { useNavigate } from "react-router-dom"
 
 export const PasswordRecoveryView = () => {

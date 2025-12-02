@@ -1,11 +1,11 @@
-import instance from "@/core/network/api"
-import { UserRoutes, CompanyRoutes } from "@/core/network/api-routes"
+import instance from "@/app/api/instances"
+import { CompanyRoutes, UserRoutes } from "@/app/cores/core-trieco/network/api-routes"
 
 export const GetAllUsers = () => {
     return instance.get(UserRoutes.GetAllUsers)
 }
 export const GetById = (params: UserId) => {
-    return instance.get(UserRoutes.GetById, {params})
+    return instance.get(UserRoutes.GetById, { params })
 }
 export const UserPasswordRecovery = (data: string) => {
     return instance.put(`${UserRoutes.PasswordRecovery}/?Email=${data}`)

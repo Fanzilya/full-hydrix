@@ -3,7 +3,7 @@ import { Navbar } from "./navbar";
 import { Sidebar } from "./sidebar";
 import { useLayoutEffect } from "react";
 import AdminPanelModel from "../kernel/model/admin-panel-model";
-import { Meta } from "@/core/network/meta";
+import { Meta } from "@/app/cores/core-trieco/network/meta";
 import { observer } from "mobx-react-lite";
 
 export const AdminPanelLayout = observer(() => {
@@ -12,10 +12,10 @@ export const AdminPanelLayout = observer(() => {
     const userToken = window.localStorage.getItem('refresh-token');
 
     useLayoutEffect(() => {
-        if (userToken === null) {
-            navigate("admin-panel/auth")
-            return;
-        }
+        // if (userToken === null) {
+        //     navigate("admin-panel/auth")
+        //     return;
+        // }
         init();
     }, [])
 

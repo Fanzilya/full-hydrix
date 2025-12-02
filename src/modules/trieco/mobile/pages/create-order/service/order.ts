@@ -1,11 +1,11 @@
-import instance from "@/core/network/api"
-import { OrderRoutes } from "@/core/network/api-routes"
+import instance from "@/app/api/instances"
+import { OrderRoutes } from "@/app/api/instances-routes"
 
 export const createOrder = (data: CreateOrderEntity) => {
     return instance.post(OrderRoutes.Create, data);
 }
 
-export const createOrderByPoint = (data: CreateOrderEntity) => { 
+export const createOrderByPoint = (data: CreateOrderEntity) => {
     return instance.post(OrderRoutes.CreateByPoint, data);
 }
 
@@ -15,7 +15,7 @@ export type CreateOrderEntity = {
     wasteVolume?: number,
     sewerId?: number,
     municipalityName?: string,
-    userId?: number,    
+    userId?: number,
     orderStatusId?: number,
     arrivalStartDate: string,
     arrivalEndDate: string,

@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import createOrderModel from './entities/create-order-model';
-import { Button, Input } from '@/core/UIKit';
+import { Button, Input } from '@/app/cores/core-trieco/UIKit';
 import { observer } from 'mobx-react-lite';
 import mobileModel from '../../kernel/model/mobile-model';
 import headerStore from '../../kernel/helper/header-store';
 import { useNavigate } from 'react-router-dom';
 import { PageCount } from './components/page-count';
 
-import { getAdressCoordinates, getAdressList, getAdressText, getSuggestionClick } from "@/core/UIKit/mapVK/mapVk-functions";
+import { getAdressCoordinates, getAdressList, getAdressText, getSuggestionClick } from "@/app/cores/core-trieco/UIKit/mapVK/mapVk-functions";
 import mmrgl, { Map, MapLibreGL } from 'mmr-gl';
-import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
+import mapVKModel from "@/app/cores/core-trieco/UIKit/mapVK/model/mapVK-model";
 
 const YandexMapComponent: React.FC = observer(() => {
 

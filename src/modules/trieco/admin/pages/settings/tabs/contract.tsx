@@ -1,4 +1,4 @@
-import { Button } from "@/core/UIKit"
+import { Button } from "@/app/cores/core-trieco/UIKit"
 import FileUpload from "../components/file-upload/file-upload"
 import { observer } from "mobx-react-lite";
 import fileStore from "../components/file-upload/model/file-model";

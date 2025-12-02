@@ -1,13 +1,13 @@
-import { Icon } from '@/core/UIKit/icon'
+import { Icon } from '@/app/cores/core-trieco/UIKit/icon'
 import bg from '../../kernel/static/img/bg.png'
 import loginCarrier from '../../kernel/static/img/loginCarrier.png'
 import loginClient from '../../kernel/static/img/loginClient.png'
-import { Button, Input } from '@/core/UIKit'
+import { Button, Input } from '@/app/cores/core-trieco/UIKit'
 import { observer } from 'mobx-react-lite'
 import clientModel from '../../kernel/model/admin-panel-model'
 import { useNavigate } from 'react-router-dom'
 import authModel from './model/auth-model'
-import { Password } from '@/core/UIKit/password-input'
+import { Password } from '@/app/cores/core-trieco/UIKit/password-input'
 import { useEffect, useState } from 'react'
 import { RegistrationModal } from "./components/registration-modal"
 

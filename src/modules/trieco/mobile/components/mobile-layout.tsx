@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { useLayoutEffect } from "react";
-import { Meta } from "@/core/network/meta";
+import { Meta } from "@/app/cores/core-trieco/network/meta";
 import { observer } from "mobx-react-lite";
 import { Header } from "./header";
 import mobileModel from "../kernel/model/mobile-model";

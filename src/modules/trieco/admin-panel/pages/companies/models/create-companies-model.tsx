@@ -2,8 +2,8 @@ import { makeAutoObservable } from "mobx";
 import { CompanyRegistrateRequest, createClientCompany, createCompany, registrate, RegistrationRequest } from "../services/companies-service";
 import { getFNSData } from "@/core/network/fns/fns";
 import { toast } from "react-toastify";
-import { emailConfirm } from "@/core/network/user/user";
-import { Role } from "@/core/enums/role";
+import { emailConfirm } from "@/app/cores/core-trieco/network/user/user";
+import { Role } from "@/app/cores/core-trieco/enums/role";
 
 class CreateCompaniesModel {
     constructor() {

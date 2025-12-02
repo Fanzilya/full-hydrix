@@ -1,10 +1,10 @@
-import { Button } from "@/core/UIKit/button"
-import { Icon } from "@/core/UIKit/icon"
-import { Input } from "@/core/UIKit/input"
+import { Button } from "@/app/cores/core-trieco/UIKit/button"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
+import { Input } from "@/app/cores/core-trieco/UIKit/input"
 import { useEffect, useRef, useState } from "react"
-import { ExtendedColumnDef, Table } from "@/core/UIKit/table"
+import { ExtendedColumnDef, Table } from "@/app/cores/core-trieco/UIKit/table"
 import { observer } from "mobx-react-lite"
-import { Role } from "@/core/enums/role"
+import { Role } from "@/app/cores/core-trieco/enums/role"
 import userModel from "./models/users-model"
 import { Roles } from "./utils/getRoles"
 import { DeleteUserModal } from "./component/delete-user-modal"
@@ -88,7 +88,7 @@ export const UsersView = observer(() => {
         event.stopPropagation();
     };
 
-    const recovery = (email: string, id:number) => {
+    const recovery = (email: string, id: number) => {
         passwordRecovery(email, id)
     }
 

@@ -7,8 +7,8 @@ import {
   Order,
 } from "../service/order";
 import { Sewer } from "../../sewer-list/services/sewers";
-import { OrderStatus, OrderStatusText } from "@/core/lib/order";
-import { Municipality } from "@/core/network/company/municipality";
+import { OrderStatus, OrderStatusText } from "@/app/cores/core-trieco/lib/order";
+import { Municipality } from "@/app/cores/core-trieco/network/company/municipality";
 export class OrderListModel {
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });

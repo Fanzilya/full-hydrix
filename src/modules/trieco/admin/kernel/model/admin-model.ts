@@ -49,9 +49,9 @@ export class AdminModel {
     async init() {
         const token = window.localStorage.getItem('refresh-token')
 
-        if (!token) {
-            window.location.href = "/auth"
-        }
+        // if (!token) {
+        //     window.location.href = "/auth"
+        // }
 
         // TODO: Доделать
         const userResp = await GetUserById({ id: Number(window.localStorage.getItem('refresh-token')) })

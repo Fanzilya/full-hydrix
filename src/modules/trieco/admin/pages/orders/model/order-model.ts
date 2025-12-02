@@ -1,9 +1,9 @@
 import { makeAutoObservable } from "mobx";
 import { Order } from "../service/order";
 import { getSewersByCompanyId, Sewer } from "../../sewer-list/services/sewers";
-import { createOrder } from "@/modules/client/viewports/create-order/service/order";
 import { toast } from "react-toastify";
 import { FiCornerDownLeft } from "react-icons/fi";
+import { createOrder } from "@/modules/trieco/client/pages/create-order/service/order";
 
 export class OrderModel {
   constructor() {

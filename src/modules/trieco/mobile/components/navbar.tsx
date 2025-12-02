@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavbarItem } from "./navbar-item";
-import { Button } from "@/core/UIKit";
+import { Button } from "@/app/cores/core-trieco/UIKit";
 
 export const Navbar = () => {
     const location = useLocation();

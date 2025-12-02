@@ -1,8 +1,8 @@
-// import { Modal } from "@/core/UIKit";
+// import { Modal } from "@/app/cores/core-trieco/UIKit";
 // import sewerMapModel from "../models/sewer-map-model";
 // import { observer } from "mobx-react-lite";
 // import { useLayoutEffect, useRef } from "react";
-// import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
+// import mapVKModel from "@/app/cores/core-trieco/UIKit/mapVK/model/mapVK-model";
 // import mmrgl from 'mmr-gl';
 
 // export const SewerMapModal = observer(() => {

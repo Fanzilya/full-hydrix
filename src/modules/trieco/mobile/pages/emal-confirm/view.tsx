@@ -1,8 +1,8 @@
-import { Button } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import bg from '../../kernel/static/img/bg-2.png'
-import { CodeInput } from "@/core/UIKit/code-input";
+import { CodeInput } from "@/app/cores/core-trieco/UIKit/code-input";
 import emailConfirmModel from "./models/confirm-model";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";

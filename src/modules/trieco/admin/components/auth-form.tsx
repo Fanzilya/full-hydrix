@@ -1,9 +1,9 @@
-import { Button } from "@/core/UIKit/button"
-import { Input } from "@/core/UIKit/input"
+import { Button } from "@/app/cores/core-trieco/UIKit/button"
+import { Input } from "@/app/cores/core-trieco/UIKit/input"
 import authModel from "../viewports/auth/model/auth-model"
 import { observer } from "mobx-react-lite"
 import { RegistrationModal } from "../viewports/auth/components/registration-modal"
-import { Password } from "@/core/UIKit/password-input"
+import { Password } from "@/app/cores/core-trieco/UIKit/password-input"
 import { useState } from "react"
 import { RecoveryModal } from "../viewports/auth/components/recovery-modal"
 

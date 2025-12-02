@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { format, subDays } from "date-fns";
-import { Icon } from "@/core/UIKit/icon";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 
 export const NotificationList = observer(() => {
     const today = new Date();

@@ -1,20 +1,20 @@
-import instance from "@/core/network/api"
-import { OrderRoutes } from "@/core/network/api-routes"
+import instance from "@/app/api/instances"
+import { OrderRoutes } from "@/app/api/instances-routes"
 
 export const getAllOrders = (params: GetAllOrdersRequest) => {
-    return instance.get(OrderRoutes.GetByUserId, {params: params})
+    return instance.get(OrderRoutes.GetByUserId, { params: params })
 }
 
 export const getOrderCode = (params: GetOrderCodeRequest) => {
-    return instance.get(OrderRoutes.GetCode, {params: params})
+    return instance.get(OrderRoutes.GetCode, { params: params })
 }
 
 export const getOrder = (params: GetOrderRequest) => {
-    return instance.get(OrderRoutes.GetById, {params})
+    return instance.get(OrderRoutes.GetById, { params })
 }
 
 export const changeStatus = (data: ChangeOrderRequest) => {
-    return instance.put(OrderRoutes.ChangeStatus, data, {params: {OrderId: data.OrderId}})
+    return instance.put(OrderRoutes.ChangeStatus, data, { params: { OrderId: data.OrderId } })
 }
 
 export type ChangeOrderRequest = {

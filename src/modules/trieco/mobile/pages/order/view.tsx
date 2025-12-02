@@ -1,13 +1,13 @@
 import { observer } from "mobx-react-lite";
 import orderModel from "./model/order-model";
 import { useNavigate, useParams } from "react-router-dom";
-import { OrderStatus, OrderStatusText, StatusColor } from "@/core/lib/order";
+import { OrderStatus, OrderStatusText, StatusColor } from "@/app/cores/core-trieco/lib/order";
 import { format } from "date-fns";
 import { useEffect } from "react";
 import headerStore from "../../kernel/helper/header-store";
-import { Button } from "@/core/UIKit";
+import { Button } from "@/app/cores/core-trieco/UIKit";
 import orderListModel from "../orders/model/order-list-model";
-import { Icon } from "@/core/UIKit/icon";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 
 
 export const OrderView = observer(() => {

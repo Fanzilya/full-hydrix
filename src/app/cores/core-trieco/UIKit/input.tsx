@@ -1,6 +1,6 @@
 import { HTMLInputTypeAttribute, useState } from "react";
-import { Icon } from "@/core/UIKit/icon";
 import InputMask from "react-input-mask";
+import { Icon } from "./icon";
 
 type Props = {
     wrapperClass?: string;

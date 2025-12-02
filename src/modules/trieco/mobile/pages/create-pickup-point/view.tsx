@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import createPointModel from "./model/create-point-model";
-import { Button, Input } from "@/core/UIKit";
+import { Button, Input } from "@/app/cores/core-trieco/UIKit";
 import mobileModel from "../../kernel/model/mobile-model";
 import { observer } from "mobx-react-lite";
 
-import { getAdressCoordinates, getAdressList, getSuggestionClick } from "@/core/UIKit/mapVK/mapVk-functions";
+import { getAdressCoordinates, getAdressList, getSuggestionClick } from "@/app/cores/core-trieco/UIKit/mapVK/mapVk-functions";
 import mmrgl, { Map, MapLibreGL } from 'mmr-gl';
-import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
+import mapVKModel from "@/app/cores/core-trieco/UIKit/mapVK/model/mapVK-model";
 
 
 export const CreatePointView = observer(() => {

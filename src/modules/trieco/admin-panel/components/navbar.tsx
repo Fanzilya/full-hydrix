@@ -1,4 +1,4 @@
-import { Icon } from "@/core/UIKit/icon"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import AdminPanelModel from "../kernel/model/admin-panel-model";
 import { observer } from "mobx-react-lite";
 

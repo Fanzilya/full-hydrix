@@ -30,7 +30,7 @@ export const Navbar = () => {
                     <NotificationList />
                 </div>
                 <div className="h-full w-[2px] bg-[#C2C2C2]" />
-                <div className="flex flex-row gap-4 items-center cursor-pointer" onClick={() => navigate('/profile')}>
+                <div className="flex flex-row gap-4 items-center cursor-pointer" onClick={() => navigate('profile')}>
                     <div className="bg-[#C2C2C2] rounded-full w-[45px] h-[45px]" />
                     <div className="flex h-full flex-col justify-center items-start">
                         {

@@ -16,7 +16,7 @@ export const Points = observer(() => {
         <div className={`rounded-[20px] h-fit max-w-[600px] min-w-[500px] ${model.length > 0 && "shadow-[0px_3px_4px_0px_#0000000A]"}`}>
             <div className="p-6 bg-[#fefefe] shadow-[0px_12px_23px_0px_#3E49540A] mb-7 flex fledx-row w-full justify-between">
                 <span className="text-[20px] font-bold">Точки сбора ЖБО</span>
-                <Link to="/pickup/create" className="text-white hover:bg-[var(--clr-accent)] bg-[#2953E8] rounded-[18px] py-1.5 px-5 duration-300" >
+                <Link to="pickup/create" className="text-white hover:bg-[var(--clr-accent)] bg-[#2953E8] rounded-[18px] py-1.5 px-5 duration-300" >
                     + Добавить
                 </Link>
             </div>

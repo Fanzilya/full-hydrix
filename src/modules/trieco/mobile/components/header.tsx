@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom"
 import mobileModel from "../kernel/model/mobile-model";
-import { Icon } from "@/core/UIKit/icon";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 import { observer } from "mobx-react-lite";
 import headerStore from "../kernel/helper/header-store";
 import { useEffect, useState } from "react";

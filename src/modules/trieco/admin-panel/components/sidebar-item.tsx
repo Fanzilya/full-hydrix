@@ -1,4 +1,4 @@
-import { Icon } from '@/core/UIKit/icon';
+import { Icon } from '@/app/cores/core-trieco/UIKit/icon';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 

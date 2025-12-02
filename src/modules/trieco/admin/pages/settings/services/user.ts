@@ -1,9 +1,9 @@
-import instance from "@/core/network/api";
-import { UserRoutes } from "@/core/network/api-routes";
-import { User } from "@/core/network/models";
+import { UserRoutes } from "@/app/api/api-router";
+import instance from "@/app/api/instances";
+import { User } from "@/entities/user/type";
 
 export const updateUser = (data: User) => {
-    return instance.put(UserRoutes.Update, data, {params: {id: data.id}})
+    return instance.put(UserRoutes.Update, data, { params: { id: data.id } })
 }
 
 

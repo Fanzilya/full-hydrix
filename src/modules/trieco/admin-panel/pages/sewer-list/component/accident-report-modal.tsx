@@ -1,4 +1,4 @@
-import { Input, Button, Modal } from "@/core/UIKit"
+import { Input, Button, Modal } from "@/app/cores/core-trieco/UIKit"
 
 type Props = {
     show: boolean,

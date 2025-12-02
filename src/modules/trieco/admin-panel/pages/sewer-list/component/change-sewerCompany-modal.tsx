@@ -1,5 +1,5 @@
-import { Button, Input } from "@/core/UIKit";
-import { Icon } from "@/core/UIKit/icon";
+import { Button, Input } from "@/app/cores/core-trieco/UIKit";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 import { observer } from "mobx-react-lite";
 
 export const ChangeSewerCompany = observer(({ sewer, onClose, onClickChange }: { sewer: any, onClose: () => void, onClickChange: (sewer: any) => void }) => {

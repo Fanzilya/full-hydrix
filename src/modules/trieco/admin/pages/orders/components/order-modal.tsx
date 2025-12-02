@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
-import { Modal } from "@/core/UIKit";
+import { Modal } from "@/app/cores/core-trieco/UIKit";
 import { format } from "date-fns";
-import { Icon } from "@/core/UIKit/icon";
-import { OrderStatus, StatusColor, OrderStatusText } from "@/core/lib/order";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
+import { OrderStatus, StatusColor, OrderStatusText } from "@/app/cores/core-trieco/lib/order";
 import orderModel from "../model/order-model";
 
 type Props = {

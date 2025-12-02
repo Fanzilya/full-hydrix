@@ -1,4 +1,4 @@
-import { Icon } from "@/core/UIKit/icon";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 import { count } from "console";
 import { observer } from "mobx-react-lite"
 type Props = {

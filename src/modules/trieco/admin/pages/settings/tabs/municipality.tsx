@@ -1,12 +1,12 @@
-import { Button, Input } from "@/core/UIKit";
-import { Icon } from "@/core/UIKit/icon";
+import { Button, Input } from "@/app/cores/core-trieco/UIKit";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 import { toast } from "react-toastify";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState, useRef } from "react";
 import { municipalityModel } from "../models/municipality-model";
-import { Municipality } from "@/core/network/company/municipality";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
-import { updateMunicipalities, getUserCompany, deleteMunicipalities } from "@/core/network/user/user";
+import { Municipality } from "@/app/cores/core-trieco/network/company/municipality";
+import { updateMunicipalities, getUserCompany, deleteMunicipalities } from "@/app/cores/core-trieco/network/user/user";
+import { useAuth } from "@/entities/user/context";
 
 export const MunicipalityPanel = observer(() => {
     const [selectedMunicipalities, setSelectedMunicipalities] = useState<Municipality[]>([]);
@@ -15,8 +15,10 @@ export const MunicipalityPanel = observer(() => {
     const [error, setError] = useState<string | null>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
+    const { initUser, user } = useAuth();
+
     useEffect(() => {
-        adminModel.init();
+        initUser();
     }, []);
 
     useEffect(() => {
@@ -41,11 +43,11 @@ export const MunicipalityPanel = observer(() => {
 
 
     const getCompanyId = () => {
-        if (!adminModel.companyId) {
+        if (user?.companyId) {
             toast("Компания не найдена.", { progressStyle: { background: "red" } });
             return null;
         }
-        return adminModel.companyId;
+        return user?.companyId;
     };
 
     const isSavedInDatabase = (id: number) => {
@@ -71,13 +73,13 @@ export const MunicipalityPanel = observer(() => {
         : municipalityModel.municipalites;
 
     const loadUserMunicipalities = async () => {
-        if (!adminModel.user) {
+        if (!user) {
             toast("Пользователь не найден.", { progressStyle: { background: "red" } });
             return;
         }
 
         try {
-            const userCompanyResponse = await getUserCompany({ UserId: adminModel.user.id });
+            const userCompanyResponse = await getUserCompany({ UserId: user.id });
             const userCompany = userCompanyResponse.data;
 
             if (!userCompany) {
@@ -101,10 +103,10 @@ export const MunicipalityPanel = observer(() => {
 
     const handleSaveSelection = async () => {
         const companyId = getCompanyId();
-        if (!companyId || !adminModel.user) return;
+        if (!companyId || !user) return;
 
         try {
-            const userCompanyResponse = await getUserCompany({ UserId: adminModel.user.id });
+            const userCompanyResponse = await getUserCompany({ UserId: user.id });
             const userCompany = userCompanyResponse.data;
             const existingMunicipalityIds = userCompany?.companyMunicipalityIds || [];
 

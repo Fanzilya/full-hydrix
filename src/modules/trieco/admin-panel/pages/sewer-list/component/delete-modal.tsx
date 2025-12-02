@@ -1,5 +1,5 @@
-import { Button } from "@/core/UIKit";
-import { Icon } from "@/core/UIKit/icon";
+import { Button } from "@/app/cores/core-trieco/UIKit";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 import { observer } from "mobx-react-lite";
 
 export const DeleteModal = observer(({ sewer, onClose, onClickDelete }: { sewer: any, onClose: () => void, onClickDelete: (sewer: any) => void }) => {

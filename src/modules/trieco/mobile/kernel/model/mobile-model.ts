@@ -1,11 +1,11 @@
-import { Meta } from "@/core/network/meta";
-import { User } from "@/core/network/models";
-import { GetUserById } from "@/core/network/user/user";
+import { Meta } from "@/app/cores/core-trieco/network/meta";
+import { User } from "@/app/cores/core-trieco/network/models";
+import { GetUserById } from "@/app/cores/core-trieco/network/user/user";
 import { makeAutoObservable } from "mobx";
 
 export class MobileModel {
     constructor() {
-        makeAutoObservable(this, {}, {autoBind: true})
+        makeAutoObservable(this, {}, { autoBind: true })
     }
 
     private _meta: Meta = Meta.INITIAL;
@@ -24,7 +24,7 @@ export class MobileModel {
     }
 
     init() {
-        GetUserById({id: Number(window.localStorage.getItem('refresh-token'))}).then(x => {
+        GetUserById({ id: Number(window.localStorage.getItem('refresh-token')) }).then(x => {
             this.setUser(x.data)
             this._meta = Meta.SUCCESS
         }).catch(() => {

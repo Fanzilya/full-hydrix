@@ -1,5 +1,5 @@
-import { Button } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { useNavigate } from "react-router-dom"
 
 type Props = {

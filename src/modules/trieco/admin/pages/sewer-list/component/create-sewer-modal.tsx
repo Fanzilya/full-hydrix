@@ -1,9 +1,10 @@
-import { Button, Input } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
 import { observer } from "mobx-react-lite";
 import createSewerModel from "../models/creat-sewer-model";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
 import sewerListModel from "../models/sewer-list-model";
+import { Button } from "@/shared/ui/button";
+import { useAuth } from "@/entities/user/context";
+import { Icon } from "@/shared/ui/GIS/icon";
+import { Input } from "@/shared/ui/GIS";
 
 
 type Props = {
@@ -20,6 +21,8 @@ export const CreateSewerModal = observer(({ onClose }: Props) => {
         changeSewerCarModel, changeLogin,
         changePhone, changeEmail
     } = createSewerModel;
+
+    const { user } = useAuth();
 
     return (
         <>
@@ -75,13 +78,13 @@ export const CreateSewerModal = observer(({ onClose }: Props) => {
                         {
                             <Button
                                 onClick={() => {
-                                    createSewer(adminModel.companyId || 0, (sewer) => {
+                                    createSewer(user?.companyId || 0, (sewer) => {
                                         sewerListModel.pushSewer(sewer);
                                         onClose();
                                     });
                                 }}
                                 children="Создать"
-                                class="bg-[#4a85f6] py-[10px] px-[17px]"
+                                class="text-white bg-[#4a85f6] py-[10px] px-[17px]"
                             />
 
                         }

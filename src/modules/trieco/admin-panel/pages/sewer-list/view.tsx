@@ -1,10 +1,10 @@
-import { Button } from "@/core/UIKit/button";
-import { Icon } from "@/core/UIKit/icon";
-import { Input } from "@/core/UIKit/input";
+import { Button } from "@/app/cores/core-trieco/UIKit/button";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
+import { Input } from "@/app/cores/core-trieco/UIKit/input";
 import { useEffect, useRef, useState } from "react";
 import { CreateSewerModal } from "./component/create-sewer-modal";
 import { AccidentReportModal } from "./component/accident-report-modal";
-import { ExtendedColumnDef, Table } from "@/core/UIKit/table";
+import { ExtendedColumnDef, Table } from "@/app/cores/core-trieco/UIKit/table";
 import sewerListModel from "./models/sewer-list-model";
 import { observer } from "mobx-react-lite";
 import { SewerMapModal } from "./component/sewer-map-modal";

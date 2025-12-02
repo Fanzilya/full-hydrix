@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { CompanyRegistrateRequest, createCompany } from "../services/auth-service";
 import { getFNSData } from "@/core/network/fns/fns";
 import { toast } from "react-toastify";
-import { emailConfirm } from "@/core/network/user/user";
+import { emailConfirm } from "@/app/cores/core-trieco/network/user/user";
 
 class RegistrationModel {
     constructor() {

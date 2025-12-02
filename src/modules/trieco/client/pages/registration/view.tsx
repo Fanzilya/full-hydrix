@@ -1,21 +1,21 @@
-import { Icon } from '@/core/UIKit/icon'
+import { Icon } from '@/app/cores/core-trieco/UIKit/icon'
 import bg from '../../kernel/static/img/bg.png'
-import { Button, Input } from '@/core/UIKit'
+import { Button, Input } from '@/app/cores/core-trieco/UIKit'
 import { observer } from 'mobx-react-lite'
 import clientModel from '../../kernel/model/client-model'
 import { SelectionComponent } from '../../components/selection'
 import { useNavigate } from 'react-router-dom'
 import registrationModel from './entities/registration-model'
-import { Password } from '@/core/UIKit/password-input'
+import { Password } from '@/app/cores/core-trieco/UIKit/password-input'
 import emailConfirmModel from '../emal-confirm/models/confirm-model'
 
 export const RegistrationView = observer(() => {
     const navigate = useNavigate();
-    const { 
-        model, changeFirstName, 
-        changeLastName, changePassword, 
-        changeRepeatPassword, changeRole, 
-        changeEmail, registrate, 
+    const {
+        model, changeFirstName,
+        changeLastName, changePassword,
+        changeRepeatPassword, changeRole,
+        changeEmail, registrate,
         changeLogin, changeCompanyName,
         checkPassword, canRegistrate, changePhone
     } = registrationModel;
@@ -107,7 +107,7 @@ export const RegistrationView = observer(() => {
                     <div className='flex flex-row gap-8 mt-10'>
                         <Button
                             disabled={!canRegistrate()}
-                            onClick={() => {registrate((id) => {emailConfirmModel.setUserId(id); navigate({pathname: `/registration/confirm`, search: `?email=${model.email}`})});}}
+                            onClick={() => { registrate((id) => { emailConfirmModel.setUserId(id); navigate({ pathname: `/registration/confirm`, search: `?email=${model.email}` }) }); }}
                             children="Регистрация"
                             class='text-white font-bold flex items-center justify-center rounded-xl bg-[#4A85F6] py-3 px-6' />
                         <Button

@@ -1,10 +1,10 @@
-import { User } from "@/core/network/models";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
+import { User } from "@/app/cores/core-trieco/network/models";
 import { makeAutoObservable, toJS } from "mobx";
 import { updateUser } from "../services/user";
-import { ValidationResult } from "@/core/UIKit";
-import { emailApprove, emailConfirm } from "@/core/network/user/user";
+import { ValidationResult } from "@/app/cores/core-trieco/UIKit";
+import { emailApprove, emailConfirm } from "@/app/cores/core-trieco/network/user/user";
 import { toast } from "react-toastify";
+import { useAuth } from "@/entities/user/context";
 
 export class ProfileModel {
   constructor() {
@@ -12,7 +12,18 @@ export class ProfileModel {
   }
 
   private _isError: boolean = false;
-  private _currentUser: User | null = null;
+  private _currentUser: User = {
+    id: 0,
+    login: "",
+    firstName: "",
+    lastName: "",
+    patronymic: "",
+    email: "",
+    phoneNumber: "",
+    adress: "",
+    roleId: 0,
+    isEmailApproved: false,
+  };
 
   private _sendedCode: string = "";
   private _code: string = "";
@@ -95,7 +106,7 @@ export class ProfileModel {
 
   updateUser() {
     updateUser(this.currentUser!).then(() => {
-      adminModel.setUser({ ...this.currentUser });
+      // useAuth().setUser({ ...this.currentUser });
     });
   }
 }

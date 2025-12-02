@@ -1,4 +1,4 @@
-import { Button, Modal } from "@/core/UIKit"
+import { Button, Modal } from "@/app/cores/core-trieco/UIKit"
 import companiesModel from "../models/companies-model"
 
 type Props = {

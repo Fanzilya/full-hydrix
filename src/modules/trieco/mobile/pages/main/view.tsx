@@ -6,10 +6,10 @@ import { useEffect } from "react";
 import mobileModel from "../../kernel/model/mobile-model";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
-import { OrderStatusText, OrderStatus } from "@/core/lib/order";
+import { OrderStatusText, OrderStatus } from "@/app/cores/core-trieco/lib/order";
 import advertisement_1 from "../../kernel/static/img/advertisement_1.jpg";
 import { Link } from "react-router-dom";
-import { Icon } from "@/core/UIKit/icon";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 
 
 export const MainView = observer(() => {
