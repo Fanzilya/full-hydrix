@@ -143,24 +143,25 @@ export const EquipmentCreate = observer(() => {
                     <Button class="rounded-lg px-10 border border-[var(--clr-accent)] text-[var(--clr-accent)] hover:opacity-50" onClick={() => navigate("/dispatcher/equipment")}>Отменить</Button>
                 </div>
 
-                {model.id != null && <>
+                {/* {model.id != null && <> */}
+                {true && <>
 
                     <div className="flex mt-20 ">
-                        <div onClick={() => setTab("review")} className={`cursor-pointer !rounded-none w-[33%] rounded pb-2 border-b text-center ${tab == "review" ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[#757575] text-[#757575]"}`}>
+                        <div onClick={() => setTab("review")} className={`cursor-pointer !rounded-none w-[50%] rounded pb-2 border-b text-center ${tab == "review" ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[#757575] text-[#757575]"}`}>
                             Обзор
                         </div>
-                        <div onClick={() => setTab("control")} className={`cursor-pointer !rounded-none w-[33%] rounded pb-2 border-b text-center ${tab == "control" ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[#757575] text-[#757575]"}`}>
+                        <div onClick={() => setTab("control")} className={`cursor-pointer !rounded-none w-[50%] rounded pb-2 border-b text-center ${tab == "control" ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[#757575] text-[#757575]"}`}>
                             Управления
                         </div>
-                        <div onClick={() => setTab("service")} className={`cursor-pointer !rounded-none w-[33%] rounded pb-2 border-b text-center ${tab == "service" ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[#757575] text-[#757575]"}`}>
+                        {/* <div onClick={() => setTab("service")} className={`cursor-pointer !rounded-none w-[33%] rounded pb-2 border-b text-center ${tab == "service" ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[#757575] text-[#757575]"}`}>
                             Сервис
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="mt-10">
                         {tab == "review" && <Review />}
                         {tab == "control" && <Control />}
-                        {tab == "service" && <Service />}
+                        {/* {tab == "service" && <Service />} */}
                     </div>
                 </>}
             </div>

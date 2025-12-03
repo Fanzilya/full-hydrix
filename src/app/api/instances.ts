@@ -2,7 +2,8 @@ import axios from "axios";
 
 // const baseUrl = window.location.protocol + '//' + window.location.host;
 // const baseUrl = "https://triapi.ru";
-const baseUrl = "http://localhost:5000";
+// const baseUrl = "http://localhost:5000";
+const baseUrl = "https://triapi.ru/research";
 // const baseUrl = "http://0.0.0.0:8080";
 
 const instance = axios.create({

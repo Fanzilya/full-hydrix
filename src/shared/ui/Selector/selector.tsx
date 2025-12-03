@@ -39,11 +39,11 @@ export const Selector = observer(({ title, items, onSelect, className, classWrip
                     :
                     <span className={`${selected != "" ? "text-black" : "text-[#bcbcbc]"}`}>{selected != "" ? selected : title}</span>
                 }
-                {icon && <Icon systemName={icon}
+                <Icon systemName={icon || "arrow-down"}
                     style={{
                         transitionDuration: "0.3s",
                         transform: isOpen ? "rotate(180deg)" : "rotate(0deg)"
-                    }} />}
+                    }} />
             </div>
 
             <div className={`absolute left-0 top-[110%] flex flex-col gap-2 w-[350px] bg-white border-[1px] ${isOpen ? "min-w-full w-max !max-h-[150px] overflow-y-scroll z-[1]" : "max-h-0 hidden border-0 h-0 overflow-hidden"} ${className}`}>

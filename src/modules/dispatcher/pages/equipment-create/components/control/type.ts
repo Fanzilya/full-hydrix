@@ -37,3 +37,8 @@ export interface ControlStateType {
 }
 
 
+export interface ServiceTypeCreate {
+  discription: string;
+  time: number;
+  hardwareId: number;
+}

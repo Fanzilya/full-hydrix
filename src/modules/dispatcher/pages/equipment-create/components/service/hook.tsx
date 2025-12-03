@@ -1,88 +1,81 @@
 // hooks/useControl.ts
 import { useState } from 'react';
-import { ControlType } from './type';
+import { ServiceType } from './type';
 
-export const useControl = () => {
-    const [control, setControl] = useState<ControlType[]>([
+export const useService = () => {
+    const [service, setService] = useState<ServiceType[]>([
         {
-            id: '1',
-            name: '',
-            mesurement: '',
-            plcNodeid: '',
-            isValue: true,
-            isInfo: false,
+            id: '',
+            discription: '',
+            time: 1,
         }
     ]);
 
+    // Добавление новой характеристики
     const add = () => {
-        const newCharacteristic: ControlType = {
-            id: Date.now().toString(),
-            name: '',
-            mesurement: '',
-            plcNodeid: '',
-            isValue: true,
-            isInfo: false,
+        const newCharacteristic: ServiceType = {
+            id: '',
+            discription: '',
+            time: 1,
         };
-        setControl(prev => [...prev, newCharacteristic]);
+        setService(prev => [...prev, newCharacteristic]);
     };
 
+    // Удаление характеристики
     const remove = (id: string) => {
-        if (control.length <= 1) {
+        if (service.length <= 1) {
+            // Не даем удалить последнюю характеристику
             return;
         }
-        setControl(prev => prev.filter(item => item.id !== id));
+        setService(prev => prev.filter(item => item.id !== id));
     };
 
+    // Обновление названия характеристики
     const updateName = (id: string, name: string) => {
-        setControl(prev =>
+        setService(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, name } : item
             )
         );
     };
 
+    // Обновление значения характеристики
     const updateMesurement = (id: string, mesurement: string) => {
-        setControl(prev =>
+        setService(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, mesurement } : item
             )
         );
     };
-
     const updateIsValue = (id: string, isValue: boolean) => {
-        setControl(prev =>
+        setService(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, isValue } : item
             )
         );
     };
-
     const updateIsInfo = (id: string, isInfo: boolean) => {
-        setControl(prev =>
+        setService(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, isInfo } : item
             )
         );
     };
-
     const updatePlcNodeid = (id: string, plcNodeid: string) => {
-        setControl(prev =>
+        setService(prev =>
             prev.map(item =>
                 item.id === id ? { ...item, plcNodeid } : item
             )
         );
     };
 
+    // Получение всех характеристик
     const getList = () => {
-        return control.filter(char => char.name.trim() !== '' && char.mesurement.trim() !== '' && char.plcNodeid.trim() != "");
-    };
-
-    const reset = () => {
-        setControl([{ id: '1', name: '', mesurement: "", plcNodeid: '', isValue: true, isInfo: false, }]);
+        return service.filter(char => char.discription.trim() !== '' && char.time.trim() !== 0);
     };
 
     return {
-        control,
+        service,
         updateIsInfo,
         add,
         remove,
@@ -91,6 +84,5 @@ export const useControl = () => {
         updateMesurement,
         updatePlcNodeid,
         getList,
-        reset,
     };
 };

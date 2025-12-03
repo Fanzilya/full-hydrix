@@ -27,6 +27,10 @@ export const getCharacteristicAll = (params: { id: number }) => {
     return instance.get(Characteristics.all, { params })
 }
 
+export const manyServiceCreate = (params: CharacteristicsCreateManyInterface) => {
+    return instance.post(Characteristics.createMany, params)
+}
+
 
 // Управление
 export const createManyInfo = (params: ControlTypeCreateMany) => {

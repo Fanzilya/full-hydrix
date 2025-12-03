@@ -19,8 +19,6 @@ export const Control = observer(() => {
         updatePlcNodeid,
         updateIsValue,
         updateIsInfo,
-        getList,
-        reset,
     } = useControl();
 
     const handleAddCharacteristic = () => {
@@ -47,7 +45,7 @@ export const Control = observer(() => {
 
     // Функция для отправки данных (пример)
     const handleSubmit = () => {
-        createControl(control.filter(item => item.name.trim() !== '' && item.mesurement.trim() !== '' && item.plcNodeid.trim() !== ''))
+        createControl(control)
     };
 
 
@@ -69,19 +67,6 @@ export const Control = observer(() => {
                         key={item.id}
                         className="flex gap-3 items-end animate-fade-in"
                     >
-                        <InputContainer
-                            headerText="Информационный"
-                            classNames={{
-                                wrapper: "w-min h-full",
-                                children: "flex items-center !h-12 justify-center h-full"
-                            }}
-                            children={
-                                <InputCheckbox
-                                    checked={item.isInfo}
-                                    onChange={(e) => handleIsInfo(item.id, e.target.checked)}
-                                />
-                            }
-                        />
                         <InputContainer
                             headerText="Идентификатор ПЛК"
                             classNames={{
@@ -129,19 +114,38 @@ export const Control = observer(() => {
                                 />
                             }
                         />
-                        <InputContainer
-                            headerText="Тип number"
-                            classNames={{
-                                wrapper: "w-[100px] h-full",
-                                children: "flex items-center !h-12 justify-center h-full"
-                            }}
-                            children={
-                                <InputCheckbox
-                                    checked={item.isValue}
-                                    onChange={(e) => handleIsValue(item.id, e.target.checked)}
-                                />
-                            }
-                        />
+
+                        <div>
+                            <InputContainer
+                                // headerText="Тип number"
+                                classNames={{
+                                    wrapper: "w-[150px] h-full",
+                                    children: "flex items-center !h-12 justify-start h-full"
+                                }}
+                                children={
+                                    <InputCheckbox
+                                        label="Тип number"
+                                        checked={item.isValue}
+                                        onChange={(e) => handleIsValue(item.id, e.target.checked)}
+                                    />
+                                }
+                            />
+
+                            <InputContainer
+                                headerText=""
+                                classNames={{
+                                    wrapper: "w-min h-full",
+                                    children: "flex items-center justify-center h-full"
+                                }}
+                                children={
+                                    <InputCheckbox
+                                        checked={item.isInfo}
+                                        label="Информационный"
+                                        onChange={(e) => handleIsInfo(item.id, e.target.checked)}
+                                    />
+                                }
+                            />
+                        </div>
 
                         {/* Кнопка удаления */}
                         <div

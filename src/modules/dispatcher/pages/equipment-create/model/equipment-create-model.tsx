@@ -4,8 +4,9 @@ import { ChangeEvent } from "react";
 import { Characteristic } from "../components/characteristic/type";
 import { createHardware, createManyCommand, createManyInfo, createOndeInfo, getAllHardware, manyCharacteristic } from "@/entities/hardware/api";
 import { toast } from "react-toastify";
-import { ControlType, ControlTypeCreate } from "../components/control/type";
+import { ControlType, ControlTypeCreate, ServiceTypeCreate } from "../components/control/type";
 import { isValid } from "date-fns";
+import { ServiceType } from "../components/service/type";
 
 class EquipmentCreateModel {
 
@@ -120,61 +121,56 @@ class EquipmentCreateModel {
 
         if (this.model.id == 0 || this.model.id == null) return
 
-        for (let i = 0; i < controls.length; i++) {
-            if (controls[i].isInfo == true) {
-                dataInfo[i] = {
-                    hardwareId: this.model.id,
-                    name: controls[i].name,
-                    mesurement: controls[i].mesurement,
-                    plcNodeid: controls[i].plcNodeid,
-                    isValue: controls[i].isValue,
-                };
-            } else {
-                dataCommand[i] = {
-                    hardwareId: this.model.id,
-                    name: controls[i].name,
-                    mesurement: controls[i].mesurement,
-                    plcNodeid: controls[i].plcNodeid,
-                    isValue: controls[i].isValue,
-                }
-            }
+        console.log(controls)
+
+
+        for (let i = 0, j = 0; (i < controls.length && controls[i].isInfo); i++) {
+            dataInfo[j] = {
+                hardwareId: this.model.id,
+                name: controls[j].name,
+                mesurement: controls[j].mesurement,
+                plcNodeid: controls[j].plcNodeid,
+                isValue: controls[j].isValue,
+            };
+
+            j++;
         }
-        await createManyInfo({
-            hardwareId: this.model.id,
-            nodes: dataInfo
-        }).then((resa) => {
-            console.log(resa.data)
-        })
 
-        await createManyCommand({
-            hardwareId: this.model.id,
-            nodes: dataCommand
-        }).then((resa) => {
-            console.log(resa.data)
-            toast.success("Управления добавлены", { progressStyle: { background: "green" } })
-        })
+        for (let i = 0, j = 0; (i < controls.length && !controls[i].isInfo); i++) {
+            dataCommand[j] = {
+                hardwareId: this.model.id,
+                name: controls[j].name,
+                mesurement: controls[j].mesurement,
+                plcNodeid: controls[j].plcNodeid,
+                isValue: controls[j].isValue,
+            };
+
+            j++;
+        }
+
+
+        // console.log(dataCommand, dataInfo)
+
+        if (dataInfo.length > 0) {
+            await createManyInfo({
+                hardwareId: this.model.id,
+                nodes: dataInfo
+            }).then((resa) => {
+                console.log(resa.data)
+                toast.success("Управления добавлены Инфо", { progressStyle: { background: "green" } })
+            })
+        }
+
+        if (dataCommand.length > 0) {
+            await createManyCommand({
+                hardwareId: this.model.id,
+                nodes: dataCommand
+            }).then((resa) => {
+                console.log(resa.data)
+                toast.success("Управления добавлены команды", { progressStyle: { background: "green" } })
+            })
+        }
     }
-
-    // async createService(characteristics: Characteristic[]) {
-    //     let data: CahrCreateDTO[] = [];
-
-    //     for (let i = 0; i < characteristics.length; i++) {
-    //         data[i] = {
-    //             HardwareId: 1,
-    //             Name: characteristics[i].name,
-    //             Value: characteristics[i].value
-    //         };
-    //     }
-
-    //     console.log(data)
-
-    //     await manyCharacteristic(data).then((resa) => {
-    //         console.log(resa.data)
-    //     })
-
-    //     console.log({ model: this.model, characteristics: characteristics })
-    // }
-
 }
 
 export const equipmentCreateModel = new EquipmentCreateModel();
