@@ -143,8 +143,7 @@ export const EquipmentCreate = observer(() => {
                     <Button class="rounded-lg px-10 border border-[var(--clr-accent)] text-[var(--clr-accent)] hover:opacity-50" onClick={() => navigate("/dispatcher/equipment")}>Отменить</Button>
                 </div>
 
-                {/* {model.id != null && <> */}
-                {true && <>
+                {model.id != null && <>
 
                     <div className="flex mt-20 ">
                         <div onClick={() => setTab("review")} className={`cursor-pointer !rounded-none w-[50%] rounded pb-2 border-b text-center ${tab == "review" ? "border-[var(--clr-accent)] text-[var(--clr-accent)]" : "border-[#757575] text-[#757575]"}`}>

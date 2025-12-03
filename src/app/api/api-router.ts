@@ -182,6 +182,7 @@ export const Hardware = {
   one: "/Hardware/infoSingle",
   info: "/Hardware/info",
   create: "/Hardware/create",
+  active: "/Hardware/Activate",
 }
 
 export const Characteristics = {
@@ -196,4 +197,12 @@ export const Control = {
   createOndeCommand: "/NodeInfo/createCommand",
   createManyCommand: "/NodeInfo/createMassCommand",
   all: "/NodeInfo/commands",
+}
+
+
+
+export const Service = {
+  create: "/MaintenanseSheduler/create",
+  next_week: "/MaintenanseSheduler/next_week",
+  completeRequest: "/MaintenanseSheduler/completeRequest",
 }

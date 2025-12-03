@@ -42,6 +42,7 @@ export interface HardwareInterface {
     photoName: string,
     position: string,
     supplierName: string,
+    isActive?: boolean,
     controlBlock: ControlBlockInterface
 }
 

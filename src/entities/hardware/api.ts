@@ -1,4 +1,4 @@
-import { Characteristics, Control, Hardware } from "@/app/api/api-router"
+import { Characteristics, Control, Hardware, Service } from "@/app/api/api-router"
 import instance from "@/app/api/instances"
 import { CharacteristicsCreateManyInterface, CreateHardwareInterface } from "./type"
 import { ControlType, ControlTypeCreate, ControlTypeCreateMany } from "@/modules/dispatcher/pages/equipment-create/components/control/type"
@@ -14,6 +14,23 @@ export const getInfoHardware = (params: { id: number }) => {
 
 export const createHardware = (params: CreateHardwareInterface) => {
     return instance.post(Hardware.create, params)
+}
+
+export const activeHardware = (params: { id: number }) => {
+    // return instance.put(Service.completeRequest, params)
+    return instance.post(Hardware.active, params)
+}
+
+export const createServiceApi = (params: { HardwareId: number, Discription: string, Period: number }) => {
+    return instance.post(Service.create, params)
+}
+
+export const getServiceApi = (params: { id: number }) => {
+    return instance.get(Service.next_week, { params })
+}
+
+export const checkedServiceApi = (params: { id: number }) => {
+    return instance.put(Service.completeRequest, params)
 }
 
 // Характеристика

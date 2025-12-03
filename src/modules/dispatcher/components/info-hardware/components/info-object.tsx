@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 interface InfoObjectProps {
     children: React.ReactNode;
-    info: string;
+    info?: string;
     className?: string;
     position?: 'top' | 'bottom' | 'left' | 'right';
 }
@@ -27,7 +27,7 @@ export const InfoObject = observer(({ children, info, className, position = 'top
         >
             {children}
 
-            {hover && (
+            {info && hover && (
                 <div
                     className={`
                         absolute

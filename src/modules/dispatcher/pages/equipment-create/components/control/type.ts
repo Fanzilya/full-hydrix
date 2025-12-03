@@ -17,6 +17,19 @@ export interface ControlModelType {
   hardwareId: number
 }
 
+export interface ServiceModelType {
+  id: string,
+  discription: string,
+  durrentStatus: string,
+  isFailure: string,
+  creator: string,
+  implementer: string,
+  createtAt: string,
+  closedAt: string,
+  hardwareId: string,
+  hardware: string,
+}
+
 
 
 export interface ControlTypeCreateMany {

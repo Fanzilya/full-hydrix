@@ -1,7 +1,7 @@
-import { getCharacteristicAll, getCommandAll, getInfoHardware } from "@/entities/hardware/api";
+import { checkedServiceApi, getCharacteristicAll, getCommandAll, getInfoHardware, getServiceApi } from "@/entities/hardware/api";
 import { ModelHardwareOneInterface } from "@/entities/hardware/type";
 import { Characteristic } from "@/modules/dispatcher/pages/equipment-create/components/characteristic/type";
-import { ControlModelType } from "@/modules/dispatcher/pages/equipment-create/components/control/type";
+import { ControlModelType, ServiceModelType } from "@/modules/dispatcher/pages/equipment-create/components/control/type";
 import { makeAutoObservable } from "mobx";
 
 class HardwareModel {
@@ -23,6 +23,7 @@ class HardwareModel {
 
     сharacteristic: Characteristic[] = []
     commands: ControlModelType[] = []
+    services: ServiceModelType[] | any = []
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
@@ -52,6 +53,17 @@ class HardwareModel {
             this.commands = res.data
             console.log(res.data)
         })
+    }
+
+    async initService(id: number) {
+        await getServiceApi({ id: id }).then((res) => {
+            this.services = res.data
+            console.log(res.data)
+        })
+    }
+
+    async checkedService(id: number) {
+        await checkedServiceApi({ id: id })
     }
 
 }

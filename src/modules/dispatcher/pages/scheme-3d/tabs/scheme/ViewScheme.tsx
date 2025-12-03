@@ -179,7 +179,7 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
 
                 {/* {points.map((p, i) => ( */}
                 <div
-                    onClick={() => setInfo(11)}
+                    onClick={() => setInfo(12)}
                     // key={i}
                     className="absolute cursor-pointer"
                     style={{
@@ -198,7 +198,7 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
                     </div>
                 </div>
                 <div
-                    onClick={() => setInfo(11)}
+                    onClick={() => setInfo(12)}
                     // key={i}
                     className="absolute cursor-pointer"
                     style={{

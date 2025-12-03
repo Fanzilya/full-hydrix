@@ -6,8 +6,15 @@ import { InfoObject } from '../components/info-object';
 import Tooltip from '@/shared/ui/tooltip';
 import InputCheckbox from '@/shared/ui/Inputs/input-checkbox';
 import { Link } from 'react-router-dom';
+import { hardwareModel } from '@/entities/hardware/model';
 
 export const HardwareServes = observer(() => {
+
+    const { services, checkedService } = hardwareModel
+    const handleHeaderClick = (id: number) => {
+        checkedService(id)
+    }
+
     return (
         <div className="w-full mt-10 p-[0_0_50px_0]">
 
@@ -20,16 +27,16 @@ export const HardwareServes = observer(() => {
 
                 className="flex flex-col gap-3"
                 children={
-                    everyDayServerDate.map((item, key) => {
+                    services.map((item, key) => {
                         return (
                             <InfoObject key={key}
                                 className='w-full'
-                                info={item.info}
+                                // info={item.discription}
 
                                 children={
-                                    <div className='flex items-center justify-between'>
+                                    <div className='flex items-center justify-between' onClick={() => handleHeaderClick(item.id)}>
                                         <InputCheckbox
-                                            label={item.title}
+                                            label={item.discription}
                                         />
                                         <Icon systemName='info-blue' />
                                     </div>

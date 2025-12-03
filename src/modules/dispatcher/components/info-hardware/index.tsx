@@ -12,12 +12,13 @@ import { hardwareModel } from "@/entities/hardware/model";
 export default function HardwareCard({ className, id, onClick }: InfoCompType) {
     const [mode, setMode] = useState<number>(0);
 
-    const { init, model, initCharacteristic, isLoading, initControl } = hardwareModel
+    const { init, model, initCharacteristic, isLoading, initControl, initService } = hardwareModel
 
     useEffect(() => {
         init(id)
         initCharacteristic(id)
         initControl(id)
+        initService(1)
     }, [])
 
 

@@ -11,13 +11,13 @@ import { hardwareListModel } from "./model/hardware-list-model";
 import { HardwareInterface } from "@/entities/hardware/type";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import { ModalServiceCreate } from "./components/modal-service-create";
 
 
 const columns: TableColumn<HardwareInterface>[] = [
     {
         header: "Наименование",
         key: 'companyName',
-        width: '0.7fr',
         cell: ({ name }) => {
             return (
                 <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{name}</span>
@@ -27,7 +27,6 @@ const columns: TableColumn<HardwareInterface>[] = [
     {
         header: "Расположение",
         key: 'companyName',
-        width: '0.7fr',
         cell: ({ position }) => {
             return (
                 <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{position}</span>
@@ -37,7 +36,6 @@ const columns: TableColumn<HardwareInterface>[] = [
     {
         header: "Марка",
         key: 'companyName',
-        width: '0.7fr',
         cell: ({ opcDescription }) => {
             return (
                 <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{opcDescription}</span>
@@ -47,7 +45,6 @@ const columns: TableColumn<HardwareInterface>[] = [
     {
         header: "Изготовитель",
         key: 'companyName',
-        width: '0.7fr',
         cell: ({ developerName }) => {
             return (
                 <span className="text-[14px] text-[#222B45] font-semibold  text-center w-full">{developerName}</span>
@@ -57,7 +54,6 @@ const columns: TableColumn<HardwareInterface>[] = [
     {
         header: "Поставщик",
         key: 'companyName',
-        width: '0.7fr',
         cell: ({ supplierName }) => {
             return (
                 <span className="text-[14px] text-[#222B45] font-semibold text-center w-full">{supplierName}</span>
@@ -67,7 +63,7 @@ const columns: TableColumn<HardwareInterface>[] = [
     {
         header: "Статус",
         key: 'companyName',
-        width: '0.7fr',
+        width: '0.5fr',
         cell: () => {
             return (
                 <span className="text-[14px] text-[#222B45] font-semibold w-full">
@@ -75,6 +71,34 @@ const columns: TableColumn<HardwareInterface>[] = [
                         <span className={`table-equipmentregistry__column-status ${StatusClass(1)}`} >
                             {StatusText(1)}
                         </span>
+                    </div>
+                </span>
+            )
+        },
+    },
+    {
+        header: " ",
+        key: '',
+        width: '0.5fr',
+        cell: ({ id, isActive }) => {
+            return isActive == null && (
+                <div className="table__column" >
+                    <Button class="px-3 py-2 text-white hover:opacity-50 bg-[var(--clr-accent)]" onClick={() => hardwareListModel.active(id)}>Активировать</Button>
+                </div>
+            )
+        },
+    },
+    {
+        header: " ",
+        key: '',
+        width: '0.2fr',
+        cell: ({ id }) => {
+            return (
+                <span className="text-[14px] text-[#222B45] font-semibold w-full">
+                    <div className="table__column" >
+                        <Button onClick={() => hardwareListModel.setModalService(true, id)}>
+                            <Icon systemName="edit" />
+                        </Button>
                     </div>
                 </span>
             )
@@ -100,7 +124,7 @@ const columns: TableColumn<HardwareInterface>[] = [
 
 export const EquipmentRegistry = observer(() => {
 
-    const { list, init } = hardwareListModel
+    const { list, init, modalService, closeModal } = hardwareListModel
 
     useEffect(() => {
         init()
@@ -134,6 +158,9 @@ export const EquipmentRegistry = observer(() => {
 
     return (
         <>
+
+            <ModalServiceCreate isOpen={modalService} setShow={closeModal} />
+
             <div className="table__top flex items-center gap-5 mb-5">
                 <Link to="/dispatcher/equipment/create" className="rounded-lg flex items-center gap-1 duration-300 text-white bg-[var(--clr-accent)] pl-3 px-4 py-2 hover:opacity-50">
                     <Icon systemName="plus-white" />
