@@ -7,8 +7,8 @@ import {
   getSewersByCompanyId,
   Sewer,
 } from "../services/sewers";
-import { Role } from "@/core/enums/role";
 import { toast } from "react-toastify";
+import { Role } from "@/entities/user/role";
 
 export class CreateSewerModel {
   constructor() {

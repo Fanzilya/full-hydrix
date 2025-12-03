@@ -1,6 +1,6 @@
-import instance from "@/core/network/api";
-import { UserRoutes } from "@/core/network/api-routes";
-import { publicIpv4 }  from "public-ip";
+import instance from "@/app/api/instances";
+import { UserRoutes } from "@/app/api/instances-routes";
+import { publicIpv4 } from "public-ip";
 
 export const identifyByPhone = (params: IdentifyByPhoneRequest) => {
     return instance.get(UserRoutes.IdentifyByPhone, { params })
@@ -14,7 +14,7 @@ export const authorizationByPhone = (params: AuthByPhoneRequest) => {
     return instance.get(UserRoutes.AuthorizationByPhone, { params })
 }
 
-export const getIP = async () => { 
+export const getIP = async () => {
     return await publicIpv4();
 };
 

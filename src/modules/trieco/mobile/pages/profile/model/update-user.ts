@@ -1,10 +1,10 @@
-import { User } from "@/core/network/models";
+import { User } from "@/app/cores/core-trieco/network/models";
 import { UpdateUserEntity, updateUserService } from "../service/user";
 import { makeAutoObservable } from "mobx";
 
 export class UpdateUserModel {
     constructor() {
-        makeAutoObservable(this, {}, {autoBind: true})
+        makeAutoObservable(this, {}, { autoBind: true })
         this.model = {
             id: 0,
             adress: "",
@@ -77,7 +77,7 @@ export class UpdateUserModel {
 
     update(onUpdate: (value: any) => void) {
         updateUserService(this.model).then(x => {
-            onUpdate({...this.model})
+            onUpdate({ ...this.model })
         })
     }
 }

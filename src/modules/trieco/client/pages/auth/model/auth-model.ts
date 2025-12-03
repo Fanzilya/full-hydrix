@@ -4,8 +4,8 @@ import {
   AuthRequest,
   authAdmin,
 } from "../services/auth-service";
-import { getUserCompany } from "@/core/network/user/user";
-import { Role } from "@/core/enums/role";
+import { getUserCompany } from "@/app/cores/core-trieco/network/user/user";
+import { Role } from "@/app/cores/core-trieco/enums/role";
 
 export class AuthModel {
   constructor() {

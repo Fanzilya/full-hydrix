@@ -1,10 +1,10 @@
-import { Button, Input } from "@/core/UIKit";
+import { Button, Input } from "@/app/cores/core-trieco/UIKit";
 import updateUserModel from "./model/update-user";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import headerStore from "../../kernel/helper/header-store";
 import mobileModel from "../../kernel/model/mobile-model";
-import { Icon } from "@/core/UIKit/icon";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 
 export const EditProfileView = observer(() => {
     const { model, changeEmail, changeFirstName, changeLastName, changeMiddleName, changePhone, setPage, update, isChanged } = updateUserModel;

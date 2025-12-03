@@ -1,11 +1,13 @@
-import { Input, Button, Modal } from "@/core/UIKit"
+import { Modal } from "@/app/cores/core-trieco/UIKit"
+import { Button } from "@/shared/ui/button"
+import { Input } from "@/shared/ui/GIS"
 
 type Props = {
-    show: boolean, 
+    show: boolean,
     setShow: (value: boolean) => void
 }
 
-export const AccidentReportModal = ({show, setShow} : Props) => {
+export const AccidentReportModal = ({ show, setShow }: Props) => {
     return (
         <Modal title="Сообщение об аварии" show={show} setShow={setShow}>
             <div className="mt-1 flex flex-col gap-4">

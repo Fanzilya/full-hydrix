@@ -3,8 +3,8 @@ import {
   getPaymentDetails,
   PaymentRequest,
   updatePayment,
-} from "@/core/network/payment/payment";
-import { getUserCompany } from "@/core/network/user/user";
+} from "@/app/cores/core-trieco/network/payment/payment";
+import { getUserCompany } from "@/app/cores/core-trieco/network/user/user";
 import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
 
@@ -114,13 +114,13 @@ export class PaymentModel {
           this._tempPaymentDetails?.bik != this._paymentDetails.bik) ||
         (this._paymentDetails.corresAccount.length === 20 &&
           this._tempPaymentDetails?.corresAccount !=
-            this._paymentDetails.corresAccount) ||
+          this._paymentDetails.corresAccount) ||
         (this._paymentDetails.kpp.length === 9 &&
           this._tempPaymentDetails?.corresAccount !=
-            this._paymentDetails.corresAccount) ||
+          this._paymentDetails.corresAccount) ||
         (this._paymentDetails.paymentAccount.length === 20 &&
           this._tempPaymentDetails?.paymentAccount !=
-            this._paymentDetails.paymentAccount)
+          this._paymentDetails.paymentAccount)
       );
     }
     return (

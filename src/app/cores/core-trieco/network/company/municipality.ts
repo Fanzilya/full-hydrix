@@ -1,5 +1,5 @@
-import instance from "@/core/network/api";
-import { MunicipalityRoutes} from "@/core/network/api-routes";
+import instance from "@/app/api/instances";
+import { MunicipalityRoutes } from "@/app/api/instances-routes";
 
 export type Municipality = {
     id: number,

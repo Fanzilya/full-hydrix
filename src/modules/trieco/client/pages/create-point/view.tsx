@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import createPointModel from "./model/create-point-model";
-import { Button, Input } from "@/core/UIKit";
 import clientModel from "../../kernel/model/client-model";
 import { observer } from "mobx-react-lite";
 
-import { getAdressCoordinates, getAdressList, getSuggestionClick } from "@/core/UIKit/mapVK/mapVk-functions";
 import mmrgl, { Map, MapLibreGL } from 'mmr-gl';
-import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
+import mapVKModel from "@/shared/ui/mapVK/model/mapVK-model";
+import { getAdressCoordinates, getAdressList, getSuggestionClick } from "@/shared/ui/mapVK/mapVk-functions";
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/GIS";
 
 export const CreatePointView = observer(() => {
     const { canCreate: isAddress, changeAddress, model, create, changeWasteVolume } = createPointModel;
@@ -155,7 +156,7 @@ export const CreatePointView = observer(() => {
                         placeholder='Адрес...'
                         isRequired={true}
                         headerText='Адрес' underlineText='Обязательное поле' />
-                        
+
                     {(suggestions.length > 0 && model.address.length > 0 && show) && (
                         <ul className='absolute z-10 bg-white border-[#4A85F6] border-[1px] rounded-lg max-h-[400px] overflow-y-auto w-full adress'>
                             {suggestions.map((suggestion, index) => (
@@ -174,7 +175,7 @@ export const CreatePointView = observer(() => {
                     onClick={() => create(user?.id || 0)}
                     disabled={!isAddress}
                     children="Добавить"
-                    class='bg-[#4A85F6] rounded-lg max-w-[242px] w-full flex items-center justify-center font-bold text-[17px] mt-8' />
+                    class='bg-[#4A85F6] text-white hover:opacity-50 rounded-lg max-w-[242px] w-full flex items-center justify-center font-bold text-[17px] mt-8' />
             </div>
         </>
     );

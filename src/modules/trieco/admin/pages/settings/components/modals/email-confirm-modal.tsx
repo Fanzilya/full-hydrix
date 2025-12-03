@@ -1,5 +1,5 @@
-import { Button, Modal } from "@/core/UIKit"
-import { CodeInput } from "@/core/UIKit/code-input";
+import { Button, Modal } from "@/app/cores/core-trieco/UIKit"
+import { CodeInput } from "@/app/cores/core-trieco/UIKit/code-input";
 import { observer } from "mobx-react-lite";
 import profileModel from "../../models/profile-model";
 
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const EmailConfirmModal = observer(({ show, setShow }: Props) => {
-    const { changeCode, confirmCode, code} = profileModel;
+    const { changeCode, confirmCode, code } = profileModel;
     return (
         <Modal title="Подтверждение почты" show={show} setShow={setShow} className={"w-[500px]"}>
             <div className='flex flex-col bg-white items-center w-full gap-2 text-[#0D0C22]'>

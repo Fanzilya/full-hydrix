@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getOrderCode } from "../viewports/orders/service/order";
-import { OrderStatus, StatusColor } from "@/core/lib/order";
+import { OrderStatus, StatusColor } from "@/app/cores/core-trieco/lib/order";
 import { Link } from "react-router-dom";
 import Ornament from "../kernel/static/img/Ornament.png";
 

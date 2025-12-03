@@ -1,10 +1,10 @@
-import { Button } from "@/core/UIKit"
+import { Button } from "@/app/cores/core-trieco/UIKit"
 import mobileModel from "../../kernel/model/mobile-model"
 import updateUserModel from "./model/update-user";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import headerStore from "../../kernel/helper/header-store";
-import { Icon } from "@/core/UIKit/icon"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 
 export const ProfileView = observer(() => {
     const { model, init, nextPage } = updateUserModel;

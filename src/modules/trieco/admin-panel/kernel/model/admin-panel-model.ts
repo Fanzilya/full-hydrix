@@ -1,6 +1,6 @@
-import { Meta } from "@/core/network/meta";
-import { User } from "@/core/network/models";
-import { GetUserById } from "@/core/network/user/user";
+import { Meta } from "@/app/cores/core-trieco/network/meta";
+import { User } from "@/app/cores/core-trieco/network/models";
+import { GetUserById } from "@/app/cores/core-trieco/network/user/user";
 import { makeAutoObservable } from "mobx";
 
 export class AdminPanelModel {
@@ -30,8 +30,8 @@ export class AdminPanelModel {
         this._meta = Meta.SUCCESS;
       })
       .catch((x) => {
-        window.location.href = "admin-panel/auth";
-        window.localStorage.removeItem("refresh-token");
+        // window.location.href = "admin-panel/auth";
+        // window.localStorage.removeItem("refresh-token");
       });
   }
 

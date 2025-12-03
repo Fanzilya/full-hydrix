@@ -1,10 +1,12 @@
-import { Icon } from "@/core/UIKit/icon"
-import adminModel from "../kernel/model/admin-model"
 import { observer } from "mobx-react-lite";
 import { Roles } from "./utils/getRoles"
+import { Icon } from "@/shared/ui/icon";
+import { useAuth } from "@/entities/user/context";
 
 export const Navbar = observer(() => {
-    const { user } = adminModel;
+
+    const { user } = useAuth()
+
     return (
         <div className="flex relative max-w-full">
             <div className="flex flex-row gap-6 w-full justify-end items-center">

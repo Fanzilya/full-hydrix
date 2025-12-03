@@ -1,20 +1,20 @@
-import { Button, Input } from "@/core/UIKit"
+import { Button, Input } from "@/app/cores/core-trieco/UIKit"
 import { observer } from "mobx-react-lite"
 import paymentModel from "../models/payments-model"
 import { useEffect } from "react";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
 import { toast } from "react-toastify";
+import { useAuth } from "@/entities/user/context";
 
 export const Requisites = observer(() => {
 
-    const { 
+    const {
         init, paymentDetails,
-        canSave, changeBIK, 
-        changeBankName, changeCorrAcc, 
+        canSave, changeBIK,
+        changeBankName, changeCorrAcc,
         changeKPP, changePaymentAccount, save
     } = paymentModel;
 
-    const { user } = adminModel;
+    const { user } = useAuth();
 
     useEffect(() => {
         init(user?.id || 0);
@@ -30,13 +30,13 @@ export const Requisites = observer(() => {
                     headerText="Расчетный счет"
                     type="text"
                     onChange={changePaymentAccount}
-                    lengthOptions={{maxLength: 20, minLength: 20}}
+                    lengthOptions={{ maxLength: 20, minLength: 20 }}
                     value={paymentDetails.paymentAccount}
                     isRequired
                 />
                 <Input
                     headerText="БИК"
-                    lengthOptions={{maxLength: 9, minLength: 9}}
+                    lengthOptions={{ maxLength: 9, minLength: 9 }}
                     onChange={changeBIK}
                     value={paymentDetails.bik}
                     type="text"
@@ -45,7 +45,7 @@ export const Requisites = observer(() => {
                 <Input
                     headerText="КПП платежный"
                     onChange={changeKPP}
-                    lengthOptions={{maxLength: 9, minLength: 9}}
+                    lengthOptions={{ maxLength: 9, minLength: 9 }}
                     value={paymentDetails.kpp}
                     type="text"
                     isRequired
@@ -55,7 +55,7 @@ export const Requisites = observer(() => {
                 <Input
                     headerText="Корр. счёт"
                     onChange={changeCorrAcc}
-                    lengthOptions={{maxLength: 20, minLength: 20}}
+                    lengthOptions={{ maxLength: 20, minLength: 20 }}
                     value={paymentDetails.corresAccount}
                     type="text"
                     isRequired

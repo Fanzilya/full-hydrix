@@ -1,4 +1,4 @@
-import { Table } from "@/core/UIKit/table"
+import { Table } from "@/app/cores/core-trieco/UIKit/table"
 import { ColumnDef } from "@tanstack/react-table"
 
 export const TableView = () => {
@@ -13,7 +13,7 @@ const data: any[] = [
         firstName: "Иван",
         type: "Частный",
         model: "МАЗ",
-        carNumber: "О777ОО116",     
+        carNumber: "О777ОО116",
         exportedVolume: 400,
         recycledVolume: 500,
         cost: 200000,
@@ -47,7 +47,7 @@ const columns: ColumnDef<any, any>[] = [
         accessorKey: 'name',
         cell: ({ row }) => {
             return (
-            <span className="text-[14px] text-[#222B45] font-semibold">{row.original['lastName']} {row.original['firstName']}</span>)
+                <span className="text-[14px] text-[#222B45] font-semibold">{row.original['lastName']} {row.original['firstName']}</span>)
         },
     },
     {

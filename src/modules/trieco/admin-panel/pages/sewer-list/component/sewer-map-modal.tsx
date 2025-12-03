@@ -1,11 +1,11 @@
-import { Modal } from "@/core/UIKit";
+import { Modal } from "@/app/cores/core-trieco/UIKit";
 import sewerMapModel from "../models/sewer-map-model";
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef, useState } from "react";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
-import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
+import mapVKModel from "@/app/cores/core-trieco/UIKit/mapVK/model/mapVK-model";
 import mmrgl, { Map, MapLibreGL } from 'mmr-gl';
-import { getAdressCoordinates } from "@/core/UIKit/mapVK/mapVk-functions";
+import { getAdressCoordinates } from "@/app/cores/core-trieco/UIKit/mapVK/mapVk-functions";
+import { useAuth } from "@/entities/user/context";
 
 export const SewerMapModal = observer(() => {
     const { isShow, setShow, longitude, latitude, unsubscribe, handleCoordinates } = sewerMapModel
@@ -17,6 +17,8 @@ export const SewerMapModal = observer(() => {
     // Ссылка на карту 
     const mapRef = useRef<mmrgl.Map | null>(null);
     //! Маркер пока что отсутсвтует 
+
+    const { user } = useAuth();
 
     // Полечение данных по координатам
     useEffect(() => {
@@ -73,7 +75,7 @@ export const SewerMapModal = observer(() => {
     // ===КОНЕЦ===
 
     return (
-        <Modal title="Отслеживание местоположения" show={isShow} setShow={setShow} onExit={() => { unsubscribe(adminModel.user?.id || 0); }} className="w-[40%]">
+    <Modal title="Отслеживание местоположения" show={isShow} setShow={setShow} onExit={() => { unsubscribe(user?.id || 0); }} className="w-[40%]">
             <div className="mt-1 flex flex-col gap-4">
                 <div ref={mapContainer} style={{ width: '100%', height: '400px' }} />
             </div>

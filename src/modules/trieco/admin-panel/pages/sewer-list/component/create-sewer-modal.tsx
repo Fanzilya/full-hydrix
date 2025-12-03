@@ -1,10 +1,10 @@
-import { Button, Input } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button, Input } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { observer } from "mobx-react-lite";
 import createSewerModel from "../models/create-sewer-model";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
 import sewerListModel from "../models/sewer-list-model";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/entities/user/context";
 
 
 type Props = {
@@ -21,6 +21,8 @@ export const CreateSewerModal = observer(({ onClose }: Props) => {
         changeSewerCarModel, changeLogin,
         changePhone, changeEmail, companies
     } = createSewerModel;
+
+    const { user } = useAuth();
 
     const [switchSewer, setSwitchSewer] = useState(false)
 
@@ -123,7 +125,7 @@ export const CreateSewerModal = observer(({ onClose }: Props) => {
                         {
                             <Button
                                 onClick={() => {
-                                    createSewer(adminModel.companyId || 0, (sewer) => {
+                                    createSewer(user?.companyId || 0, (sewer) => {
                                         sewerListModel.pushSewer(sewer);
                                         onClose();
                                     });

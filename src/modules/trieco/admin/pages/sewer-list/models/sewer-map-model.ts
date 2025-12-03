@@ -1,4 +1,4 @@
-import adminModel from "@/modules/admin/kernel/model/admin-model";
+// import adminModel from "@/modules/admin/kernel/model/admin-model";
 import { makeAutoObservable } from "mobx";
 
 export class SewerMapModel {
@@ -36,7 +36,7 @@ export class SewerMapModel {
     openModal(userId: number, sewerId?: number) {
         this._isShow = true;
         this._sewerId = sewerId || 0;
-        adminModel.wsClient?.subscribe(userId, [`event.sewer_position.sewer=${sewerId}`], this.handleCoordinates)
+        // adminModel.wsClient?.subscribe(userId, [`event.sewer_position.sewer=${sewerId}`], this.handleCoordinates)
     }
 
     handleCoordinates(data: any) {
@@ -46,7 +46,7 @@ export class SewerMapModel {
     }
 
     unsubscribe(userId: number) {
-        adminModel.wsClient?.unsubscribe(userId, [`event.sewer_position.sewer=${this._sewerId}`])
+        // adminModel.wsClient?.unsubscribe(userId, [`event.sewer_position.sewer=${this._sewerId}`])
     }
 
     init() {

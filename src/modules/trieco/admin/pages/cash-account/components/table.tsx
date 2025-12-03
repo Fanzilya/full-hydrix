@@ -1,4 +1,4 @@
-import { ExtendedColumnDef, Table } from "@/core/UIKit/table";
+import { ExtendedColumnDef, Table } from "@/app/cores/core-trieco/UIKit/table";
 
 export const TableView = () => {
     return (
@@ -44,7 +44,7 @@ const columns: ExtendedColumnDef<any, any>[] = [
     },
     {
         header: `Тип`,
-        filterOptions: [{title: 'Наличные'}, {title: 'Безналичные'}],
+        filterOptions: [{ title: 'Наличные' }, { title: 'Безналичные' }],
         accessorKey: 'type',
         cell: info => {
             return (

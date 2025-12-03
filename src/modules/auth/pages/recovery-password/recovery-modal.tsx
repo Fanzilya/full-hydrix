@@ -1,4 +1,4 @@
-// import { Button, Input, Modal } from "@/core/UIKit";
+// import { Button, Input, Modal } from "@/app/cores/core-trieco/UIKit";
 // import { observer } from "mobx-react-lite";
 // import recoveryPasswordModel from "../model/recovery-password-model";
 

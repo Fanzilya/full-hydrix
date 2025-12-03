@@ -1,5 +1,5 @@
-import { OrderStatus, OrderStatusText, StatusColor } from "@/core/lib/order";
-import { Icon } from "@/core/UIKit/icon";
+import { OrderStatus, OrderStatusText, StatusColor } from "@/app/cores/core-trieco/lib/order";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
 import { Order } from "../services/calender";

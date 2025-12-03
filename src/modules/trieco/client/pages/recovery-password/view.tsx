@@ -1,11 +1,11 @@
 import bg from '../../kernel/static/img/bg.png'
-import { Button, Input } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button, Input } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { observer } from 'mobx-react-lite'
 import { useNavigate } from "react-router-dom"
 import recoveryModel from './model/recovery-model'
 import { useEffect } from 'react'
-import { EmailValidation } from '@/core/UIKit/validation/EmailValidation'
+import { EmailValidation } from '@/app/cores/core-trieco/UIKit/validation/EmailValidation'
 
 export const PasswordRecoveryView = observer(() => {
     const navigate = useNavigate();

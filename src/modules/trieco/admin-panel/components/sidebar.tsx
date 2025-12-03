@@ -1,4 +1,4 @@
-import logo from '@/core/static/img/logo.svg'
+import logo from './logo.svg'
 import { SidebarItem } from './sidebar-item'
 import { observer } from 'mobx-react-lite'
 import { useLocation } from 'react-router-dom'
@@ -15,9 +15,9 @@ export const Sidebar = observer(() => {
                     <img src={logo} />
                 </div>
                 <div className='flex gap-8 flex-col'>
-                    <SidebarItem link='/admin-panel/' icon='sewers' isActive={location.pathname === "/admin-panel/"} hoverText="Список пользователей" />
-                    <SidebarItem link='/admin-panel/sewers' icon='sewer-car' isActive={location.pathname === "/admin-panel/sewers"} hoverText="Список ассенизаторов" />
-                    <SidebarItem link='/admin-panel/companies' icon='water-company' isActive={location.pathname === "/admin-panel/companies"} hoverText="Список предприятий" />
+                    <SidebarItem link='/trieco/admin-panel/' icon='sewers' isActive={location.pathname === "/trieco/admin-panel/"} hoverText="Список пользователей" />
+                    <SidebarItem link='/trieco/admin-panel/sewers' icon='sewer-car' isActive={location.pathname === "/trieco/admin-panel/sewers"} hoverText="Список ассенизаторов" />
+                    <SidebarItem link='/trieco/admin-panel/companies' icon='water-company' isActive={location.pathname === "/trieco/admin-panel/companies"} hoverText="Список предприятий" />
                 </div>
                 <div className='flex gap-8 flex-col mt-3'>
                     <div onClick={logout}><SidebarItem link='/admin/sewers' icon='exit-client' hoverText='Выйти' /></div>

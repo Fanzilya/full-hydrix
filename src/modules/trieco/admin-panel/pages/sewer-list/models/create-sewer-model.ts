@@ -7,7 +7,7 @@ import {
   Sewer,
   deleteSewer,
 } from "../services/sewers";
-import { Role } from "@/core/enums/role";
+import { Role } from "@/app/cores/core-trieco/enums/role";
 import { toast } from "react-toastify";
 
 export class CreateSewerModel {

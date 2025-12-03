@@ -4,7 +4,7 @@ import { Contract } from "./tabs/contract"
 import { Profile } from "./tabs/profile"
 import { MunicipalityPanel } from "./tabs/municipality"
 
-import { Icon } from "@/core/UIKit/icon"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { observer } from "mobx-react-lite"
 import { useState } from "react"
 

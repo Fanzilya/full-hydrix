@@ -1,4 +1,4 @@
-import { emailApprove, emailConfirm } from "@/core/network/user/user";
+import { emailApprove, emailConfirm } from "@/app/cores/core-trieco/network/user/user";
 import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
 

@@ -1,16 +1,16 @@
 import { getFNSData } from "@/core/network/fns/fns";
-import { Button, Input, Modal } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button, Input, Modal } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState } from "react";
 import { registrationModel } from "../model/register-model";
-import { Password } from "@/core/UIKit/password-input";
-import PortalModal from "@/core/UIKit/modal/portal";
+import { Password } from "@/app/cores/core-trieco/UIKit/password-input";
+import PortalModal from "@/app/cores/core-trieco/UIKit/modal/portal";
 import clientModel from "@/modules/client/kernel/model/client-model";
 import { useNavigate } from "react-router-dom";
 import emailConfirmModel from "../../emal-confirm/models/confirm-model";
-import { Role } from "@/core/enums/role";
-import { EmailValidation } from "@/core/UIKit/validation";
+import { Role } from "@/app/cores/core-trieco/enums/role";
+import { EmailValidation } from "@/app/cores/core-trieco/UIKit/validation";
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
 
 type Props = {

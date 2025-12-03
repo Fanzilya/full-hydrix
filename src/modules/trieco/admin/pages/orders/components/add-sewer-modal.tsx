@@ -1,10 +1,10 @@
-import { Input, Button, Modal } from "@/core/UIKit";
+import { Input, Button, Modal } from "@/app/cores/core-trieco/UIKit";
 import { observer } from "mobx-react-lite";
 import attachSewerModel from "../model/attach-sewer-model";
 import { useEffect, useState, useRef } from "react";
 import orderListModel from "../model/order-list-model";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
 import { Sewer } from "../../sewer-list/services/sewers";
+import { useAuth } from "@/entities/user/context";
 
 type Props = {
     show: boolean;
@@ -17,10 +17,11 @@ export const AttachSewerModal = observer(({ show, setShow }: Props) => {
     const [showList, setShowList] = useState(false);
     const [inputValue, setInput] = useState("");
 
+    const { user } = useAuth()
 
     const listRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
-        init(adminModel.companyId || 0);
+        init(user?.companyId || 0);
     }, []);
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import { Table } from "@/core/UIKit/table"
+import { Table } from "@/app/cores/core-trieco/UIKit/table"
 import { ColumnDef } from "@tanstack/react-table"
 import { useCallback, useEffect } from "react"
 import { observer } from "mobx-react-lite"
@@ -136,7 +136,7 @@ export const OrdersStats = observer(() => {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
- 
+
         return `${day}.${month}.${year}`;
     }
 

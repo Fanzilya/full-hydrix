@@ -1,5 +1,5 @@
-import instance from "@/core/network/api";
-import { UserRoutes, CompanyRoutes } from "@/core/network/api-routes";
+import instance from "@/app/api/instances";
+import { UserRoutes, CompanyRoutes } from "@/app/api/instances-routes";
 
 export const identifyByPhone = (params: IdentifyByPhoneRequest) => {
     return instance.get(UserRoutes.IdentifyByPhone, { params })
@@ -19,7 +19,7 @@ export const getUserById = (params: GetUserById) => {
 
 export const createCompany = (data: CompanyRegistrateRequest) => {
     return instance.post(CompanyRoutes.Create, data)
-}   
+}
 
 export const createClientCompany = (data: CompanyRegistrateRequest) => {
     return instance.post(CompanyRoutes.CreateClientCompany, data)

@@ -11,16 +11,16 @@ import { Input } from "@/shared/ui/Inputs/input-text";
 import { Button } from "@/shared/ui/button";
 import { ModalDelete } from "@/shared/ui/modal/modal-delete";
 import { useAuth } from "@/entities/user/context";
-// import { Icon } from "@/core/UIKit/icon"
+// import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 // import { Card } from "./components/card"
 // import { useNavigate, useParams } from "react-router-dom"
 // import { DrainStations } from "./components/drain-stations/drain-stations"
 // import { useEffect } from "react"
 // import waterCompanyModel from "./model/water-company-model"
-// import { Meta } from "@/core/network/meta"
+// import { Meta } from "@/app/cores/core-trieco/network/meta"
 // import gisModel from "../../kernel/model/gis-model"
-// import { Role } from "@/core/enums/role"
-// import { Button, Input } from "@/core/UIKit"
+// import { Role } from "@/app/cores/core-trieco/enums/role"
+// import { Button, Input } from "@/app/cores/core-trieco/UIKit"
 
 export const WaterCompanyView = observer(() => {
     const navigate = useNavigate();

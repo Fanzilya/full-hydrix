@@ -1,14 +1,14 @@
-import { Button, Input, Modal } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button, Input, Modal } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState } from "react";
 import { createCompaniesModel } from "../models/create-companies-model";
-import { Password } from "@/core/UIKit/password-input";
-import PortalModal from "@/core/UIKit/modal/portal";
+import { Password } from "@/app/cores/core-trieco/UIKit/password-input";
+import PortalModal from "@/app/cores/core-trieco/UIKit/modal/portal";
 import clientModel from "@/modules/client/kernel/model/client-model";
 import { useNavigate } from "react-router-dom";
-import { Role } from "@/core/enums/role";
-import { EmailValidation } from "@/core/UIKit/validation";
+import { Role } from "@/app/cores/core-trieco/enums/role";
+import { EmailValidation } from "@/app/cores/core-trieco/UIKit/validation";
 import emailConfirmModel from "@/modules/client/viewports/emal-confirm/models/confirm-model";
 
 type Props = {
@@ -68,7 +68,7 @@ export const CreateModal = observer(({ show, setShow }: Props) => {
                                         </label>
                                     </div>
                                 </div>
-                                
+
                                 <div className="mt-[30px]">
                                     <span className="font-bold text-[16px]">Инфромация об организации</span>
                                     <div className="grid grid-cols-2 items-start gap-[10px] mt-[20px]">

@@ -1,18 +1,19 @@
-import { Button, Input } from "@/core/UIKit"
 import clientModel from "../../kernel/model/client-model"
 import updateUserModel from "./model/update-user";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { Icon } from "@/core/UIKit/icon";
+import { Input } from "@/shared/ui/GIS";
+import { Icon } from "@/shared/ui/icon";
+import { Button } from "@/shared/ui/button";
 
 export const ProfileView = observer(() => {
     const { model, init, changeEmail, changeFirstName, changeLastName, changeMiddleName, changePhone, update, isValid } = updateUserModel;
-    const { setUser } = clientModel;
+    const { setUser, user } = clientModel;
     useEffect(() => {
-        init(clientModel.user!)
+        user && init(user)
     }, [])
     return (
-        <div className="mt-16 py-8 px-10 flex flex-col gap-14 shadow-[1px_1px_5px_rgba(0,_0,_0,_1)] rounded-[6px] ">
+        <div className="mt-16 py-8 px-10 flex flex-col gap-14 shadow-[1px_1px_5px_rgb(145,_145,_145)] rounded-[6px] ">
             <div className="flex flex-col gap-6">
 
                 <div className="flex justify-between pb-6 mb-6 border-b-[1px]">

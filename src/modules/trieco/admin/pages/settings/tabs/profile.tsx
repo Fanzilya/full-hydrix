@@ -1,13 +1,13 @@
-import { Button } from "@/core/UIKit"
-import { Input } from "@/core/UIKit/input"
-import adminModel from "@/modules/admin/kernel/model/admin-model"
+import { Button } from "@/app/cores/core-trieco/UIKit"
+import { Input } from "@/app/cores/core-trieco/UIKit/input"
 import { observer } from "mobx-react-lite"
 import profileModel from "../models/profile-model"
 import { useEffect, useState } from "react"
 import { EditPasswordModal } from "../components/modals/edit-password-modal"
 import { EditLoginModal } from "../components/modals/edit-login-modal"
-import { EmailValidation } from "@/core/UIKit/validation"
+import { EmailValidation } from "@/app/cores/core-trieco/UIKit/validation"
 import { EmailConfirmModal } from "../components/modals/email-confirm-modal"
+import { useAuth } from "@/entities/user/context"
 
 export const Profile = observer(() => {
     const [isPasswordEditModalShow, setPasswordEditModalShow] = useState(false);
@@ -22,15 +22,15 @@ export const Profile = observer(() => {
     } = profileModel;
 
     useEffect(() => {
-        init(adminModel.user!)
+        // init(useAuth().user)
     }, [])
 
 
     return (
         <div className="flex flex-col gap-6">
-            <EditPasswordModal setShow={setPasswordEditModalShow} show={isPasswordEditModalShow} />
+            {/* <EditPasswordModal setShow={setPasswordEditModalShow} show={isPasswordEditModalShow} />
             <EditLoginModal setShow={setLoginEditModalShow} show={isLoginEditModalShow} />
-            <EmailConfirmModal setShow={setConfirmCodeModalShow} show={isConfirmCodeModalShow} />
+            <EmailConfirmModal setShow={setConfirmCodeModalShow} show={isConfirmCodeModalShow} /> */}
 
             <div className="flex flex-col justify-center border-b-[1px] pb-6 border-[#EAEAEA]">
                 <span className="text-[20px] font-bold">
@@ -39,7 +39,7 @@ export const Profile = observer(() => {
                 <div className="flex flex-row justify-between items-center mt-4">
                     <div className="flex flex-row gap-5 items-center">
                         <div className="rounded-[50%] bg-[#D9D9D9] w-14 h-14"></div>
-                        <span className="text-[18px]">{adminModel.user?.lastName} {adminModel.user?.firstName} {adminModel.user?.patronymic}</span>
+                        <span className="text-[18px]">{useAuth().user?.lastName} {useAuth().user?.firstName} {useAuth().user?.patronymic}</span>
                     </div>
 
                     <Button class="bg-[#4080FB] bg-opacity-10 !py-3 !px-4 !text-[#4080FB]" children='Изменить изображение' />
@@ -90,7 +90,8 @@ export const Profile = observer(() => {
                     />
                 </div>
                 <div>
-                    <Button disabled={!isChanged(adminModel.user!) || isError} onClick={updateUser} children='Обновить профиль' class="bg-[#4A85F6] rounded-lg !py-3 !px-10 font-bold" />
+                    {/* disabled={!isChanged(useAuth().user!) || isError} */}
+                    <Button onClick={updateUser} children='Обновить профиль' class="bg-[#4A85F6] rounded-lg !py-3 !px-10 font-bold" />
                 </div>
             </div>
 

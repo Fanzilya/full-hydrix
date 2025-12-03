@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import fileStore from './model/file-model';
-import { Icon } from '@/core/UIKit/icon';
+import { Icon } from '@/app/cores/core-trieco/UIKit/icon';
 
 const FileUpload = observer(() => {
-  
+
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {

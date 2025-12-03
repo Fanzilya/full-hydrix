@@ -1,7 +1,6 @@
-import { Button, Input } from "@/core/UIKit"
-import { Icon } from "@/core/UIKit/icon"
+import { Button, Input } from "@/app/cores/core-trieco/UIKit"
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon"
 import { observer } from "mobx-react-lite";
-import adminModel from "@/modules/admin/kernel/model/admin-model";
 import orderModel from "../model/order-model";
 import { format } from "date-fns";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
@@ -9,9 +8,10 @@ import dayjs from 'dayjs';
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import orderListModel from "../model/order-list-model";
-import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
+import mapVKModel from "@/app/cores/core-trieco/UIKit/mapVK/model/mapVK-model";
 import mmrgl, { Map, MapLibreGL } from 'mmr-gl';
-import { getAdressCoordinates, getAdressList, getSuggestionClick } from "@/core/UIKit/mapVK/mapVk-functions";
+import { getAdressCoordinates, getAdressList, getSuggestionClick } from "@/app/cores/core-trieco/UIKit/mapVK/mapVk-functions";
+import { useAuth } from "@/entities/user/context";
 
 type Props = {
     onClose: () => void;
@@ -27,8 +27,10 @@ export const CreateOrderModal = observer(({ onClose }: Props) => {
 
     const { modelMap } = mapVKModel
 
+    const { user } = useAuth();
+
     useEffect(() => {
-        getSewers(adminModel.companyId || 0)
+        getSewers(user?.companyId || 0)
     }, []);
 
     const handleTimeChange = (value: string) => {
@@ -71,8 +73,8 @@ export const CreateOrderModal = observer(({ onClose }: Props) => {
             clearData();
             onClose();
             toast.success("Заявка успешно создана", { progressStyle: { background: "green" } });
-            if (adminModel.companyId) {
-                orderListModel.init(adminModel.companyId);
+            if (user?.companyId) {
+                orderListModel.init(user?.companyId);
             }
         } catch (error) {
             toast.error("Ошибка при создании заявки", { progressStyle: { background: "red" } });

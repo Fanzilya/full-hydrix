@@ -1,6 +1,6 @@
-import { Icon } from '@/core/UIKit/icon'
+import { Icon } from '@/app/cores/core-trieco/UIKit/icon'
 import bg from '../kernel/static/img/bg.png'
-import { Button, Input } from '@/core/UIKit'
+import { Button, Input } from '@/app/cores/core-trieco/UIKit'
 import { observer } from 'mobx-react-lite'
 import { Outlet, useNavigate } from 'react-router-dom'
 

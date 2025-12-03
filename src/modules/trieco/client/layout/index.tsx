@@ -3,7 +3,7 @@ import { Sidebar } from "./sidebar"
 // import { Navbar } from "./navbar"
 // import { useLayoutEffect } from "react";
 // import clientModel from "../kernel/model/client-model";
-// import { Meta } from "@/core/network/meta";
+// import { Meta } from "@/app/cores/core-trieco/network/meta";
 import { observer } from "mobx-react-lite";
 import { Navbar } from "./navbar";
 

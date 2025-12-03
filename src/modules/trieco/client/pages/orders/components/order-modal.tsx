@@ -1,11 +1,11 @@
-import { Button } from "@/core/UIKit/button"
+import { Button } from "@/app/cores/core-trieco/UIKit/button"
 import { observer } from "mobx-react-lite";
-import { Input, Modal } from "@/core/UIKit";
-import { Icon } from "@/core/UIKit/icon";
+import { Input, Modal } from "@/app/cores/core-trieco/UIKit";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 import orderModel from "../model/order-model";
 import { format } from "date-fns";
 import orderListModel from "../model/order-list-model";
-import { OrderStatus, StatusColor, OrderStatusText } from "@/core/lib/order";
+import { OrderStatus, StatusColor, OrderStatusText } from "@/app/cores/core-trieco/lib/order";
 
 type Props = {
     isOpen: boolean;

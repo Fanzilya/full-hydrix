@@ -3,13 +3,12 @@ import { Navbar } from "./navbar";
 import { Sidebar } from "./sidebar";
 import { useEffect } from "react";
 import adminModel from "../kernel/model/admin-model";
-import { Meta } from "@/core/network/meta";
 import { observer } from "mobx-react-lite";
 
 export const AdminLayout = observer(() => {
     const navigate = useNavigate();
 
-    const { meta, init } = adminModel;
+    const { init } = adminModel;
 
     useEffect(() => {
         init();
@@ -21,9 +20,7 @@ export const AdminLayout = observer(() => {
             <Sidebar />
             <div className="w-full pt-8 pr-12 pl-7 flex flex-col overflow-hidden">
                 <Navbar />
-                {
-                    meta === Meta.SUCCESS && <Outlet />
-                }
+                <Outlet />
             </div>
         </div>
     )

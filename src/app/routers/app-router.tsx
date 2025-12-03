@@ -382,24 +382,24 @@ export const AppRouter = createBrowserRouter([
                             }
                         }
                     },
-                    //         {
-                    //             path: 'pickup/create',
-                    //             async lazy() {
-                    //                 const { CreatePoint } = await import("@/modules/client/pages/create-pickup-point/create-point")
-                    //                 return {
-                    //                     Component: CreatePoint
-                    //                 }
-                    //             }
-                    //         },
-                    //         {
-                    //             path: 'pickup/edit',
-                    //             async lazy() {
-                    //                 const { EditPoint } = await import("@/modules/client/pages/edit-point/edit-point")
-                    //                 return {
-                    //                     Component: EditPoint
-                    //                 }
-                    //             }
-                    //         },
+                    {
+                        path: 'pickup/create',
+                        async lazy() {
+                            const { CreatePoint } = await import("@/modules/trieco/client/pages/create-point/")
+                            return {
+                                Component: CreatePoint
+                            }
+                        }
+                    },
+                    {
+                        path: 'pickup/edit',
+                        async lazy() {
+                            const { EditPoint } = await import("@/modules/trieco/client/pages/edit-point/")
+                            return {
+                                Component: EditPoint
+                            }
+                        }
+                    },
                     {
                         path: 'orders',
                         async lazy() {
@@ -409,175 +409,125 @@ export const AppRouter = createBrowserRouter([
                             }
                         }
                     },
-                    //         {
-                    //             path: 'profile',
-                    //             async lazy() {
-                    //                 const { Profile } = await import("@/modules/client/pages/profile/profile")
-                    //                 return {
-                    //                     Component: Profile
-                    //                 }
-                    //             }
-                    //         },
+                    {
+                        path: 'profile',
+                        async lazy() {
+                            const { Profile } = await import("@/modules/trieco/client/pages/profile")
+                            return {
+                                Component: Profile
+                            }
+                        }
+                    },
                     //     ]
                     // },
                 ]
             },
-            // {
-            //     path: '/admin',
-            //     element: <Admin />,
-            //     children: [
-            //         {
-            //             path: 'auth',
-            //             element: <Navigate to="/auth" replace />,
-            //             async lazy() {
-            //                 const { AuthLayout } = await import("@/modules/admin/components/auth-layout")
-            //                 return {
-            //                     Component: AuthLayout
-            //                 }
-            //             },
-            //             children: [
-            //                 {
-            //                     path: 'main',
-            //                     async lazy() {
-            //                         const { Main } = await import("@/modules/admin/viewports/main/main")
-            //                         return {
-            //                             Component: Main
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: '',
-            //                     element: <Navigate to="/auth" replace />,
-            //                     // async lazy() {
-            //                     //     const { Auth } = await import("@/modules/admin/viewports/auth/auth")
+            {
+                path: 'admin',
+                async lazy() {
+                    const { AdminLayout } = await import('@/modules/trieco/admin/components/admin-layout')
+                    return {
+                        Component: AdminLayout
+                    }
+                },
+                children: [
 
-            //                     //     return {
-            //                     //         Component: Auth
-            //                     //     }
-            //                     // }
-            //                 },
-            //             ]
-            //         },
-            //         {
-            //             path: '',
-            //             async lazy() {
-            //                 const { AdminLayout } = await import('@/modules/admin/components/admin-layout')
-            //                 return {
-            //                     Component: AdminLayout
-            //                 }
-            //             },
-            //             children: [
-            //                 {
-            //                     path: 'sewers',
-            //                     async lazy() {
-            //                         const { SewerList } = await import("@/modules/admin/viewports/sewer-list/sewer-list")
-            //                         return {
-            //                             Component: SewerList
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: 'orders',
-            //                     async lazy() {
-            //                         const { OrderList } = await import("@/modules/admin/viewports/orders/order-list")
-            //                         return {
-            //                             Component: OrderList
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: 'Calendar',
-            //                     async lazy() {
-            //                         const { Calendar } = await import("@/modules/admin/viewports/calendar/calendar")
-            //                         return {
-            //                             Component: Calendar
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: 'statistics',
-            //                     async lazy() {
-            //                         const { Stats } = await import("@/modules/admin/viewports/stats/stats")
-            //                         return {
-            //                             Component: Stats
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: 'settings',
-            //                     async lazy() {
-            //                         const { Settings } = await import("@/modules/admin/viewports/settings/settings")
-            //                         return {
-            //                             Component: Settings
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: 'cash',
-            //                     async lazy() {
-            //                         const { CashAccount } = await import("@/modules/admin/viewports/cash-account/cash-account")
-            //                         return {
-            //                             Component: CashAccount
-            //                         }
-            //                     }
-            //                 }
-            //             ]
-            //         },
-            //     ]
-            // },
-            // {
-            //     path: '/admin-panel',
-            //     element: <AdminPanelView />,
-            //     children: [
-            //         {
-            //             path: 'auth',
-            //             async lazy() {
-            //                 const { Auth } = await import("@/modules/admin-panel/viewports/auth/auth")
-            //                 return {
-            //                     Component: Auth
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             path: '',
-            //             async lazy() {
-            //                 const { AdminPanelLayout } = await import("@/modules/admin-panel/components/admin-panel-layout")
-            //                 return {
-            //                     Component: AdminPanelLayout
-            //                 }
-            //             },
-            //             children: [
-            //                 {
-            //                     path: '',
-            //                     async lazy() {
-            //                         const { Users } = await import("@/modules/admin-panel/viewports/users/users")
-            //                         return {
-            //                             Component: Users
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: 'sewers',
-            //                     async lazy() {
-            //                         const { SewerList } = await import("@/modules/admin-panel/viewports/sewer-list/sewer-list")
-            //                         return {
-            //                             Component: SewerList
-            //                         }
-            //                     }
-            //                 },
-            //                 {
-            //                     path: 'companies',
-            //                     async lazy() {
-            //                         const { Companies } = await import("@/modules/admin-panel/viewports/companies/companies")
-            //                         return {
-            //                             Component: Companies
-            //                         }
-            //                     }
-            //                 },
-            //             ]
-            //         },
-            //     ]
-            // }
+                    {
+                        index: true,
+                        async lazy() {
+                            const { SewerList } = await import("@/modules/trieco/admin/pages/sewer-list/sewer-list")
+                            return {
+                                Component: SewerList
+                            }
+                        }
+                    },
+                    {
+                        path: 'orders',
+                        async lazy() {
+                            const { OrderList } = await import("@/modules/trieco/admin/pages/orders/order-list")
+                            return {
+                                Component: OrderList
+                            }
+                        }
+                    },
+                    {
+                        path: 'Calendar',
+                        async lazy() {
+                            const { Calendar } = await import("@/modules/trieco/admin/pages/calendar/calendar")
+                            return {
+                                Component: Calendar
+                            }
+                        }
+                    },
+                    {
+                        path: 'statistics',
+                        async lazy() {
+                            const { Stats } = await import("@/modules/trieco/admin/pages/stats/stats")
+                            return {
+                                Component: Stats
+                            }
+                        }
+                    },
+                    {
+                        path: 'settings',
+                        async lazy() {
+                            const { Settings } = await import("@/modules/trieco/admin/pages/settings/settings")
+                            return {
+                                Component: Settings
+                            }
+                        }
+                    },
+                    {
+                        path: 'cash',
+                        async lazy() {
+                            const { CashAccount } = await import("@/modules/trieco/admin/pages/cash-account/cash-account")
+                            return {
+                                Component: CashAccount
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                path: 'admin-panel',
+                async lazy() {
+                    const { AdminPanelLayout } = await import('@/modules/trieco/admin-panel/components/admin-panel-layout')
+                    return {
+                        Component: AdminPanelLayout
+                    }
+                },
+                children: [
+                    {
+                        index: true,
+                        async lazy() {
+                            const { Users } = await import("@/modules/trieco/admin-panel/pages/users/users")
+                            return {
+                                Component: Users
+                            }
+                        }
+                    },
+                    {
+                        path: 'sewers',
+                        async lazy() {
+                            const { SewerList } = await import("@/modules/trieco/admin-panel/pages/sewer-list/sewer-list")
+                            return {
+                                Component: SewerList
+                            }
+                        }
+                    },
+                    //                 {
+                    //                     path: 'companies',
+                    //                     async lazy() {
+                    //                         const { Companies } = await import("@/modules/trieco/admin-panel/viewports/companies/companies")
+                    //                         return {
+                    //                             Component: Companies
+                    //                         }
+                    //                     }
+                    //                 },
+                    //             ]
+                    //         },
+                ]
+            }
         ]
     },
     {

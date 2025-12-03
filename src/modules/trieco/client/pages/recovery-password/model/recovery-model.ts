@@ -1,5 +1,5 @@
-import { recoveryPassword } from "@/core/network/user/user";
-import { ValidationResult } from "@/core/UIKit";
+import { recoveryPassword } from "@/app/cores/core-trieco/network/user/user";
+import { ValidationResult } from "@/app/cores/core-trieco/UIKit";
 import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
 

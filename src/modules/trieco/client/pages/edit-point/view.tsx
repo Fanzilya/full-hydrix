@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, Input } from "@/core/UIKit";
 import editPointModel from "./model/edit-point-model";
 import { observer } from "mobx-react-lite";
 
-import { getAdressCoordinates, getAdressList, getAdressText, getSuggestionClick } from "@/core/UIKit/mapVK/mapVk-functions";
+import { getAdressCoordinates, getAdressList, getAdressText, getSuggestionClick } from "@/shared/ui/mapVK/mapVk-functions";
 import mmrgl, { Map, MapLibreGL } from 'mmr-gl';
-import mapVKModel from "@/core/UIKit/mapVK/model/mapVK-model";
+import mapVKModel from "@/shared/ui/mapVK/model/mapVK-model";
+import { Input } from "@/shared/ui/GIS";
+import { Button } from "@/shared/ui/button";
 
 export const EditPointView = observer(() => {
     const { isAddress, changeAddress, model, edit, changeWasteVolume } = editPointModel;
@@ -163,7 +164,7 @@ export const EditPointView = observer(() => {
                     onClick={() => edit()}
                     disabled={!isAddress}
                     children="Изменить"
-                    class='bg-[#4A85F6] rounded-lg max-w-[242px] w-full flex items-center justify-center font-bold text-[17px] mt-8' />
+                    class='bg-[#4A85F6] text-white rounded-lg max-w-[242px] w-full flex items-center justify-center font-bold text-[17px] mt-8' />
             </div>
         </>
     );

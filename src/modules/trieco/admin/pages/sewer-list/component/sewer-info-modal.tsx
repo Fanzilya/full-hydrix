@@ -1,7 +1,8 @@
-import { Button, Input } from "@/core/UIKit";
-import { Icon } from "@/core/UIKit/icon";
 import { observer } from "mobx-react-lite";
 import { Sewer } from "../services/sewers";
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/app/cores/core-trieco/UIKit";
+import { Icon } from "@/app/cores/core-trieco/UIKit/icon";
 
 type Props = {
     show: boolean;

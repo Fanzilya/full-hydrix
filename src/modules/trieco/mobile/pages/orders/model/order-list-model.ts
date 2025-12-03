@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { getAllOrders, Order } from "../service/order";
-import { OrderStatus } from "@/core/lib/order";
+import { OrderStatus } from "@/app/cores/core-trieco/lib/order";
 
 export class OrderListModel {
   constructor() {
