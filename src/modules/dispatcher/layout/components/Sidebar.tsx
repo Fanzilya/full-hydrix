@@ -30,7 +30,7 @@ export const Sidebar = observer(() => {
     //     };
     // }, []);
 
-    return (
+    return false && (
         <div ref={sidebarRef}
             className="pt-10 pl-8 pr-6 bg-white min-h-full w-[300px] 2xl:w-[300px] flex-shrink-0 gap-10 flex flex-col rounded-r-lg"
         >

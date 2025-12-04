@@ -193,34 +193,6 @@ export const InformationsComponents: InformationsComponentsType[] = [
     },
 ];
 
-export const points: SchemeViewerPointType[] = [
-    { top: "48%", left: "5%", size: [18, 18], label: "Насос Н4.1 рецикла", id: 1, accident: true, },
-    { top: "7%", left: "17%", size: [47, 47], label: "Барабанное сито №1", id: 2, accident: true, },
-    { top: "25%", left: "17%", size: [47, 47], label: "Барабанное сито №2", id: 3, accident: true, },
-    { top: "25%", left: "23%", size: [117, 68], label: "Песколовка №1", id: 5, accident: true, },
-    { top: "8%", left: "23%", size: [117, 68], label: "Песколовка №2", id: 4, accident: true, },
-    { top: "30.5%", left: "36%", size: [25, 25], label: "Мешалка усреднителя №1", id: 6, accident: true, },
-    { top: "30.5%", left: "40.5%", size: [25, 25], label: "Мешалка усреднителя №2", id: 7, accident: true, },
-    { top: "30.5%", left: "45.5%", size: [25, 25], label: "Мешалка усреднителя №3", id: 8, accident: true, },
-    {
-        top: "25.5%",
-        left: "77.8%",
-        size: [41, 10],
-        label: "Тестовый мен",
-        id: 8,
-        accident: true,
-        control: {
-            type: "auto",
-            top: "-65%",
-            left: "70%"
-        },
-        status: HardWareStatus.OK,
-        image: "permeate-pump"
-    },
-];
-
-
-
 export const CountersData: CountersType[] = [
     { id: 1, name: "Расход QF1", value: 0, unit: "м³/ч", top: "8.4%", left: "41.7%", min: 4, max: 9 },
     { id: 2, name: "Концентрация О2", value: 0, unit: "г/л", top: "8.4%", left: "51%", min: 5, max: 10 },
@@ -242,3 +214,11 @@ export const CountersData: CountersType[] = [
     { id: 14, name: "ㅤДавление МБРㅤ", value: 0, unit: "бар", top: "53%", left: "25.7%", min: 5, max: 50 },
     { id: 15, name: "Расход QF4", value: 0, unit: "м³/ч", top: "24.4%", left: "94.1%", min: 4, max: 9 },
 ]
+
+
+
+// ==============================
+
+export const points: SchemeViewerPointType[] = [
+    { top: "39%", left: "33%", size: [122, 118], label: "Насос Н4.1 рецикла", id: 1, image: "Воздуходувка (в работе).png"},
+];
