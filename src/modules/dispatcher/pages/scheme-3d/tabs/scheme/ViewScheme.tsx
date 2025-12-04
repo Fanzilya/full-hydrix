@@ -140,7 +140,7 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
 
 
     const getPhoto = (name: string | null): string => {
-        return `src/modules/dispatcher/pages/scheme-3d/tabs/scheme/hardware/${name}`;
+        return `src/modules/dispatcher/pages/scheme-3d/tabs/scheme/hardware-images/${name}`;
     };
 
     const addPhotoStatus = (status: HardWareStatus | undefined) => {
