@@ -1,11 +1,10 @@
 export const dataRoute = [
-
     {
         path: 'gis',
         name: 'ГИС',
-        
 
-    }
+
+    },
     {
         "menu-moduls": "текст",
         "gis": "текст",

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import image from '../../assets/201.png'
+import image from '../../assets/scheme.png'
 import image2 from '../../assets/sssss.png'
 import "./ViewScheme.scss";
 import { CountersType, HardWareStatus, SchemeViewerType } from "../../types/type";
@@ -139,8 +139,8 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
     };
 
 
-    const getPhoto = (name: string): string => {
-        return `src/modules/dispatcher/pages/scheme-3d/tabs/scheme/hardware-images/wwww.png`;
+    const getPhoto = (name: string | null): string => {
+        return `src/modules/dispatcher/pages/scheme-3d/tabs/scheme/hardware/${name}`;
     };
 
     const addPhotoStatus = (status: HardWareStatus | undefined) => {
@@ -177,8 +177,7 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
             >
 
 
-                {/* {points.map((p, i) => ( */}
-                <div
+                {/* <div
                     onClick={() => setInfo(12)}
                     // key={i}
                     className="absolute cursor-pointer"
@@ -196,27 +195,34 @@ export default function SchemeViewer({ setInfo, points }: SchemeViewerType) {
                             <img className="h-full w-full object-cover" src="src/modules/dispatcher/pages/scheme-3d/tabs/scheme/hardware-images/wwww.png" />
                         </div>
                     </div>
-                </div>
-                <div
-                    onClick={() => setInfo(12)}
-                    // key={i}
-                    className="absolute cursor-pointer"
-                    style={{
-                        top: "73.5%",
-                        left: "45.5%",
-                        width: "144px",
-                        // height: "350px",
-                        // backgroundColor: "#ff4d4f",
-                        // border: "2px solid white",
-                    }}
-                >
-                    <div className="relative w-full h-full">
-                        <div className="hover:translate-x-[10px] hover:scale-[1.1] duration-300">
-                            <img className="h-full w-full object-cover" src="src/modules/dispatcher/pages/scheme-3d/tabs/scheme/hardware-images/sssss.png" />
+                </div> */}
+
+                {points.map((p, i) => (
+                    <div
+                        onClick={() => setInfo(12)}
+                        key={i}
+                        className="absolute cursor-pointer"
+                        style={{
+                            // top: "73.5%",
+                            // left: "45.5%",
+                            // width: "144px",
+                            // height: "350px",
+                            // backgroundColor: "#ff4d4f",
+                            // border: "2px solid white",
+
+                            top: p.top,
+                            left: p.left,
+                            width: p.size[1],
+                            height: p.size[0],
+                        }}
+                    >
+                        <div className="relative w-full h-full">
+                            <div className="hover:translate-x-[10px] hover:scale-[1.1] duration-300">
+                                <img className="h-full w-full object-cover" src={getPhoto(p?.image)} />
+                            </div>
                         </div>
                     </div>
-                </div>
-                {/* // ))} */}
+                ))}
                 <img
                     ref={imgRef}
                     src={image}
