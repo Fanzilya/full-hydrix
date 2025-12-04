@@ -222,3 +222,5 @@ export const CountersData: CountersType[] = [
 export const points: SchemeViewerPointType[] = [
     { top: "39%", left: "33%", size: [122, 118], label: "Насос Н4.1 рецикла", id: 1, image: "Воздуходувка (в работе).png"},
 ];
+
+// asdasdasdasd
